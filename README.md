@@ -1,6 +1,9 @@
 hoodie-website-css
 ==================
 
+## Usage
+To use the css file, please link to ````src/css/prod/hoodie.min.css````
+
 ## Getting started
 
 To get started check out the recent version and type npm install.
