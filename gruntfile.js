@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     },
     watch: {
       css: {
-        files: 'dist/sass/**/*.scss',
+        files: 'src/sass/**/*.scss',
         tasks: ['sass:dev'],
         options: {
           atBegin: true,
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
           outputStyle: 'nested'
         },
         files: {
-          'dist/css/hoodie.css' : 'dist/sass/base.scss'
+          'src/css/hoodie.css' : 'src/sass/base.scss'
         }
       },
       prod: {
@@ -39,14 +39,14 @@ module.exports = function(grunt) {
             outputStyle: 'compressed'
         },
         files: {
-            'dist/css/prod/hoodie.min.css' : 'dist/sass/base.scss'
+            'src/css/prod/hoodie.min.css' : 'src/sass/base.scss'
         }
       }
     },
     copy: {
         main: {
-            src: 'dist/css/prod/hoodie.min.css',
-            dest: 'dist/css/.tmp/hoodie.min.tmp.css'
+            src: 'src/css/prod/hoodie.min.css',
+            dest: 'src/css/.tmp/hoodie.min.tmp.css'
         }
     },
     autoprefixer: {
