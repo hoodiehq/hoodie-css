@@ -56,8 +56,8 @@ module.exports = function(grunt) {
                 cascade: false,
                 annotation: false
             },
-            src: 'dist/css/.tmp/hoodie.min.tmp.css',
-            dest: 'dist/css/prod/hoodie.min.pref.css'
+            src: 'src/css/.tmp/hoodie.min.tmp.css',
+            dest: 'src/css/prod/hoodie.min.pref.css'
 
         }
     },
