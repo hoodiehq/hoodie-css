@@ -60,6 +60,16 @@ module.exports = function(grunt) {
             dest: 'dist/css/prod/hoodie.min.pref.css'
 
         }
+    },
+    uglify: {
+      options: {
+        mangle: false
+      },
+      files: {
+        files: {
+          'src/js/prod/hoodie.min.js' : ['src/js/jquery.min.js', 'src/js/icheck.min.js', 'src/js/main.js']
+        }
+      }
     }
   });
   grunt.loadNpmTasks('grunt-sass');
@@ -67,6 +77,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('default', [
       'connect',
@@ -75,6 +86,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
       'sass:prod',
       'copy',
-      'autoprefixer'
+      'autoprefixer',
+      'uglify'
     ]);
 };
