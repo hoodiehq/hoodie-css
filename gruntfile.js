@@ -70,23 +70,66 @@ module.exports = function(grunt) {
           'src/js/prod/hoodie.min.js' : ['src/js/jquery.min.js', 'src/js/main.js']
         }
       }
+    },
+    'string-replace': {
+      dev: {
+        files: {
+          '_includes/head.html':'_includes/head.html',
+          '_includes/footer.html':'_includes/footer.html'
+        },
+        options: {
+            replacements: [
+              {
+                pattern: '<link rel="stylesheet" href="/src/prod/hoodie.min.pref.css">',
+                replacement: '<link rel="stylesheet" href="/src/css/hoodie.css">'
+              },
+              {
+                pattern: '<script src="/src/prod/hoodie.min.js"></script>',
+                replacement: '<script src="/src/js/jquery/dist/jquery.js"></script><script src="/src/js/main.js"></script>'
+              }
+            ]
+        }
+      },
+      build: {
+        files: {
+            '_includes/head.html':'_includes/head.html',
+            '_includes/footer.html':'_includes/footer.html'
+        },
+        options: {
+          replacements: [
+            {
+              pattern: '<script src="/src/js/jquery/dist/jquery.js"></script><script src="/dist/js/main.js"></script>',
+              replacement: '<script src="/src/prod/hoodie.min.js"></script>'
+            },
+            {
+              pattern: '<link rel="stylesheet" href="/src/css/hoodie.css">',
+              replacement: '<link rel="stylesheet" href="/src/prod/hoodie.min.pref.css">'
+            },
+          ]
+        }
+      }
     }
   });
+
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-string-replace');
+
 
   grunt.registerTask('default', [
       'connect',
+      'string-replace:dev',
       'watch'
     ]);
   grunt.registerTask('build', [
       'sass:prod',
       'copy',
       'autoprefixer',
-      'uglify'
+      'uglify',
+      'string-replace:build'
     ]);
 };
