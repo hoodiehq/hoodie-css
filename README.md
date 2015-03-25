@@ -7,6 +7,48 @@ To get started check out the recent version and type npm install.
 The default task (just type 'grunt') will fire up a local server at localhost:1337 with livereload and dev Sass compiling (including sourcemap and nested output).
 There's also a production task ('grunt build') which at this point just spits out a compressed CSS file, without sourcemap in a dedicated folder(css/build).
 
+## !IMPORTANT
+
+We're using a font loading method on http://hood.ie which relies on the following script, which has to be included in the head.html file. If the page has multiple head includes the script has to be included in each one of them.
+```
+<script>
+    (function(){
+        function addFont() {
+            var style = document.createElement('style');
+            style.rel = 'stylesheet';
+            document.head.appendChild(style);
+            style.textContent = localStorage.firaSans;
+        }
+
+        try {
+            if (localStorage.firaSans) {
+                // The font is in localStorage, we can load it directly
+                addFont();
+            } else {
+                // We have to first load the font file asynchronously
+                var request = new XMLHttpRequest();
+                request.open('GET', '/dist/css/fonts.css', true);
+
+                request.onload = function() {
+                    if (request.status >= 200 && request.status < 400) {
+                        // We save the file in localStorage
+                        localStorage.firaSans = request.responseText;
+
+                        // ... and load the font
+                        addFont();
+                    }
+                };
+
+                request.send();
+            }
+        } catch(ex) {
+            // maybe load the font synchronously for woff-capable browsers
+            // to avoid blinking on every request when localStorage is not available
+        }
+    }());
+</script>
+```
+
 ## Editorconfig & coding standards
 
 <img src="http://i.giphy.com/7SEOvVtOdtU2Y.gif" />
