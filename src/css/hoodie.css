@@ -292,7 +292,13 @@ body {
   font-family: 'Fira Sans', sans-serif;
   font-size: 100%;
   font-weight: 300;
-  line-height: 1.618; }
+  line-height: 1.618;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" 0;
+  -webkit-font-feature-settings: "liga" 0;
+  font-feature-settings: "liga" 0; }
 
 h1, .h1 {
   font-size: 2.25em;
