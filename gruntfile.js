@@ -73,7 +73,7 @@ module.exports = function(grunt) {
       },
       files: {
         files: {
-          'src/js/prod/hoodie.min.js' : ['src/js/jquery.min.js', 'src/js/main.js']
+          'src/js/prod/hoodie.min.js' : ['src/js/jquery.min.js', 'src/js/icheck.min.js', 'src/js/main.js']
         }
       }
     }
