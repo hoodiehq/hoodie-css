@@ -24,6 +24,12 @@ module.exports = function(grunt) {
       }
     },
     sass: {
+      scsslint: 
+      {
+        dist: {
+          src: ['./src/sass/*.scss'],
+        }
+      },
       dev: {
         options: {
           sourceMap: true,
@@ -79,6 +85,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-scsslint');
 
 
   grunt.registerTask('default', [
@@ -86,6 +93,7 @@ module.exports = function(grunt) {
       'watch'
     ]);
   grunt.registerTask('build', [
+      'sass:scsslint',
       'sass:prod',
       'copy',
       'autoprefixer',
