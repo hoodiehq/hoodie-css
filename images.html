@@ -4,6 +4,7 @@
       <meta charset="utf-8">
       <title>Hoodie CSS Framework</title>
       <link rel="stylesheet" href="./src/css/prod/hoodie.min.pref.css">
+      <link rel="stylesheet" href="./src/prism/prism.css">
       <script>
         (function(){
             function addFont() {
@@ -20,7 +21,7 @@
                 } else {
                     // We have to first load the font file asynchronously
                     var request = new XMLHttpRequest();
-                    request.open('GET', 'http://zoepage.github.io/css-migration/src/css/fonts.css', true);
+                    request.open('GET', 'http://hoodiehq.github.io/hoodie-css/src/css/fonts.css', true);
 
                     request.onload = function() {
                         if (request.status >= 200 && request.status < 400) {
