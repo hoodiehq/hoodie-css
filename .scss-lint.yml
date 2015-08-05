@@ -1,0 +1,128 @@
+exclude: ['./node_modules/**/*','./src/css/*.css', './src/favicons/', './src/font/', '.src/js/', './src/prism/', './src/svg/']
+scss_files: '.scss/*.scss'
+
+linters:
+  BangFormat:
+    enabled: true
+    space_before_bang: true
+    space_after_bang: false
+  BemDepth:
+    enabled: true
+    max_elements: 1
+  BorderZero:
+    enabled: true
+    convetion: zero
+  ColorKeyword:
+    enabled: true
+  ColorVariable:
+    enabled: true
+  Comment:
+    enabled: true
+  DebugStatement:
+    enabled: true
+  DeclarationOrder:
+    enabled: true
+  DisableLinterReasons:
+    enabled: false
+  DuplicateProperty:
+    enabled: true
+  ElsePlacement:
+    enabled: true
+  EmptyLineBetweenBlocks:
+    enabled: true
+  EmptyRule:
+    enabled: true
+  ExtendDirective:
+    enabled: false
+  FinalNewLine:
+    enabled: true
+  HexLength:
+    enabled: false
+  HexNotation:
+    enabled: true
+    style: lowercase
+  HexValidation:
+    enabled: true
+  IdSelector:
+    enabled: true
+  ImportantRule:
+    enabled: false
+    leading_underscore: false
+    filename_extension: false
+  Indentation:
+    enabled: true
+    character: space
+    width: 2
+  LeadingZero:
+    enabled: true
+  MergeableSelector:
+    enabled: true
+  NameFormat:
+    enabled: true
+    max_depth: 3
+  PlaceholderInExtend:
+    enabled: false
+  PropertyCount:
+    enabled: false
+  #PropertySortOrder:
+    #enabled: true
+  PropertySpelling:
+    enabled: true
+  PropertyUnits:
+    enabled: true
+    properties:
+      line-height: []
+      font-size: ['em', '%']
+  QualifyingElement:
+    enabled: true
+  SelectorDepth:
+    enabled: true
+    max_depth: 3
+  #SelectorFormat:
+    #enabled: true
+  Shorthand:
+    enabled: false
+  SingleLineProperty:
+    enabled: true
+  SingleLinePerSelector:
+    enabled: true
+  SpaceAfterComma:
+    enabled: true
+  SpaceAfterPropertyColon:
+    enabled: true
+  SpaceAfterPropertyName:
+    enabled: true
+  SpaceAfterVariableName:
+    enabled: true
+  SpaceAroundOperators:
+    enabled: true
+  SpaceBeforeBrace:
+    enabled: true
+    allow_single_line_padding: true
+  SpaceBetweenParens:
+    enabled: true
+    spaces: 0
+  StringQuotes:
+    enabled: true
+    style: single_quotes
+  TrailingSemicolon:
+    enabled: true
+  TrailingWhitespace:
+    enabled: true
+  TrailingZero:
+    enabled: true
+  UnnecessaryMantissa:
+    enabled: true
+  UnnecessaryPerentReference:
+    enabled: true
+  UrlFormat:
+    enabled: true
+  UrlQuotes:
+    enabled: true
+  VariablesForProperty:
+    enabled: false
+  VendorPrefix:
+    enabled: true
+    excluded_identifiers: ['-webkit-font-smoothing','-moz-osx-font-smoothing']
+  ZeroUnit:
+    enabled: true

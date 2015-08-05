@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Hoodie CSS Framework</title>
+      <link rel="stylesheet" href="./src/css/prod/hoodie.min.pref.css">
+      <script>
+        (function(){
+            function addFont() {
+                var style = document.createElement('style');
+                style.rel = 'stylesheet';
+                document.head.appendChild(style);
+                style.textContent = localStorage.firaSansWeb;
+            }
+
+            try {
+                if (localStorage.firaSansWeb) {
+                    // The font is in localStorage, we can load it directly
+                    addFont();
+                } else {
+                    // We have to first load the font file asynchronously
+                    var request = new XMLHttpRequest();
+                    request.open('GET', 'http://zoepage.github.io/css-migration/src/css/fonts.css', true);
+
+                    request.onload = function() {
+                        if (request.status >= 200 && request.status < 400) {
+                            // We save the file in localStorage
+                            localStorage.firaSansWeb = request.responseText;
+
+                            // ... and load the font
+                            addFont();
+                        }
+                    };
+
+                    request.send();
+                }
+            } catch(ex) {
+                // maybe load the font synchronously for woff-capable browsers
+                // to avoid blinking on every request when localStorage is not available
+            }
+        }());
+      </script>
+    </head>
+    <body class="orange">
+      <header>
+        <section class="nav"></section>
+      </header>
+      <div class="content">
+        <div class="box">
+
+          <section class="cb teaser">
+            <aside>
+              <br />
+              <br />
+              <br />
+              <br />
+              <nav>
+                <a href="index.html">0. Intro &amp; Contribute</a><br />
+                <a href="index.html">1. Preq &amp; Setup</a><br />
+                <a href="index.html">2. Build your Website</a><br />
+                <a href="index.html">3. Colours and Fonts</a><br />
+                <a href="http://hood.ie/typographic-base.html" target="_blank">4. Typo &amp; Icons</a><br />
+                <a href="images.html">4. Images</a><br />
+                <a href="index.html">5. Run Deployment</a>
+              </nav>
+            </aside>
+            <article>
+              <h1>Our images for across all sites</h1>
+              <p>
+                Here you'll find a selection of all our images, you can use across all the hoodie related sites.
+              </p>
+              <ul>
+                <li><a href="#animals">Animals</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#backgrounds">Backgrounds</a></li>
+                <li><a href="#apps">Apps</a></li>
+                <li><a href="#merchandise">Merchandise</a></li>
+              </ul>
+            </article>
+          </section>
+          <section id="animals" class="cb">
+            <article>
+              <h2>Content: Animals</h2>
+              <small>All illustrations made by <a href="http://www.carolinabuzio.com/" target="_blank"> http://www.carolinabuzio.com/</a></small>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-1.png" alt="Low Profile Dog 1">
+                  <figcaption>
+                    <strong>Low Profile Dog 1</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-1.png </small>
+                  </figcaption>
+                </figure>
+              </p>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-2.png" alt="Low Profile Dog 2">
+                  <figcaption>
+                    <strong>Low Profile Dog 2</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-2.png </small>
+                  </figcaption>
+                </figure>
+              </p>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-3.png" alt="Low Profile Dog 3">
+                  <figcaption>
+                    <strong>Low Profile Dog 3</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-3.png </small>
+                  </figcaption>
+                </figure>
+              </p>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/animals/docs-chicken-1.png" alt="Docs Chicken 1">
+                  <figcaption>
+                    <strong>Docs Chicken 1</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/animals/docs-chicken-1.png</small>
+                  </figcaption>
+                </figure>
+              </p>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/animals/coming-soon.png" alt="coming soon">
+                  <figcaption>
+                    <strong>Coming Soon</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/animals/coming-soon.png </small>
+                  </figcaption>
+                </figure>
+              </p>
+            </article> 
+          </section>
+          <section id="community" class="cb">
+            <article>
+              <h2>Content: Community</h2>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/alex-feyerke.jpg" alt="Alex Feyerke">
+                  <figcaption>
+                    <strong>Alex Feyerke - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/alex-feyerke.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/alex-feyerke--hover.jpg" alt="Alex Feyerke">
+                  <figcaption>
+                    <strong>Alex Feyerke - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/alex-feyerke--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/caolen-mcmahon.jpg" alt="Caolen McMahon">
+                  <figcaption>
+                    <strong>Caolen McMahon - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/caolen-mcmahon.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/caolen-mcmahon--hover.jpg" alt="Caolen McMahon">
+                  <figcaption>
+                    <strong>Caolen McMahon - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/caolen-mcmahon--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/carolina-buzio.jpg" alt="Carolina Buzio">
+                  <figcaption>
+                    <strong>Carolina Buzio - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/carolina-buzio.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/carolina-buzio--hover.jpg" alt="Carolina Buzio">
+                  <figcaption>
+                    <strong>Carolina Buzio - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/carolina-buzio--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/gregor-martynus.jpg" alt="Gregor Martynus">
+                  <figcaption>
+                    <strong>Gregor Martynus - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/gregor-martynus.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/gregor-martynus--hover.jpg" alt="Gregor Martynus">
+                  <figcaption>
+                    <strong>Gregor Martynus - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/gregor-martynus--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/jan-erik-rediger.jpg" alt="Jan-Erik Rediger">
+                  <figcaption>
+                    <strong>Jan-Erik Rediger - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/jan-erik-rediger.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/jan-erik-rediger--hover.jpg" alt="Jan-Erik Rediger">
+                  <figcaption>
+                    <strong>Jan-Erik Rediger - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/jan-erik-rediger--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/jan-lenhardt.jpg" alt="Jan Lenhardt">
+                  <figcaption>
+                    <strong>Gregor Martynus - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/jan-lenhardt.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/jan-lenhardt--hover.jpg" alt="Gregor Martynus">
+                  <figcaption>
+                    <strong>Gregor Martynus - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/jan-lenhardt--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/julia-schmidt.jpg" alt="Julia Schmidt">
+                  <figcaption>
+                    <strong>Julia Schmidt - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/julia-schmidt.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/julia-schmidt--hover.jpg" alt="Julia Schmidt">
+                  <figcaption>
+                    <strong>Julia Schmidt - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/julia-schmidt--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/katrin-apel.jpg" alt="Katrin Apel">
+                  <figcaption>
+                    <strong>Katrin Apel - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/katrin-apel.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/katrin-apel--hover.jpg" alt="Katrin Apel">
+                  <figcaption>
+                    <strong>Katrin Apel - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/katrin-apel--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/kevin-lorenz.jpg" alt="Kevin Lorenz">
+                  <figcaption>
+                    <strong>Kevin Lorenz - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/kevin-lorenz.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/kevin-lorenz--hover.jpg" alt="Kevin Lorenz">
+                  <figcaption>
+                    <strong>Kevin Lorenz - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/kevin-lorenz--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/lena-reinhard.jpg" alt="Lena Reinhard">
+                  <figcaption>
+                    <strong>Lena Reinhard - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/lena-reinhard.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/lena-reinhard--hover.jpg" alt="Lena Reinhard">
+                  <figcaption>
+                    <strong>Lena Reinhard - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/lena-reinhard--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/lewis-cowper.jpg" alt="Lewis Cowper">
+                  <figcaption>
+                    <strong>Lewis Cowper - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/lewis-cowper.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/lewis-cowper--hover.jpg" alt="Lewis Cowper">
+                  <figcaption>
+                    <strong>Lewis Cowper - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/lewis-cowper--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/ola-gasidlo.jpg" alt="Ola Gasidlo">
+                  <figcaption>
+                    <strong>Ola Gasidlo - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/ola-gasidlo.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/ola-gasidlo--hover.jpg" alt="Ola Gasidlo">
+                  <figcaption>
+                    <strong>Ola Gasidlo - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/ola-gasidlo--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/stephan-boennemann.jpg" alt="Stephan Boennemann">
+                  <figcaption>
+                    <strong>Stephan Boennemann - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/stephan-boennemann.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/stephan-boennemann--hover.jpg" alt="Stephan Boennemann">
+                  <figcaption>
+                    <strong>Stephan Boennemann - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/stephan-boennemann--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/sven-lito.jpg" alt="Sven Lito">
+                  <figcaption>
+                    <strong>Sven Lito - sw</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/default-sw/sven-lito.jpg</small>
+                  </figcaption>
+                </figure>
+                <br />
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/sven-lito--hover.jpg" alt="Sven Lito">
+                  <figcaption>
+                    <strong>Sven Lito - colour</strong <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/community/hover-bunt/sven-lito--hover.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+            </article>
+          </section>
+
+          <section id="backgrounds" class="cb">
+            <article>
+              <h2>Content: (Teaser) Backgrounds</h2>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/index/contribute.jpg" alt="Contribute 1">
+                  <figcaption>
+                    <strong>Contribute 1 </strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/index/contribute.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+               <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/index/contribute2.jpg" alt="Contribute 2">
+                  <figcaption>
+                    <strong>Contribute 2 </strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/index/contribute2.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/index/feature.jpg" alt="Feature">
+                  <figcaption>
+                    <strong>Feature </strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/index/feature.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/index/index1.jpg" alt="Index 1">
+                  <figcaption>
+                    <strong>Index 1</strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/index/index1.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/index/index_merch.jpg" alt="Index Merch">
+                  <figcaption>
+                    <strong>Index Merch</strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/index/index_merch.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+            </article> 
+          </section>
+
+          <section id="apps" class="cb">
+            <article>
+              <h2>Content: Apps</h2>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/initiatives/faq.png" alt="FAQ">
+                  <figcaption>
+                    <strong>FAQ </strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/initiatives/faq.png</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/initiatives/milestones.png" alt="Milestones">
+                  <figcaption>
+                    <strong>Milestones </strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/initiatives/milestones.png</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/initiatives/ubersicht.png" alt="Ubersicht">
+                  <figcaption>
+                    <strong>Ubersicht </strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/initiatives/ubersicht.png</small>
+                  </figcaption>
+                </figure>
+              </p>
+            </article> 
+          </section>
+
+          <section id="merchandise" class="cb">
+            <article>
+              <h2>Content: Merchandise</h2>
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/merchandise/sticker-x1-5.jpg" alt="Sticker">
+                  <figcaption>
+                    <strong>Sticker </strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/merchandise/sticker-x1-5.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+
+              <p>
+                <figure>
+                  <img src="http://hoodiehq.github.io/hoodie-css/src/content_img/merchandise/t-shirt-x1-5.jpg" alt="Shirt">
+                  <figcaption>
+                    <strong>Shirt </strong> <br />
+                    <small>http://hoodiehq.github.io/hoodie-css/src/content_img/merchandise/t-shirt-x1-5.jpg</small>
+                  </figcaption>
+                </figure>
+              </p>
+            </article> 
+          </section>
+        </div>
+      </div>
+    </body>
+  </html> 
