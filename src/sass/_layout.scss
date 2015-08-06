@@ -1,26 +1,35 @@
-// clearfix
+
+
+/*------------------------------------*\
+    #LAYOUT
+\*------------------------------------*/
+
+
+* { box-sizing: border-box; }
+
+img { max-width: 100%; }
+
+// CLEARFIX
 %cf {
+
     &:before,
     &:after {
         content: " ";
         display: table;
     }
 
-    &:after {
-        clear: both;
-    }
+    &:after { clear: both; }
+
 }
 
 section,
 .main-nav,
 .sub-nav {
-    width: 100%;
     @extend %cf;
+    width: 100%;
 }
 
-header{
-    z-index:1;
-}
+header { z-index:1; }
 
 header section li,
 header section a {
@@ -30,188 +39,143 @@ header section a {
 footer {
     padding-top: rem-calc(90);
 
-    @include breakpoint(mv) {
-        margin-top: rem-calc(85);
-    }
+    @include breakpoint(mv) { margin-top: rem-calc(85); }
 }
 
-.nav {
-    height: rem-calc(65);
-}
+.nav { height: rem-calc(65); }
 
 .sub-nav {
-    top: rem-calc(65);
     padding: rem-calc(8 0 5 0);
+    top: rem-calc(65);
 }
-
-
-// .main-nav,
-// .meta-nav,
-// // .logo
-// {
-//     display: inline-block;
-// }
 
 .sub-nav,
 .cb,
 .main-nav,
 .blog-list,
-.blog-post article,
 .blog-post .comments {
     margin: 0 auto;
 }
 
 .nav,
-// .logo,
-// .main-nav,
-// .meta-nav,
-.sub-nav {
-    position: absolute;
-}
+.sub-nav { position: absolute; }
 
 .cb {
     @extend %cf;
-    width: 100%;
     max-width: rem-calc(830);
     padding-bottom: rem-calc(42);
+    width: 100%;
 
-    &.teaser {
-        padding-bottom: rem-calc(57);
-    }
+    &.teaser { padding-bottom: rem-calc(57); }
 
     article {
-        width: 100%;
-        max-width: rem-calc(600);
         margin: 0 auto;
-        @include breakpoint(lv) {
-            float: right;
-        }
+        max-width: rem-calc(600);
+        width: 100%;
+
+        @include breakpoint(lv) { float: right; }
     }
 
     aside {
-        width: 100%;
-        margin: 0 auto;
         max-width: rem-calc(600);
+        margin: 0 auto;
+        width: 100%;
+
         br {
             display: none;
-            @include breakpoint(lv) {
-                display: inline;
-            }
+
+            @include breakpoint(lv) { display: inline; }
+
         }
+
         @include breakpoint(lv) {
-            max-width: rem-calc(180);
             float: left;
             margin: rem-calc(0 50 0 0);
+            max-width: rem-calc(180);
         }
+    }
+
+    table { width: 100%; }
+
+    tr:nth-child(even) { background-color: #e1e1e1; }
+
+    td {
+        padding: 5px 8px;
+
+        &:nth-child(1) { width: 60%; }
     }
 }
 
 .content {
-    padding: rem-calc(200 16 0);
-    @include breakpoint(mv) {
-        padding: rem-calc(300 16 0)
-    }
+    padding: rem-calc(160 16 0);
+
+    @include breakpoint(mv) { padding: rem-calc(200 16 0); }
+
+    @include breakpoint(lv) { padding: rem-calc(270 16 0); }
+
 }
 
 code {
-    padding-top: rem-calc(25);
     display: block;
+    padding-top: rem-calc(25);
 }
 
 
-.grid-9 figure { // @todo: over think this rulest (better don't style elements)
-    img {
-        padding-bottom: rem-calc(10);
-    }
-
-    figcaption {
-        padding-bottom: rem-calc(30);
-    }
-}
-
-// grids ------------
+// GRIDS
 .grid-9 {
-    width: 100%;
     max-width: rem-calc(600);
+    width: 100%;
+
+    figcaption { padding-bottom: rem-calc(30); }
+
 }
 
 .grid-6 {
-    width: 65%;
     max-width: rem-calc(450);
+    width: 65%;
 }
 
 .grid-3 {
-    min-width: rem-calc(170);
     max-width: rem-calc(170);
+    min-width: rem-calc(170);
 }
 
 .grid-3-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-// helper ------------
-.l {
-    float: left;
-}
+// HELPER
+.l { float: left; }
 
-.r {
-    float: right;
-}
+.r { float: right; }
 
-%n {
-    float: none;
-}
+%n { float: none; }
 
-.hide {
-    display: none;
-}
+.hide { display: none; }
 
 .centered {
     text-align: center;
     display: block;
 }
 
-img {
-    max-width: 100%;
-}
-
-* {
-    box-sizing: border-box;
-}
 
 .switch-on-break {
     display: flex;
     flex-direction: column;
-    .contribute-aside-icon {
-        order: 1;
-    }
-    article {
-        order: 2;
-    }
-    @include breakpoint(lv) {
-        display: block;
-    }
+
+    .contribute-aside-icon { order: 1; }
+
+    article { order: 2; }
+
+    @include breakpoint(lv) { display: block; }
 }
 
-.cb table {
-    width: 100%;
+.vat {
+    display: block;
+    font-size: .8em;
+    margin-top: rem-calc(15);
 }
 
-    .cb tr:nth-child(even) {
-        background-color: #e1e1e1;
-    }
-        .cb td {
-            padding: 5px 8px;
-        }
-
-        .cb td:nth-child(1) {
-            width: 60%;
-        }
-
-        #VAT {
-            margin-top: rem-calc(15);
-            font-size: 0.8em;
-        }
