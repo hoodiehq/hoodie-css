@@ -24,12 +24,6 @@ module.exports = function(grunt) {
       }
     },
     sass: {
-      scsslint: 
-      {
-        dist: {
-          src: ['./src/sass/*.scss'],
-        }
-      },
       dev: {
         options: {
           sourceMap: true,
@@ -49,6 +43,15 @@ module.exports = function(grunt) {
         }
       }
     },
+    scsslint: {
+      allFiles: [
+          'src/sass/*.scss'
+        ],
+        options: {
+          config: '.scss-lint.yml',
+          colorizeOutput: true
+        }
+      },
     copy: {
         main: {
             src: 'src/css/prod/hoodie.min.css',
@@ -85,7 +88,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-scsslint');
+  grunt.loadNpmTasks('grunt-scss-lint');
 
 
   grunt.registerTask('default', [

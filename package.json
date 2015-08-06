@@ -9,7 +9,7 @@
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-sass": "^0.14.2",
-    "grunt-scsslint": "^0.1.0",
+    "grunt-scss-lint": "^0.3.8",
     "grunt-string-replace": "^1.0.0",
     "time-grunt": "^1.0.0"
   }
