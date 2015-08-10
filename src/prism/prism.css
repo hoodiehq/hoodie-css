@@ -1,8 +1,19 @@
-/* http://prismjs.com/download.html?themes=prism&languages=css+clike+javascript */
+/* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript+bash */
 /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
  * @author Lea Verou
+ */
+
+
+ /* Hoodie Highlighting
+
+ $orange: rgba(233, 78, 27, 1);
+ $blue: rgba(39, 49, 131, 1);
+ $green: rgba(11, 142, 54, 1);
+ $yellow: rgba(249, 178, 51, 1);
+ $lilac: rgba(82, 6, 68, 1);
+
  */
 
 code[class*="language-"],
@@ -49,13 +60,14 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 /* Code blocks */
 pre[class*="language-"] {
 	padding: 1em;
-	margin: .5em 0;
+	margin: .5em 0 1.6em;
 	overflow: auto;
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
 	background: #f5f2f0;
+    background: #F0F1F5;
 }
 
 /* Inline code */
@@ -87,6 +99,7 @@ pre[class*="language-"] {
 .token.symbol,
 .token.deleted {
 	color: #905;
+    color: #A52731;
 }
 
 .token.selector,
@@ -96,6 +109,7 @@ pre[class*="language-"] {
 .token.builtin,
 .token.inserted {
 	color: #690;
+    /*color: rgba(11, 142, 54, 1);*/
 }
 
 .token.operator,
@@ -104,27 +118,35 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string {
 	color: #a67f59;
-	background: hsla(0, 0%, 100%, .5);
+	/* background: hsla(0, 0%, 100%, .5); */
+    color: #999;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
 	color: #07a;
+    color: rgba(39, 49, 131, 1);
 }
 
 .token.function {
 	color: #DD4A68;
+    /*color: #A52731;*/
 }
 
 .token.regex,
 .token.important,
 .token.variable {
 	color: #e90;
+    /*color: rgba(249, 178, 51, 1);*/
 }
 
-.token.important {
+.token.important,
+.token.bold {
 	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
 }
 
 .token.entity {
