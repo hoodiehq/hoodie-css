@@ -1,4 +1,4 @@
-exclude: ['./node_modules/**/*','./src/css/*.css', './src/favicons/', './src/font/', '.src/js/', './src/prism/', './src/svg/']
+exclude: ['./node_modules/**/*', 'src/sass/_reset.scss']
 scss_files: '.scss/*.scss'
 
 linters:
