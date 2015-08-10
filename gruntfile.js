@@ -88,7 +88,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-scss-lint');
+ // grunt.loadNpmTasks('grunt-scss-lint');
 
 
   grunt.registerTask('default', [
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
       'watch'
     ]);
   grunt.registerTask('build', [
-      'sass:scsslint',
+//      'sass:scsslint',
       'sass:prod',
       'copy',
       'autoprefixer',
