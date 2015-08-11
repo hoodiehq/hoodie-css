@@ -58,19 +58,50 @@ aside { color: $gray-4; }
 
 .box:nth-child(even) { background-color: $gray-6; }
 
-.sub-nav a { color: $gray-2 !important; }
+.sub-nav a {
+    color: $gray-2 !important;
+    &:active,
+    &:focus,
+    &:hover {
+        color: darken($gray-2, 20%) !important;
+        background-image: linear-gradient(to bottom, rgba(darken($gray-2, 20%), 1) 75%, rgba(darken($gray-2, 20%), .8) 75%);
+    }
+}
 
 .main-nav a,
-.meta-nav a { color: #fff !important; }
+.meta-nav a {
+    color: #fff !important;
+    &:active,
+    &:focus,
+    &:hover {
+        opacity: .8;
+        background-image: none;
+    }
+}
 
 .cb {
 
     &:odd { background-color: $gray-5; }
 
-    aside a { color: $gray-4; }
+    aside a {
+        color: $gray-4;
+        &:active,
+        &:focus,
+        &:hover {
+            color: darken($gray-4, 20%);
+        }
+    }
+
 }
 
 figcaption { color: $gray-4; }
 
 
-.api-nav li a { color: $blue; }
+.api-nav li a {
+    color: $blue;
+    &:active,
+    &:focus,
+    &:hover {
+        color: darken($blue, 20%) !important;
+    }
+}
