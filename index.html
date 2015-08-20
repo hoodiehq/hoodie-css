@@ -74,60 +74,52 @@
           </section>
           <section class="cb">
             <article>
-              <h2>Getting started</h2>
+              <h2>Another framework? GNAH!</h2>
               <p>
-                To get started check out the recent version and type npm install.<br />
-                The default task (just type &lsquo;grunt&rsquo;) will fire up a local server at localhost:1337 with livereload and dev Sass compiling (including sourcemap and nested output).<br />
-                There&rsquo;s also a production task (&lsquo;grunt build&rsquo;) which at this point just spits out a compressed CSS file, without sourcemap in a dedicated folder(css/build).
+                Yes. We felt the need to write a small OO-CSS framework for our websites, as far as we maintain several of them. It includes our CI and let's you build a hoodie website in a snap! Also? One bugfix / improvement needs to be made in just one repository, not 4. 
+              </p>
+              <p>
+                Other advantages are
+                <ul>
+                  <li>
+                    Build a hoodie website in a finger snap, using the framework and the template. Focus on the content.
+                  </li>
+                  <li>
+                    Get all the features right away.
+                  </li>
+                  <li>
+                    Get all the bugfixes!
+                  </li>
+                  <li>
+                    Seperate content and design.
+                  </li>
+                  <li>
+                    No worries about getting anything in the CI wrong. It's all there.
+                  </li>
+                  <li>
+                    Use all the images on the website.
+                  </li>
+                </ul>
               </p>
             </article> 
           </section>
           <section class="cb">
             <article>
-              <h2>!IMPORTANT</h2>
-
-
-                <p>We&rsquo;re using a font loading method on <a href="http://hood.ie">http://hood.ie</a> which relies on the following script, which has to be included in the head.html file. If the page has multiple head includes the script has to be included in each one of them.<br />
-                <pre>
-                  <code class="language-javascript">
-                    &lt;script&gt;
-                    (function(){
-                      function addFont() {
-                        var style = document.createElement('style');
-                        style.rel = 'stylesheet';
-                        document.head.appendChild(style);
-                        style.textContent = localStorage.firaSans;
-                      }
-
-                      try {
-                          if (localStorage.firaSans) {
-                              // The font is in localStorage, we can load it directly
-                              addFont();
-                          } else {
-                              // We have to first load the font file asynchronously
-                              var request = new XMLHttpRequest();
-                              request.open('GET', '/dist/css/fonts.css', true);
-
-                              request.onload = function() {
-                                  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
-                                      // We save the file in localStorage
-                                      localStorage.firaSans = request.responseText;
-
-                                      // ... and load the font
-                                      addFont();
-                                  }
-                              };
-                            request.send();
-                          }
-                      } catch(ex) {
-                          // maybe load the font synchronously for woff-capable browsers
-                          // to avoid blinking on every request when localStorage is not available
-                      }
-                  }());
-                &lt;/script&gt;
-              </code>
-            </pre>
-            </p>
+              <h2>Getting started</h2>
+              <p>
+                Grab the <a href="#">basic template</a>. Fill it with your content. Done!
+                <br />
+                No need to install npm, grunt, bower or anything at all!
+              </p>
+              <p>
+                You'd love to customize your template? Sure! You can see all your options <a href="#">here</a>.
+              </p>
+              <p>
+                Want to dive deeper? <a href="#">Here</a> is a listing of all the files and everything that is implemented, also how it works.
+              </p>
+              <p>
+                You would love to help us to expand the framework? Found a bug, want to send a fix? Check out our explanation <a href="#">here</a>.
+              </p>
           </article>
         </section>
       </div>
