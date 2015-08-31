@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Hoodie CSS Framework</title>
+      <link rel="stylesheet" href="./src/css/prod/hoodie.min.pref.css">
+      <script>
+        (function(){
+            function addFont() {
+                var style = document.createElement('style');
+                style.rel = 'stylesheet';
+                document.head.appendChild(style);
+                style.textContent = localStorage.firaSansWeb;
+            }
+
+            try {
+                if (localStorage.firaSansWeb) {
+                    // The font is in localStorage, we can load it directly
+                    addFont();
+                } else {
+                    // We have to first load the font file asynchronously
+                    var request = new XMLHttpRequest();
+                    request.open('GET', './src/css/fonts.css', true);
+
+                    request.onload = function() {
+                        if (request.status >= 200 && request.status < 400) {
+                            // We save the file in localStorage
+                            localStorage.firaSansWeb = request.responseText;
+
+                            // ... and load the font
+                            addFont();
+                        }
+                    };
+
+                    request.send();
+                }
+            } catch(ex) {
+                // maybe load the font synchronously for woff-capable browsers
+                // to avoid blinking on every request when localStorage is not available
+            }
+        }());
+      </script>
+    </head>
+    <body class="orange">
+      <header>
+        <section class="nav">
+          <nav class="main-nav" role="navigation">
+            <a href="">example link</a>
+            <a href="">example link</a>
+            <a href="">example link</a>
+          </nav>
+        </section>
+      </header>
+      <div class="content">
+        <div class="box">
+          <section class="cb teaser">
+            <aside role="complementary">
+              <nav role="navigation">
+              <a href="">example link</a><br />
+              <a href="">example link</a><br />
+              <a href="">example link</a><br />
+              </nav>
+            </aside>
+            <article role="article">
+              <h1>Cupcake Ipsum</h1>
+
+              <p>
+              Tart sweet powder soufflé plum tootsie dessert liquorice brownie liquorice canes dragée roll gummies.
+              </p>
+            </article>
+          </section>
+          <section class="cb">
+            <article role="article">
+              <h2>Dessert Sweet Almond</h2>
+              <p>
+                Jelly-o dragée cookie beans bonbon fruitcake donut danish gummi beans cake chupa.
+              </p>
+              <p>
+                <ul>
+                  <li>
+                    gingerbread bar
+                  </li>
+                    <li>
+                    cheesecake roll canes drops
+                  </li>
+                    <li>
+                    cupcake beans
+                  </li>
+                </ul>
+              </p>
+            </article>
+          </section>
+        </div>
+      </div>
+      <footer role="contentinfo">
+        <div class="footer">
+          <section class="cb footer-licensing">
+            <small>© 2012-2015 <a href="https://github.com/hoodiehq" target="_blank">the Hoodie Community</a> and other <a href="http://hood.ie/community#contributors">contributors</a>. Hoodie is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache License 2.0</a>.<br />All pictures, photos and illustrations are owned by the Hoodie Open Source Project and licensed under <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/deed.en" target="_blank">CC BY-NC-ND 4.0</a>.</small>
+          </section>
+        </div>
+      </footer>
+      </div>
+     </div>
+    </body>
+  </html>
