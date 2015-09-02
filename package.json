@@ -2,5 +2,15 @@
   "name": "hoodie-website",
   "version": "0.1.0",
   "devDependencies": {
+    "http-server": "^0.8.0",
+    "live-reload": "^1.1.0",
+    "opener": "^1.4.1",
+    "parallelshell": "^2.0.0"
+  },
+  "scripts": {
+    "open:dev": "opener http://localhost:9090",
+    "serve": "http-server -p 9090 dist/",
+    "live-reload": "live-reload --port 9091 dist/",
+    "dev": "npm run open:dev -s && parallelshell \"npm run live-reload -s\" \"npm run serve -s\""
   }
 }
