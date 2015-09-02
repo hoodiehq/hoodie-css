@@ -112,6 +112,13 @@ svg rect { fill: currentColor; }
             a {
                 background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, .8) 75%);
                 color: #fff;
+                &:active,
+                &:focus,
+                &:hover {
+                  opacity: .8;
+                  color: #fff;
+                  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, .8) 75%);
+                }
             }
         }
 

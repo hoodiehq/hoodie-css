@@ -71,6 +71,12 @@ footer {
     margin-right: 0 !important;
     transition: all 0.2s;
 
+    &:active,
+    &:focus,
+    &:hover {
+        background-image: none !important;
+    }
+
     .is-active & {
         padding-top: 3vh;
         width: 50%;
