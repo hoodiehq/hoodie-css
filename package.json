@@ -9,6 +9,7 @@
     "parallelshell": "^2.0.0"
   },
   "scripts": {
+    "presass:dev": "node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css",
     "sass:dev": "node-sass --source-map src/css/hoodie.css.map -w --output-style nested src/sass/base.scss src/css/hoodie.css",
     "open:dev": "opener http://localhost:9090",
     "serve": "http-server -p 9090 dist/",
