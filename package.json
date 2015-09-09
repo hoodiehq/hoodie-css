@@ -2,17 +2,26 @@
   "name": "hoodie-website",
   "version": "0.1.0",
   "devDependencies": {
+    "autoprefixer": "^6.0.2",
+    "csslint": "^0.10.0",
     "http-server": "^0.8.0",
     "live-reload": "^1.1.0",
     "node-sass": "^3.3.2",
     "opener": "^1.4.1",
-    "parallelshell": "^2.0.0"
+    "parallelshell": "^2.0.0",
+    "postcss": "^5.0.4",
+    "postcss-cli": "^2.1.0"
   },
   "scripts": {
     "sass:dev": "node-sass --source-map src/css/hoodie.css.map -w --output-style nested src/sass/base.scss src/css/hoodie.css",
+    "lint:dev": "csslint src/css/hoodie.css",
+    "autoprefix:dev": "postcss --use autoprefixer -c options.json -o src/css/hoodie.css src/css/hoodie.css",
     "open:dev": "opener http://localhost:9090",
     "serve": "http-server -p 9090 dist/",
     "live-reload": "live-reload --port 9091 dist/",
-    "dev": "npm run open:dev -s && parallelshell \"npm run live-reload -s\" \"npm run sass:dev -s\" \"npm run serve -s\""
+    "dev": "npm run open:dev -s && parallelshell \"npm run live-reload -s\" \"npm run sass:dev -s\" \"npm run serve -s\"",
+    "sass:prod": "node-sass --output-style compressed src/sass/base.scss src/css/prod/hoodie.min.css",
+    "autoprefix:prod": "postcss --use autoprefixer -c options.json -o src/css/prod/hoodie.min.css src/css/prod/hoodie.min.css",
+    "prod": "npm run clean && npm run sass:prod  && npm run autoprefix:prod -s && npm run serve -s"
   }
 }
