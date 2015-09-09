@@ -4,13 +4,15 @@
   "devDependencies": {
     "http-server": "^0.8.0",
     "live-reload": "^1.1.0",
+    "node-sass": "^3.3.2",
     "opener": "^1.4.1",
     "parallelshell": "^2.0.0"
   },
   "scripts": {
+    "sass:dev": "node-sass --source-map src/css/hoodie.css.map -w --output-style nested src/sass/base.scss src/css/hoodie.css",
     "open:dev": "opener http://localhost:9090",
     "serve": "http-server -p 9090 dist/",
     "live-reload": "live-reload --port 9091 dist/",
-    "dev": "npm run open:dev -s && parallelshell \"npm run live-reload -s\" \"npm run serve -s\""
+    "dev": "npm run open:dev -s && parallelshell \"npm run live-reload -s\" \"npm run sass:dev -s\" \"npm run serve -s\""
   }
 }
