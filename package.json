@@ -13,7 +13,6 @@
     "postcss-cli": "^2.1.0"
   },
   "scripts": {
-    "presass:dev": "node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css",
     "sass:dev": "node-sass --source-map src/css/hoodie.css.map -w --output-style nested src/sass/base.scss src/css/hoodie.css",
     "lint:dev": "csslint src/css/hoodie.css",
     "autoprefix:dev": "postcss --use autoprefixer -c options.json -o src/css/hoodie.css src/css/hoodie.css",
