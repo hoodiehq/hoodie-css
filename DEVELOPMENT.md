@@ -47,8 +47,8 @@ Scripts available in hoodie-website via `npm run-script`:
 
 ### Process
 
-When building the project, you can start a local server with `npm run dev`.
+When building the project, you can start a development environment with `npm run dev`.
 
-This creates a local server at *localhost:9000*, opens your browser to that address, and will reload the page when any files in the `dist` folder change, without a full page reload.
+This creates a local server at *localhost:9000*, opens your browser to that address, and will reload the page when any files in the `dist` folder change, without a full page reload. It will also compile the base.scss file to hoodie.css, and then watch for changes to those files, recompiling as necessary.
 
 Please extend this document as we automate each part of the process.
