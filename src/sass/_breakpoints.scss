@@ -1,3 +1,9 @@
+// Breakpoints
+//
+// Breakpoint mixin.
+//
+// Styleguide utilities.breakpoints
+
 @mixin breakpoint($point) {
     @if $point == mv {
         @media (min-width: 30em) {
