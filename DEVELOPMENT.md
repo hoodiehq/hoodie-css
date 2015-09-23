@@ -7,13 +7,16 @@ If that doesn't help you, you can also try `npm run help` which will output a si
 ```shell
 Lifecycle scripts included in hoodie-website:
   # This is the main entry point for development work. It takes the "dev" task, and at the
-  # same time it also runs the "serve" task, which are explained separately. 
+  # same time it also runs the "serve" task, which are explained separately. This doc format
+  # says that for the "start" command, (run with "npm start"), will run "npm-run-all
+  # --parallel dev serve". It's an easy way of not having to remember what the command is,
+  # all you need to remember is "npm start", or "npm run start".
   start
     npm-run-all --parallel dev serve
   # This task will run all our tests/linters etc and report errors or failures. The reason to
   # use "test" as a name is that it's a default specified task, a "lifecycle script" in npm
   # terms. This means that some automated test runners, when reaching a node module, will try
-  # by default to run "npm test".
+  # by default to run "npm test". This runs every script that starts with "test:".
   test
     npm-run-all test:*
 
