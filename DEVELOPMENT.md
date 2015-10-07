@@ -95,7 +95,7 @@ The `serve` script uses a really great tool called [live-server](https://www.npm
 
 - It serves the index.html file for us, this can help when we bring in things that need to request content that's not on our page, like webfonts, or external CSS/JS, because the `file://` protocol doesn't allow that. This is why we need a server at all.
 
-- It adds "live reload" capability to that server, so any changes it detects in the `/dist` folder will be served, and any CSS changes will also be applied as soon as the file is saved, without restarting anything, or reloading the page. This helps speed up development work a lot.
+- It adds "live reload" capability to that server, so any changes it detects in the `dist` folder will be served, and any CSS changes will also be applied as soon as the file is saved, without restarting anything, or reloading the page. This helps speed up development work a lot.
 
 - It opens the browser for us at the location we need the browser to be to see the index.html as it's being served, which is another speed boost when you run `npm start` to get to seeing the site as you work on it.
 
@@ -137,7 +137,7 @@ This makes them ideal to hold our development scripts.
 ##### `help`
 ###### `markdown-chalk --input DEVELOPMENT.md`
 
-This takes our development environment help file (the one you're reading right now), and outputs it in the terminal. It strips the markdown that we use to make the file easier to read when on GitHub in the browser, and changes it to formatting the output with terminal colour changes and font styles. To accomplish this it uses [markdown-chalk](https://www.npmjs.com/package/markdown-chalk)
+This script takes our development environment help file (the one you're reading right now), and outputs it in the terminal. It strips the markdown that we use to make the file easier to read when on GitHub in the browser, and changes it to formatting the output with terminal colour changes and font styles. To accomplish this it uses [markdown-chalk](https://www.npmjs.com/package/markdown-chalk)
 
 The goal is to enable our documentation to be more accessible when offline, for anyone who wants to read it without having to open it in a text editor and get rid of all the markdown formatting.
 
