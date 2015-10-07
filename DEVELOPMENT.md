@@ -12,16 +12,16 @@ Let's step through the output of `npm run` piece by piece.
 
 First of all, we are introduced, (albeit briefly) to the concept of __lifecycle scripts__.
 
-These scripts are related to the module itself, and it's "lifecycle". For example, in this project we have `start` and `test` defined already. These scripts are special because they are linked to how an npm module is consumed by other modules, so when you run `npm install [packagename]` the lifecycle scripts can affect what actually is installed. Often you might want to publish (to the npm registry) just the compiled version of your code, so you can add a `prepublish` script that compiles your JavaScript/CSS/whatever, and then whenever you publish a version, your code gets compiled and people don't get the development version.
+These scripts are related to the module itself, and it's "lifecycle". For example, in this project we have `start` and `test` defined already. These scripts are special because they are linked to how an npm module is consumed by other modules, so when you run `npm install [packagename]` the lifecycle scripts can affect what actually is installed. Often you might want to publish (to the npm registry) only the compiled version of your code, so you can add a `prepublish` script that compiles your JavaScript/CSS/whatever, and then whenever you publish a version, your code gets compiled and people don't get the development version.
 
-`prepublish` also introduces a new concept of the `pre` prefix. There is also a partner `post` prefix, and any script with a corresponding version with `pre` ahead of it will be run before the original script. In this package, we have the `dev:sass` task, and a corresponding `predev:sass`. This means whenever the `dev:sass` task is run, before the actual task runs, we run the command from `predev:sass`. The `pre` and `post` prefixes are just a handy way of naming these to help understand them.
+`prepublish` also introduces a new concept of the `pre` prefix. There is also a partner `post` prefix, and any script with a corresponding version with `pre` ahead of it will be run before the original script. In this package, we have the `dev:sass` task, and a corresponding `predev:sass`. This means whenever the `dev:sass` task is run, before the actual task runs, we run the command from `predev:sass`. The `pre` and `post` prefixes are a handy way of naming these to help understand them.
 
 ## The "start" script
 
 ##### `start`
 ###### `npm-run-all --parallel dev serve`
 
-The first time you see the output, it might be unusual, but we've tried to do our best to make these scripts as approachable as possible.
+The first time you see the full `npm run` output, it might be intimidating, but we've tried to do our best to make these scripts as approachable as possible.
 
 The first line is the name that we use to call the script. In this case that's `start`, and we can use `npm run start`, or, because it's a lifecycle script, we can shorten it to `npm start`.
 
@@ -67,7 +67,7 @@ The `serve` script uses a really great tool called [live-server](https://www.npm
 
 - It adds "live reload" capability to that server, so any changes it detects in the `/dist` folder will be served, and any CSS changes will also be applied as soon as the file is saved, without restarting anything, or reloading the page. This helps speed up development work a lot.
 
-- It opens the browser for us at the location we need the browser to be to see the index.html as it's being served, which is just another speed boost when you run `npm start` to get to seeing the site as you work on it.
+- It opens the browser for us at the location we need the browser to be to see the index.html as it's being served, which is another speed boost when you run `npm start` to get to seeing the site as you work on it.
 
 Previously, these were handled with three separate dependencies.
 
