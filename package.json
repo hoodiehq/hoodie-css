@@ -13,7 +13,7 @@
     "sass-lint": "^1.2.0"
   },
   "scripts": {
-    "help": "markdown-chalk -i DEVELOPMENT.md",
+    "help": "markdown-chalk --input DEVELOPMENT.md",
     "start": "npm-run-all --parallel dev serve",
     "serve": "live-server dist/ --port=9090",
     "dev": "npm-run-all dev:*",
