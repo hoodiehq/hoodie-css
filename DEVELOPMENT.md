@@ -124,6 +124,8 @@ If we were working on tests themselves, and wanted to keep running them instead 
 
 One would expect `npm test` to only be run in full by an automated build/test environment, and people working on the code itself to run the necessary tests when they change, and maybe run a full `npm test` before committing changes.
 
+---
+
 ## Additional scripts
 
 #### available via `npm run-script`:
@@ -146,11 +148,12 @@ The goal is to enable our documentation to be more accessible when offline, for 
 ##### `serve`
 ###### `live-server dist/ --port=9090`
 
-The `serve` script uses the [live-server](#live-server) [npm package link](http://npmjs.com/package/live-server) dependency to start a local development server, with live reloading, and an auto opening browser tab in the user's default browser.
+The `serve` script uses the [live-server](#live-server): [npm package link](http://npmjs.com/package/live-server) dependency to start a local development server, with live reloading, and an auto opening browser tab in the user's default browser.
 
 It serves up everything inside the `dist` folder, and will reload the page automatically if anything inside that folder changes.
 
-`serve` is one of the integral parts of our main development environment, and is one of the scripts executed with the lifecycle script `npm start`.
+`serve` is one of the integral parts of our main development environment, and is one of the scripts executed with the lifecycle script `npm start` (as well as the [dev](#the-dev-script) script).
+
 
 ## Please help us!
 
