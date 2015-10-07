@@ -38,7 +38,7 @@ Let's step through the output of `npm run` piece by piece.
 
 ## Lifecycle scripts
 
-##### Lifecycle scripts included in hoodie-website:
+##### `Lifecycle scripts included in hoodie-website:`
 
 First of all, we are introduced, (albeit briefly) to the concept of __lifecycle scripts__.
 
@@ -128,7 +128,7 @@ One would expect `npm test` to only be run in full by an automated build/test en
 
 ## Additional scripts
 
-#### available via `npm run-script`:
+#### `available via npm run-script:`
 
 These scripts are scripts that we have defined ourselves, and are only different to **Lifecycle scripts** in that they have to be run with `npm run` before the name of the script, and npm itself won't use them when publishing or installing a package.
 
