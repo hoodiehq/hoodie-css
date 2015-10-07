@@ -57,7 +57,7 @@ Use the .editorsconfig file with your editor of choice to ensure a consistent co
 
 ### Sass
 
-* Use 1 space between your selector and the opnening curly brace.
+* Use 1 space between your selector and the opening curly brace.
 * Use breakpoints with `@include breakpoint()` from the `_breakpoints.scss` inside your declaration.
 * Do not add arbitrary new breakpoints.
 * Always set breakpoints in `em`.
