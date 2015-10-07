@@ -141,6 +141,16 @@ This takes our development environment help file (the one you're reading right n
 
 The goal is to enable our documentation to be more accessible when offline, for anyone who wants to read it without having to open it in a text editor and get rid of all the markdown formatting.
 
+### The "serve" script
+
+##### `serve`
+###### `live-server dist/ --port=9090`
+
+The `serve` script uses the [live-server](#live-server) [npm package link](http://npmjs.com/package/live-server) dependency to start a local development server, with live reloading, and an auto opening browser tab in the user's default browser.
+
+It serves up everything inside the `dist` folder, and will reload the page automatically if anything inside that folder changes.
+
+`serve` is one of the integral parts of our main development environment, and is one of the scripts executed with the lifecycle script `npm start`.
 
 ## Please help us!
 
