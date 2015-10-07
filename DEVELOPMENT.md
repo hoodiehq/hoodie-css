@@ -164,7 +164,7 @@ The goal is to enable our documentation to be more accessible when offline, for 
 
 ---
 
-### The "docs" script [WIP]
+### The "docs" script
 
 #### `docs`
 ##### `kss-node --source src/sass --homepage ../../styleguide.md`
