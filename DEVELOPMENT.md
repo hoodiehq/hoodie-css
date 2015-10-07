@@ -42,9 +42,9 @@ Let's step through the output of `npm run` piece by piece.
 
 First of all, we are introduced, (albeit briefly) to the concept of __lifecycle scripts__.
 
-These scripts are related to the module itself, and it's "lifecycle". For example, in this project we have `start` and `test` defined already. These scripts are special because they are linked to how an npm module is consumed by other modules, so when you run `npm install [packagename]` the lifecycle scripts can affect what actually is installed. Often you might want to publish (to the npm registry) only the compiled version of your code, so you can add a `prepublish` script that compiles your JavaScript/CSS/whatever, and then whenever you publish a version, your code gets compiled and people don't get the development version.
+These scripts are related to a module itself, and to it's lifecycle. For example, in this project we have `start` and `test` defined already. These scripts are special because they are linked to how an npm module is consumed by other modules, so when you run `npm install [packagename]` the lifecycle scripts can affect what actually is installed. Often you might want to publish (to the npm registry) only the compiled version of your code, so you can add a `prepublish` script that compiles your JavaScript/CSS/whatever, and then whenever you publish a version, your code gets compiled and people don't get the development version.
 
-`prepublish` also introduces a new concept of the `pre` prefix. There is also a partner `post` prefix, and any script with a corresponding version with `pre` ahead of it will be run before the original script. In this package, we have the `dev:sass` task, and a corresponding `predev:sass`. This means whenever the `dev:sass` task is run, before the actual task runs, we run the command from `predev:sass`. The `pre` and `post` prefixes are a handy way of naming these to help understand them.
+`prepublish` also introduces a new concept of the `pre` prefix. There is also a partner `post` prefix, and any script with a corresponding version with `pre` ahead of it will be run before the original script. In this package, we have the `dev:sass` task, and a corresponding `predev:sass`. This means whenever the `dev:sass` task is run, before the actual task runs, the command `predev:sass` is automatically run for us. The `pre` and `post` prefixes are a handy way of naming these to help understand them.
 
 ### The "start" script
 
@@ -59,7 +59,7 @@ The second line is the commands that are executed when this command runs. Here w
 
 #### [npm-run-all](https://www.npmjs.com/package/npm-run-all)
 
-This module is one of our devDependencies. This means it's not a dependency for our module to operate, and is not added to our module when we publish, however it is something that we need in order for our development environment to work. These are installed with `npm install [packagename] --save-dev`.
+This module is one of our devDependencies. This means it's not a dependency for our module to operate, and is not added to our module when we publish, however it is something that we need in order for our development environment to work. You can install more of these with `npm install [packagename] --save-dev`.
 
 This specific dependency allows us to use the name of the script instead of typing out `npm run [script]` inside our npm scripts.
 
@@ -81,7 +81,7 @@ There is also [parallelshell](https://www.npmjs.com/package/parallelshell) which
 
 ##### "Glob matching"
 
-`npm-run-all` also has the bonus feature of what is known as "glob matching", however the phrase may be new to you. It is also known as wildcard matching. This allows us to call tasks with a `*` character, and it will "match" all the scripts that match the pattern.
+`npm-run-all` also has the bonus feature of what is known as "glob matching", however the phrase may be new to you. It is also known as wildcard matching. This allows us to call tasks with a `*` character, and it will "match" all the scripts that match the pattern, and run each of them.
 
 #### What `npm start` does
 
