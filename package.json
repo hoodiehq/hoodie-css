@@ -22,7 +22,7 @@
     "dev:sass": "node-sass --source-map src/css/hoodie.css.map --watch --output-style nested src/sass/base.scss src/css/hoodie.css",
     "prod": "npm-run-all prod:*",
     "prod:sass": "node-sass --output-style compressed src/sass/base.scss src/css/prod/hoodie.min.css",
-    "prod:css": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output src/css/prod/hoodie.min.css src/css/prod/hoodie.min.css",
+    "prod:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output src/css/prod/hoodie.min.css src/css/prod/hoodie.min.css",
     "docs": "kss-node --source src/sass --homepage ../../styleguide.md",
     "test": "npm-run-all test:*",
     "test:lint": "sass-lint --verbose --config .sass-lint.yml src/sass/*"
