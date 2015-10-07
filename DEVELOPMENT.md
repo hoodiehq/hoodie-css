@@ -2,13 +2,43 @@
 
 In order to see what scripts we have available, you can either go through the **scripts** object in the `package.json` directly, or run `npm run` and it will print a nice list of all named scripts and what they actually do.
 
+## npm Scripts
+
+When we define a "script" in our `package.json`, we are telling npm run-script to run the command whenever we use the name of the script as an argument to `npm run`. These scripts don't have to be JavaScript, only executable somehow. This could be anything that's runnable from the console.
+
+For example, if we had a JavaScript file called helloworld.js, that contained:
+
+```javascript
+console.log('Hello World');
+```
+
+An npm script defined in our `package.json` file:
+
+```json
+"scripts": {
+  "hello": "node helloworld.js"
+}
+```
+
+From our project directory, in the terminal, we could run `npm run hello`, the output would be:
+
+```
+Hello World
+```
+
+We could do the same with a bash script, or any executable script out there.
+
+While npm deals with JavaScript packages, it's an important point to make that these scripts **don't** have to be JavaScript.
+
 ---
 
-When we run `npm run` we get some nice looking output, but it's not that helpful on it's own. This document will try and explain what our development environment is, why it is like that, and how you can use it to work on this repository, but also hopefully give you enough information to be able to consider using npm as a build tool.
+When we run `npm run` in this project we get some nice looking output, but it's not that helpful on it's own. This document will try and explain what our development environment is, why it is like that, and how you can use it to work on this repository, but also hopefully give you enough information to be able to consider using npm as a build tool.
 
 Let's step through the output of `npm run` piece by piece.
 
-##### `Lifecycle scripts included in hoodie-website:`
+## Lifecycle scripts
+
+##### Lifecycle scripts included in hoodie-website:
 
 First of all, we are introduced, (albeit briefly) to the concept of __lifecycle scripts__.
 
@@ -16,7 +46,7 @@ These scripts are related to the module itself, and it's "lifecycle". For exampl
 
 `prepublish` also introduces a new concept of the `pre` prefix. There is also a partner `post` prefix, and any script with a corresponding version with `pre` ahead of it will be run before the original script. In this package, we have the `dev:sass` task, and a corresponding `predev:sass`. This means whenever the `dev:sass` task is run, before the actual task runs, we run the command from `predev:sass`. The `pre` and `post` prefixes are a handy way of naming these to help understand them.
 
-## The "start" script
+### The "start" script
 
 ##### `start`
 ###### `npm-run-all --parallel dev serve`
@@ -27,13 +57,13 @@ The first line is the name that we use to call the script. In this case that's `
 
 The second line is the commands that are executed when this command runs. Here we see that `npm-run-all --parallel dev serve` is run, whenever we run `npm run start`, or `npm start`. Fully understanding this needs a bit of knowledge about the [npm-run-all](https://www.npmjs.com/package/npm-run-all) module, so let's explore what it is, why we use it, and what the alternatives might look like.
 
-### [npm-run-all](https://www.npmjs.com/package/npm-run-all)
+#### [npm-run-all](https://www.npmjs.com/package/npm-run-all)
 
 This module is one of our devDependencies. This means it's not a dependency for our module to operate, and is not added to our module when we publish, however it is something that we need in order for our development environment to work. These are installed with `npm install [packagename] --save-dev`.
 
 This specific dependency allows us to use the name of the script instead of typing out `npm run [script]` inside our npm scripts.
 
-#### Parallelisation
+##### Parallelisation
 
 `npm-run-all` also allows us to run multiple scripts at once, with the `--parallel` flag. By default scripts listed in order will be run sequentially.
 
@@ -49,11 +79,11 @@ However, as before, this won't work on a Windows environment, and also will crea
 
 There is also [parallelshell](https://www.npmjs.com/package/parallelshell) which accomplishes the parallelisation concerns, and works across platforms, but makes the scripts less readable.
 
-#### "Glob matching"
+##### "Glob matching"
 
 `npm-run-all` also has the bonus feature of what is known as "glob matching", however the phrase may be new to you. It is also known as wildcard matching. This allows us to call tasks with a `*` character, and it will "match" all the scripts that match the pattern.
 
-### What `npm start` does
+#### What `npm start` does
 
 When we want to set up our development environment, with some content in a browser that will update when we change files on our machine, we run `npm start`. This runs the `dev` script, and the `serve` script in parallel.
 
@@ -61,7 +91,7 @@ The `dev` script runs all the tasks whose name starts with `dev:` with the glob 
 
 The `serve` script uses a really great tool called [live-server](https://www.npmjs.com/package/live-server) that solves 3 problems for us.
 
-### [live-server](https://www.npmjs.com/package/live-server)
+#### [live-server](https://www.npmjs.com/package/live-server)
 
 - It serves the index.html file for us, this can help when we bring in things that need to request content that's not on our page, like webfonts, or external CSS/JS, because the `file://` protocol doesn't allow that. This is why we need a server at all.
 
@@ -79,7 +109,7 @@ Previously, these were handled with three separate dependencies.
 
 However combining these makes sense, and means we can keep the number of devDependencies as small as possible, (and by extension how much we need anyone who wants to work on the project to install), and we don't need to worry about explaining 3 separate dependencies that are all very much linked to how we serve content and view changes to that content.
 
-## The "test" script
+### The "test" script
 
 ##### `test`
 ###### `npm-run-all test:*`
@@ -93,6 +123,14 @@ So by naming our script `test` instead of `lint` or similar, we can take advanta
 If we were working on tests themselves, and wanted to keep running them instead of the full test suite, we can run specific tests by, (for example) running something like `npm run test:lint` which will run the linter only. This will make the test run faster by only running a subset of the tests.
 
 One would expect `npm test` to only be run in full by an automated build/test environment, and people working on the code itself to run the necessary tests when they change, and maybe run a full `npm test` before committing changes.
+
+## Additional scripts
+
+#### available via `npm run-script`:
+
+These scripts are scripts that we have defined ourselves, and are only different to **Lifecycle scripts** in that they have to be run with `npm run` before the name of the script, and npm itself won't use them when publishing or installing a package.
+
+This makes them ideal to hold our development scripts.
 
 ## Please help us!
 
