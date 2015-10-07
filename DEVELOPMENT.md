@@ -132,6 +132,13 @@ These scripts are scripts that we have defined ourselves, and are only different
 
 This makes them ideal to hold our development scripts.
 
+### The `help` script
+
+##### `help`
+###### `markdown-chalk --input DEVELOPMENT.md`
+
+This takes our dev environment help file (the one you're reading right now), and outputs it in the terminal. It strips the markdown that we use to make the file easier to read when on GitHub in the browser, and changes it to formatting the output with terminal colour changes and font styles.
+
 ## Please help us!
 
 If you find a script defined in the `package.json` that is not documented, please open an issue, or file a pull request with documentation.
