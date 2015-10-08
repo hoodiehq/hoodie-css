@@ -5,7 +5,7 @@ In order to see what scripts we have available, you can either go through the **
 ## Contents
 
 | Topic                        | Direct Link                                         |
-| :--------------------------- | --------------------------------------------------: |
+| :--------------------------: | :-------------------------------------------------: |
 | npm Scripts                  | [npm-scripts](#npm-scripts)                         |
 | Lifecycle Scripts            | [lifecycle-scripts](#lifecycle-scripts)             |
 | The "start" Script           | [the-start-script](#the-start-script)               |
