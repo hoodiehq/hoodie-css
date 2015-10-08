@@ -4,6 +4,8 @@ In order to see what scripts we have available, you can either go through the **
 
 ## Contents
 
+<img src="https://raw.githubusercontent.com/hoodiehq/hood.ie/gh-pages/dist1/content_img/animals/docs-chicken-1.png" alt="docs chicken" align="right">
+
 | Topic                        | Direct Link                                         |
 | :--------------------------- | :-------------------------------------------------- |
 | npm Scripts                  | [npm-scripts](#npm-scripts)                         |
