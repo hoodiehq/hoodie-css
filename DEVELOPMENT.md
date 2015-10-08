@@ -1,5 +1,3 @@
-<img src="https://raw.githubusercontent.com/hoodiehq/hood.ie/gh-pages/dist1/content_img/animals/docs-chicken-1.png" alt="docs chicken" align="right">
-
 # Development Environment Help
 
 In order to see what scripts we have available, you can either go through the **scripts** object in the `package.json` directly, or run `npm run` and it will print a nice list of all named scripts and what they actually do.
