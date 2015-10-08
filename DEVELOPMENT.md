@@ -4,26 +4,25 @@ In order to see what scripts we have available, you can either go through the **
 
 ## Contents
 
-Topic | Link
-------------- | -------------
-npm Scripts  | [npm-scripts](#npm-scripts)
-Lifecycle Scripts  | [lifecycle-scripts](#lifecycle-scripts)
-The "start" Script  | [the-start-script](#the-start-script)
-npm-run-all | [npm-run-all](#npm-run-all)
-Parallelisation | [parallelisation](#parallelisation)
-Glob Matching | [glob-matching](#glob-matching)
-What npm start does | [what-npm-start-does](#what-npm-start-does)
-live-server | [live-server](#live-server)
-The "test" Script  | [the-test-script](#the-test-script)
-Additional Scripts  | [additional-scripts](#additional-scripts)
-Scripts that match `test:*`  | [scripts-that-match-test](#scripts-that-match-test)
-The "docs" script | [the-docs-script](#the-docs-script)
-The "serve" script | [the-serve-script](#the-serve-script)
-The "dev" script | [the-dev-script](#the-dev-script)
-Scripts that match `dev:*`  | [scripts-that-match-dev](#scripts-that-match-dev)
-The "prod" script | [the-prod-script](#the-prod-script)
-Scripts that match `prod:*`  | [scripts-that-match-prod](#scripts-that-match-prod)
-
+| Topic                        | Direct Link                                         |
+| :--------------------------- | --------------------------------------------------: |
+| npm Scripts                  | [npm-scripts](#npm-scripts)                         |
+| Lifecycle Scripts            | [lifecycle-scripts](#lifecycle-scripts)             |
+| The "start" Script           | [the-start-script](#the-start-script)               |
+| npm-run-all                  | [npm-run-all](#npm-run-all)                         |
+| Parallelisation              | [parallelisation](#parallelisation)                 |
+| Glob Matching                | [glob-matching](#glob-matching)                     |
+| What npm start does          | [what-npm-start-does](#what-npm-start-does)         |
+| live-server                  | [live-server](#live-server)                         |
+| The "test" Script            | [the-test-script](#the-test-script)                 |
+| Additional Scripts           | [additional-scripts](#additional-scripts)           |
+| Scripts that match `test:*`  | [scripts-that-match-test](#scripts-that-match-test) |
+| The "docs" script            | [the-docs-script](#the-docs-script)                 |
+| The "serve" script           | [the-serve-script](#the-serve-script)               |
+| The "dev" script             | [the-dev-script](#the-dev-script)                   |
+| Scripts that match `dev:*`   | [scripts-that-match-dev](#scripts-that-match-dev)   |
+| The "prod" script            | [the-prod-script](#the-prod-script)                 |
+| Scripts that match `prod:*`  | [scripts-that-match-prod](#scripts-that-match-prod) |
 
 ---
 
