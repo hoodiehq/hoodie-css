@@ -4,8 +4,8 @@ var fs = require('fs');
 var path = fs.workingDirectory + '/node_modules/phantomcss/phantomcss.js';
 var phantomcss = require(path);
 
-casper.test.begin('Hood.ie initial test', function(test) {
-  console.log('preinit');
+casper.test.begin('Hood.ie visual tests', function(test) {
+
   phantomcss.init({
     //create new baseline images without manually deleting the files casperjs demo/test.js --rebase
     rebase: casper.cli.get('rebase'),
@@ -13,28 +13,9 @@ casper.test.begin('Hood.ie initial test', function(test) {
     screenshotRoot: './visual-regression-tests/screenshots',
     failedComparisonsRoot: './visual-regression-tests/screenshots/failures',
     cleanupComparisonImages: true,
-    addLabelToFailedImage: true,
+    addLabelToFailedImage: false,
     mismatchTolerance: 0.05,
-
-    onFail: function(test) {
-      console.log(test.filename, test.mismatch);
-    },
-    onPass: function(test) {
-      console.log(test.filename);
-    },
-    onNewImage: function() {
-      console.log(test.filename);
-    },
-    onTimeout: function() {
-      console.log(test.filename);
-    },
-    onComplete: function(allTests, noOfFails, noOfErrors) {
-      allTests.forEach(function(test) {
-        if(test.fail) {
-          console.log(test.filename, test.mismatch);
-        }
-      });
-    },
+    prefixCount: true,
     outputSettings: {
       errorColors: {
         red: 255,
@@ -46,21 +27,24 @@ casper.test.begin('Hood.ie initial test', function(test) {
     }
   });
 
-
   casper.start('http://hood.ie');
 
   casper.viewport(1440, 900);
 
   casper.then(function() {
+    phantomcss.turnOffAnimations();
+  });
+
+  casper.then(function() {
     phantomcss.screenshot('html');
   });
 
-  casper.then(function now_check_the_screenshots() {
+  casper.then(function() {
     phantomcss.compareAll();
   });
 
   casper.run(function() {
-    console.log('\nTHE END.');
+    console.log('\nTESTS FINISHED.');
     casper.test.done();
   });
 });
