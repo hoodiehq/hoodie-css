@@ -19,6 +19,7 @@ In order to see what scripts we have available, you can either go through the **
 - [The Test Script](#the-test-script)
 - [Additional Scripts](#additional-scripts)
 - [Scripts that match `test:*`](#scripts-that-match-test)
+- [The "help" Script](#the-help-script)
 - [The "docs" Script](#the-docs-script)
 - [The "serve" Script](#the-serve-script)
 - [The "dev" Script](#the-dev-script)
@@ -28,7 +29,7 @@ In order to see what scripts we have available, you can either go through the **
 
 ---
 
-## npm Scripts
+## npm Scripts Introduction
 
 When we define a "script" in our `package.json`, we are telling npm run-script to run the command whenever we use the name of the script as an argument to `npm run`. These scripts don't have to be JavaScript, only executable somehow. This could be anything that's runnable from the console.
 
@@ -56,11 +57,90 @@ We could do the same with a bash script, or any executable script out there.
 
 While npm deals with JavaScript packages, it's an important point to make that these scripts **don't** have to be JavaScript.
 
+### Local Dependencies
+
+When we install an npm package in our project, via `npm install package`, it adds a directory to your project called *node_modules* and inside of that is a special directory called `.bin`. It contains what are known as "binaries" for the packages that you've installed. These are programs that can be called from the command line, and they can be used in your npm scripts.
+
+First we install the package we want. Here we'll take a CLI tool that pretty prints things in the terminal.
+
+```shell
+npm install chalk-cli
+```
+
+We add this to our `package.json`.
+
+```
+"scripts" {
+  "hello": "./node_modules/.bin/chalk bold 'Hello World!'"
+}
+```
+
+Then when we run `npm run hello`, we get "Hello World!" in nice bold letters:
+
+```
+> hoodie-website@0.1.0 hello /Users/lewis/dev/hoodie/hoodie-css
+> chalk bold 'Hello World!'
+
+Hello World!
+```
+
+However that `./node_modules/.bin/` is a bit messy, and handily the folks at npm thought about that too. Any dependency you have installed that puts something into the `./node_modules/.bin/` folder can be called from an npm script via the binary's name.
+
+So we can replace:
+
+```
+"scripts" {
+  "hello": "./node_modules/.bin/chalk bold 'Hello World!'"
+}
+```
+
+with the somewhat nicer:
+
+```
+"scripts" {
+  "hello": "chalk bold 'Hello World!'"
+}
+```
+
 ---
 
 When we run `npm run` in this project we get some nice looking output, but it's not that helpful on it's own. This document will try and explain what our development environment is, why it is like that, and how you can use it to work on this repository, but also hopefully give you enough information to be able to consider using npm as a build tool.
 
 Let's step through the output of `npm run` piece by piece.
+
+This guide assumes that you're using npm version 3 or onward (find out with `npm --version`, and you can update your npm with `npm update -g npm`. The version 2 output is mostly the same, but doesn't differentiate between lifecycle scripts and other scripts, so it will look slightly different.
+
+```shell
+Lifecycle scripts included in hoodie-website:
+  start
+    npm-run-all --parallel dev serve
+  test
+    npm-run-all test:*
+
+available via `npm run-script`:
+  test:lint
+    sass-lint --verbose --config .sass-lint.yml src/sass/*
+  help
+    markdown-chalk --input DEVELOPMENT.md
+  serve
+    live-server dist/ --port=9090
+  dev
+    npm-run-all dev:*
+  predev:sass
+    node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css
+  dev:autoprefix
+    postcss --use autoprefixer --autoprefixer.browsers "> 5%" --output src/css/hoodie.css src/css/hoodie.css
+  dev:sass
+    node-sass --source-map src/css/hoodie.css.map --watch --output-style nested src/sass/base.scss src/css/hoodie.css
+  prod
+    npm-run-all prod:*
+  prod:sass
+    node-sass --output-style compressed src/sass/base.scss src/css/prod/hoodie.min.css
+  prod:autoprefix
+    postcss --use autoprefixer --autoprefixer.browsers "> 5%" --output src/css/prod/hoodie.min.css src/css/prod/hoodie.min.css
+  docs
+    kss-node --source src/sass --homepage ../../styleguide.md
+```
 
 ## Lifecycle scripts
 
@@ -68,7 +148,13 @@ Let's step through the output of `npm run` piece by piece.
 
 First of all, we are introduced, (albeit briefly) to the concept of __lifecycle scripts__.
 
-These scripts are related to a module itself, and to it's lifecycle. For example, in this project we have `start` and `test` defined already. These scripts are special because they are linked to how an npm module is consumed by other modules, so when you run `npm install [packagename]` the lifecycle scripts can affect what actually is installed. Often you might want to publish (to the npm registry) only the compiled version of your code, so you can add a `prepublish` script that compiles your JavaScript/CSS/whatever, and then whenever you publish a version, your code gets compiled and people don't get the development version.
+These scripts are related to a module itself, and to it's lifecycle. For example, in this project we have `start` and `test` defined already.
+
+When you create a module and want others to be able to `npm install` it, you need to make it available somehow. While npm can handle github urls, this becomes difficult to maintain if people install from a branch that you later delete, or other such problems with specific links. However, npm operates a *package registry*, which is live at [npmjs.com](http://npmjs.com).
+
+You can get your module up there by running `npm publish`, where it should then be available for anyone to `npm install` (assuming your module's name is unique).
+
+Often you might only want to publish the compiled version of your code, so you can add a `prepublish` script that compiles your JavaScript/CSS/whatever, and then whenever you publish a version, your code gets compiled and people don't get the development version.
 
 `prepublish` also introduces a new concept of the `pre` prefix. There is also a partner `post` prefix, and any script with a corresponding version with `pre` ahead of it will be run before the original script. In this package, we have the `dev:sass` task, and a corresponding `predev:sass`. This means whenever the `dev:sass` task is run, before the actual task runs, the command `predev:sass` is automatically run for us. The `pre` and `post` prefixes are a handy way of naming these to help understand them.
 
@@ -89,7 +175,29 @@ The second line is the commands that are executed when this command runs. Here w
 
 This module is one of our devDependencies. This means it's not a dependency for our module to operate, and is not added to our module when we publish, however it is something that we need in order for our development environment to work. You can install more of these with `npm install [packagename] --save-dev`.
 
-This specific dependency allows us to use the name of the script instead of typing out `npm run [script]` inside our npm scripts.
+Without this dependency, when we wanted to call a script from inside another script, we'd have to use `npm run [script]` every time. The `package.json` would look something like this:
+
+```
+"scripts": {
+  "hello": "echo 'hello'",
+  "world": "echo 'world'",
+  "hello-world": "npm run hello && npm run world"
+}
+```
+
+Because we make use of calling scripts inside other scripts a lot, it makes sense to have something that can make that easier.
+
+With `npm-run-all`, we can rewrite our `package.json` like this:
+
+```
+"scripts": {
+  "hello": "echo 'hello'",
+  "world": "echo 'world'",
+  "hello-world": "npm-run-all hello world"
+}
+```
+
+We achieve the same output with this as before, but we don't need to worry about typing `npm run` twice. With only two scripts it could seem like a waste of time, but imagine adding 40 scripts that you wanted to run one after the other. Suddenly being able to refer to the script by name instead of by `npm run script-name` becomes a lot nicer to read.
 
 ##### Parallelisation
 
@@ -103,7 +211,7 @@ The _(non-Windows)_ alternative for our script would look like:
 npm run dev & npm run serve
 ```
 
-However, as before, this won't work on a Windows environment, and also will create background processes that need to be manually exited, which can get really annoying if you run a lot of scripts in parallel.
+However, this won't work on a Windows environment, and also will create background processes that need to be manually exited, which can get really annoying if you run a lot of scripts in parallel.
 
 There is also [parallelshell](https://www.npmjs.com/package/parallelshell) which accomplishes the parallelisation concerns, and works across platforms, but makes the scripts less readable.
 
@@ -160,9 +268,7 @@ One would expect `npm test` to only be run in full by an automated build/test en
 
 #### `available via npm run-script:`
 
-These scripts are scripts that we have defined ourselves, and are only different to **Lifecycle scripts** in that they have to be run with `npm run` before the name of the script, and npm itself won't use them when publishing or installing a package.
-
-This makes them ideal to hold our development scripts.
+These scripts are scripts that we have defined ourselves, and each can be run individually with `npm run script-name`. They don't rely on anything npm does (that could change later), so this makes them ideal to hold our development scripts.
 
 ---
 
@@ -246,6 +352,8 @@ The `dev:autoprefix` script uses autoprefixer to add prefixes for CSS declaratio
 
 The option `--autoprefixer.browsers "> 5%"` tells autoprefixer to add support for any browser with more than 5% market share, which means it won't worry about adding prefixes for browsers that the majority of people aren't using.
 
+The two file paths at the end are the output and input files, and they are the same because we don't want to create two versions of the css file, just apply autoprefixer to the same file.
+
 ---
 
 ### The "prod" script
@@ -268,6 +376,8 @@ The `prod:sass` script compiles our Sass with a compressed output style, which i
 The `prod:autoprefix` script uses autoprefixer to add prefixes for CSS declarations that may be needed for full cross browser support. This helps take the effort out of the hands of the developer so they can focus on making things work on their browser of choice, and then this tool can take care of the rest.
 
 The option `--autoprefixer.browsers "> 5%"` tells autoprefixer to add support for any browser with more than 5% market share, which means it won't worry about adding prefixes for browsers that the majority of people aren't using.
+
+The two file paths at the end are the output and input files, and they are the same because we don't want to create two versions of the css file, just apply autoprefixer to the same file.
 
 ---
 
