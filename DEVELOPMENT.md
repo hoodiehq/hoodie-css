@@ -19,16 +19,17 @@ In order to see what scripts we have available, you can either go through the **
 - [The Test Script](#the-test-script)
 - [Additional Scripts](#additional-scripts)
 - [Scripts that match `test:*`](#scripts-that-match-test)
+- [The "help" Script](#the-help-script)
 - [The "docs" Script](#the-docs-script)
 - [The "serve" Script](#the-serve-script)
 - [The "dev" Script](#the-dev-script)
-- [Scripts the match `dev:*`](#scripts-that-match-dev)
+- [Scripts that match `dev:*`](#scripts-that-match-dev)
 - [The "prod" Script](#the-prod-script)
-- [Scripts the match `prod:*`](#scripts-that-match-prod)
+- [Scripts that match `prod:*`](#scripts-that-match-prod)
 
 ---
 
-## npm Scripts
+## npm Scripts Introduction
 
 When we define a "script" in our `package.json`, we are telling npm run-script to run the command whenever we use the name of the script as an argument to `npm run`. These scripts don't have to be JavaScript, only executable somehow. This could be anything that's runnable from the console.
 
@@ -56,11 +57,88 @@ We could do the same with a bash script, or any executable script out there.
 
 While npm deals with JavaScript packages, it's an important point to make that these scripts **don't** have to be JavaScript.
 
+### Local Dependencies
+
+When we install an npm package in our project, via `npm install package`, it adds a directory to your project called *node_modules* and inside of that is a special directory called `.bin`. It contains what are known as "binaries" for the packages that you've installed. These are programs that can be called from the command line, and they can be used in your npm scripts.
+
+First we install the package we want. Here we'll take a CLI tool that pretty prints things in the terminal.
+
+```shell
+npm install chalk-cli
+```
+
+We add this to our `package.json`.
+
+```
+"scripts" {
+  "hello": "./node_modules/.bin/chalk bold 'Hello World!'"
+}
+```
+
+Then when we run `npm run hello`, we get "Hello World!" in nice bold letters:
+
+```
+> hoodie-website@0.1.0 hello /Users/lewis/dev/hoodie/hoodie-css
+> chalk bold 'Hello World!'
+
+Hello World!
+```
+
+However that `./node_modules/.bin/` is a bit messy, and handily the folks at npm thought about that too. Any dependency you have installed that puts something into the `./node_modules/.bin/` folder can be called from an npm script just via the binary's name.
+
+So we can replace:
+
+```
+"scripts" {
+  "hello": "./node_modules/.bin/chalk bold 'Hello World!'"
+}
+```
+
+with the somewhat nicer:
+
+```
+"scripts" {
+  "hello": "chalk bold 'Hello World!'"
+}
+```
+
 ---
 
 When we run `npm run` in this project we get some nice looking output, but it's not that helpful on it's own. This document will try and explain what our development environment is, why it is like that, and how you can use it to work on this repository, but also hopefully give you enough information to be able to consider using npm as a build tool.
 
 Let's step through the output of `npm run` piece by piece.
+
+```shell
+Lifecycle scripts included in hoodie-website:
+  start
+    npm-run-all --parallel dev serve
+  test
+    npm-run-all test:*
+
+available via `npm run-script`:
+  test:lint
+    sass-lint --verbose --config .sass-lint.yml src/sass/*
+  help
+    markdown-chalk --input DEVELOPMENT.md
+  serve
+    live-server dist/ --port=9090
+  dev
+    npm-run-all dev:*
+  predev:sass
+    node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css
+  dev:autoprefix
+    postcss --use autoprefixer --autoprefixer.browsers "> 5%" --output src/css/hoodie.css src/css/hoodie.css
+  dev:sass
+    node-sass --source-map src/css/hoodie.css.map --watch --output-style nested src/sass/base.scss src/css/hoodie.css
+  prod
+    npm-run-all prod:*
+  prod:sass
+    node-sass --output-style compressed src/sass/base.scss src/css/prod/hoodie.min.css
+  prod:autoprefix
+    postcss --use autoprefixer --autoprefixer.browsers "> 5%" --output src/css/prod/hoodie.min.css src/css/prod/hoodie.min.css
+  docs
+    kss-node --source src/sass --homepage ../../styleguide.md
+```
 
 ## Lifecycle scripts
 
