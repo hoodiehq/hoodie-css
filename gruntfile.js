@@ -43,6 +43,15 @@ module.exports = function(grunt) {
         }
       }
     },
+    scsslint: {
+      allFiles: [
+          'src/sass/*.scss'
+        ],
+        options: {
+          config: '.scss-lint.yml',
+          colorizeOutput: true
+        }
+      },
     copy: {
         main: {
             src: 'src/css/prod/hoodie.min.css',
@@ -67,45 +76,7 @@ module.exports = function(grunt) {
       },
       files: {
         files: {
-          'src/js/prod/hoodie.min.js' : ['src/js/jquery.min.js', 'src/js/main.js']
-        }
-      }
-    },
-    'string-replace': {
-      dev: {
-        files: {
-          '_includes/head.html':'_includes/head.html',
-          '_includes/footer.html':'_includes/footer.html'
-        },
-        options: {
-            replacements: [
-              {
-                pattern: '<link rel="stylesheet" href="/src/prod/hoodie.min.pref.css">',
-                replacement: '<link rel="stylesheet" href="/src/css/hoodie.css">'
-              },
-              {
-                pattern: '<script src="/src/prod/hoodie.min.js"></script>',
-                replacement: '<script src="/src/js/jquery/dist/jquery.js"></script><script src="/src/js/main.js"></script>'
-              }
-            ]
-        }
-      },
-      build: {
-        files: {
-            '_includes/head.html':'_includes/head.html',
-            '_includes/footer.html':'_includes/footer.html'
-        },
-        options: {
-          replacements: [
-            {
-              pattern: '<script src="/src/js/jquery/dist/jquery.js"></script><script src="/dist/js/main.js"></script>',
-              replacement: '<script src="/src/prod/hoodie.min.js"></script>'
-            },
-            {
-              pattern: '<link rel="stylesheet" href="/src/css/hoodie.css">',
-              replacement: '<link rel="stylesheet" href="/src/prod/hoodie.min.pref.css">'
-            },
-          ]
+          'src/js/prod/hoodie.min.js' : ['src/js/jquery.min.js', 'src/js/icheck.min.js', 'src/js/main.js', 'src/js/prism.js', 'src/js/smoothscroll.min.js']
         }
       }
     }
@@ -117,19 +88,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-string-replace');
+ // grunt.loadNpmTasks('grunt-scss-lint');
 
 
   grunt.registerTask('default', [
       'connect',
-      'string-replace:dev',
       'watch'
     ]);
   grunt.registerTask('build', [
+//      'sass:scsslint',
       'sass:prod',
       'copy',
       'autoprefixer',
       'uglify',
-      'string-replace:build'
     ]);
 };
