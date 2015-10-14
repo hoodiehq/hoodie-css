@@ -65,7 +65,7 @@ Use the .editorsconfig file with your editor of choice to ensure a consistent co
 ## Rem-calc
 
 We use rem units instead of pixels. There is a Sass function called "rem-calc" to simplify this. Just use rem-calc(px-value). You can also provide multiple values like you would do with a CSS shorthand e.g. margin: rem-calc(20 0 20).
-If you're using Sublime Text you can add this handy snippet to your user directory(user/Library/Apllication\ Support/Sublime\ Text\ 3/Packages/User:
+If you're using Sublime Text you can add this handy snippet to your user directory (`user/Library/Application\ Support/Sublime\ Text\ 3/Packages/User`):
 
     <snippet>
       <content><![CDATA[
@@ -193,7 +193,7 @@ $gray-6: #fdfdfd;
 <div class="box">
 ```` -->
 
-**.cb**, contentbox in max-width of 840px, centered, holds all article related designs, this is how a .cb always is structred
+**.cb**, contentbox in max-width of 840px, centered, holds all article related designs, this is how a .cb always is structured
 ````
 <div class="cb">
     <article>
