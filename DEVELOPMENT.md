@@ -108,6 +108,8 @@ When we run `npm run` in this project we get some nice looking output, but it's 
 
 Let's step through the output of `npm run` piece by piece.
 
+This guide assumes that you're using npm version 3 or onward (find out with `npm --version`, and you can update your npm with `npm update -g npm`. The version 2 output is mostly the same, but doesn't differentiate between lifecycle scripts and other scripts, so it will look slightly different.
+
 ```shell
 Lifecycle scripts included in hoodie-website:
   start
