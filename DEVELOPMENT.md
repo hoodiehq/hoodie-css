@@ -22,9 +22,9 @@ In order to see what scripts we have available, you can either go through the **
 - [The "docs" Script](#the-docs-script)
 - [The "serve" Script](#the-serve-script)
 - [The "dev" Script](#the-dev-script)
-- [Scripts the match `dev:*`](#scripts-that-match-dev)
+- [Scripts that match `dev:*`](#scripts-that-match-dev)
 - [The "prod" Script](#the-prod-script)
-- [Scripts the match `prod:*`](#scripts-that-match-prod)
+- [Scripts that match `prod:*`](#scripts-that-match-prod)
 
 ---
 
