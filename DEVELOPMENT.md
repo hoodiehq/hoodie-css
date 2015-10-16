@@ -8,7 +8,8 @@ In order to see what scripts we have available, you can either go through the **
   <img src="doc_img/Low-Profile-Dog_3.png?raw=true" alt="low profile dog" align="right">
 </p>
 
-- [npm Scripts](#npm-scripts)
+- [npm Scripts Introduction](#npm-scripts-introduction)
+  - [Local Dependencies](#local-dependencies)
 - [Lifecycle Scripts](#lifecycle-scripts)
 - [The "Start" Script](#the-start-script)
   - [npm-run-all](#npm-run-all)
