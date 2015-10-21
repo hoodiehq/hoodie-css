@@ -8,7 +8,8 @@ In order to see what scripts we have available, you can either go through the **
   <img src="doc_img/Low-Profile-Dog_3.png?raw=true" alt="low profile dog" align="right">
 </p>
 
-- [npm Scripts](#npm-scripts)
+- [npm Scripts Introduction](#npm-scripts-introduction)
+  - [Local Dependencies](#local-dependencies)
 - [Lifecycle Scripts](#lifecycle-scripts)
 - [The "Start" Script](#the-start-script)
   - [npm-run-all](#npm-run-all)
@@ -53,7 +54,23 @@ From our project directory, in the terminal, we could run `npm run hello`, the o
 Hello World
 ```
 
-We could do the same with a bash script, or any executable script out there.
+We could do the same with a bash script, or any executable script out there. For example:
+
+A file called "hello.py":
+
+```python
+print "Hello!"
+```
+
+And then in our `package.json` file:
+
+```json
+"scripts": {
+  "snakey": "python hello.py"
+}
+```
+
+And then in your command line: `npm run snakey`.
 
 While npm deals with JavaScript packages, it's an important point to make that these scripts **don't** have to be JavaScript.
 
@@ -84,7 +101,7 @@ Then when we run `npm run hello`, we get "Hello World!" in nice bold letters:
 Hello World!
 ```
 
-However that `./node_modules/.bin/` is a bit messy, and handily the folks at npm thought about that too. Any dependency you have installed that puts something into the `./node_modules/.bin/` folder can be called from an npm script via the binary's name.
+However, using `./node_modules/.bin/` is a bit messy, and handily the folks at npm thought about that too. Any dependency you have installed that puts something into the `./node_modules/.bin/` folder can be called from an npm script via the binary's name.
 
 So we can replace:
 
@@ -148,7 +165,7 @@ available via `npm run-script`:
 
 First of all, we are introduced, (albeit briefly) to the concept of __lifecycle scripts__.
 
-These scripts are related to a module itself, and to it's lifecycle. For example, in this project we have `start` and `test` defined already.
+These scripts are related to a module itself, and to its lifecycle. For example, in this project we have `start` and `test` defined already.
 
 When you create a module and want others to be able to `npm install` it, you need to make it available somehow. While npm can handle github urls, this becomes difficult to maintain if people install from a branch that you later delete, or other such problems with specific links. However, npm operates a *package registry*, which is live at [npmjs.com](http://npmjs.com).
 
@@ -173,7 +190,7 @@ The second line is the commands that are executed when this command runs. Here w
 
 #### [npm-run-all](https://www.npmjs.com/package/npm-run-all)
 
-This module is one of our devDependencies. This means it's not a dependency for our module to operate, and is not added to our module when we publish, however it is something that we need in order for our development environment to work. You can install more of these with `npm install [packagename] --save-dev`.
+This module is one of our devDependencies. This means it's not a dependency for our module to operate, and is not added to our module when we publish, however it is something that we need in order for our development environment to work. You can install more of these with `npm install [packagename] --save-dev`, which will install the package for you and insert it into the `devDependencies` section of your `package.json` without you having to add it manually!.
 
 Without this dependency, when we wanted to call a script from inside another script, we'd have to use `npm run [script]` every time. The `package.json` would look something like this:
 
@@ -201,7 +218,7 @@ We achieve the same output with this as before, but we don't need to worry about
 
 ##### Parallelisation
 
-`npm-run-all` also allows us to run multiple scripts at once, with the `--parallel` flag. By default scripts listed in order will be run sequentially.
+`npm-run-all` also allows us to run multiple scripts at once, with the `--parallel` flag. By default, scripts listed in order will be run sequentially.
 
 There are a few problems regarding the more usual way of running tasks in parallel with the `&&` command. You may be used to seeing this in other scripts, but it can run into problems when running in a Windows environment, as the `&&` command doesn't work.
 
@@ -229,7 +246,7 @@ The `serve` script uses a really great tool called [live-server](https://www.npm
 
 #### [live-server](https://www.npmjs.com/package/live-server)
 
-- It serves the index.html file for us, this can help when we bring in things that need to request content that's not on our page, like webfonts, or external CSS/JS, because the `file://` protocol doesn't allow that. This is why we need a server at all.
+- It serves the index.html file for us, this can help when we bring in things that need to request content that's not on our page, like webfonts, or external CSS/JS, because the `file://` protocol doesn't allow that. This is why we need a server.
 
 - It adds "live reload" capability to that server, so any changes it detects in the `dist` directory will be served, and any CSS changes will also be applied as soon as the file is saved, without restarting anything, or reloading the page. This helps speed up development work a lot.
 
@@ -256,7 +273,7 @@ With the test script we take advantage of [npm-run-all](https://www.npmjs.com/pa
 
 We call the script `test` because a lot of automated build/test tools, also known as Continuous Integration, like [Travis CI](https://travis-ci.org/), [Circle CI](https://circleci.com/), or [Codeship](https://codeship.com/) will see that our project has a package.json, and is therefore using npm for (at the very least), tracking versions or dependencies, and it will try out `npm test` as a default test script.
 
-So by naming our script `test` instead of `lint` or similar, we can take advantage of that and not have to set up anything unique in our testing environments.
+By naming our script `test` instead of `lint` or similar, we can take advantage of that and not have to set up anything unique in our testing environments.
 
 If we were working on tests themselves, and wanted to keep running them instead of the full test suite, we can run specific tests by, (for example) running something like `npm run test:lint` which will run the linter only. This will make the test run faster by only running a subset of the tests.
 
@@ -332,7 +349,7 @@ The `dev` script is a catch all script to run all the scripts that start with "d
 ##### `predev:sass`
 ###### `node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css`
 
-The `predev:sass` script compiles our Sass into CSS, adds a source map so that we can debug our Sass from within our CSS, and uses an output style that's easy for humans to read to help debugging efforts.
+The `predev:sass` script compiles our Sass into CSS, adds a source map so that we can debug our Sass from within our CSS, and uses an output style that's human readable, to help debugging efforts.
 
 We currently have this workaround `predev:sass` script because when we first run `dev:sass`, which has the `--watch` option, the Sass is not compiled to CSS until a file has changed. This will break our first page load when we're doing development, when we try to load CSS that doesn't exist yet.
 
