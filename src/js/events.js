@@ -125,7 +125,7 @@ $(function() {
     hash.table.rows.forEach(function(row){
         var eventItem = {};
         var eventData = row.c;
-        eventItem.date = eventData[0] ? eventData[0].v : undefined;
+        eventItem.date = eventData[0] ? new Date(eventData[0].f.split('/').reverse()) : undefined;
         eventItem.location = eventData[1] ? eventData[1].v : undefined;
         eventItem.type = eventData[2] ? eventData[2].v : undefined;
         eventItem.name = eventData[3] ? eventData[3].v : undefined;
