@@ -29,6 +29,7 @@
     "prod:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output src/css/prod/hoodie.min.css src/css/prod/hoodie.min.css",
     "docs": "kss-node --source src/sass --homepage ../../styleguide.md",
     "test": "npm-run-all test:*",
-    "test:lint": "sass-lint --verbose --config .sass-lint.yml src/sass/*"
+    "test:lint": "sass-lint --verbose --config .sass-lint.yml src/sass/*",
+    "test:visual": "casperjs test visual-regression-tests/testsuite.js --engine=slimerjs"
   }
 }
