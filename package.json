@@ -1,9 +1,11 @@
 {
-  "name": "hoodie-website",
-  "version": "0.1.0",
+  "name": "hoodie-css-framework",
+  "version": "1.0.0",
+  "repository": "https://github.com/hoodiehq/hoodie-css/",
   "devDependencies": {
     "@lewiscowper/markdown-chalk": "^0.1.2",
     "autoprefixer": "^6.0.2",
+    "browser-sync": "^2.9.11",
     "casperjs": "^1.1.0-beta3",
     "kss": "^2.1.0",
     "live-server": "^0.8.1",
@@ -23,8 +25,8 @@
     "serve": "live-server dist/ --port=9090",
     "dev": "npm-run-all dev:*",
     "predev:sass": "node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css",
-    "dev:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output src/css/hoodie.css src/css/hoodie.pref.css",
     "dev:sass": "node-sass --source-map src/css/hoodie.css.map --watch --output-style nested src/sass/base.scss src/css/hoodie.css",
+    "dev:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output src/css/hoodie.css src/css/hoodie.pref.css",
     "prod": "npm-run-all prod:*",
     "prod:sass": "node-sass --output-style compressed src/sass/base.scss src/css/prod/hoodie.min.css",
     "prod:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output src/css/prod/hoodie.min.css src/css/prod/hoodie.min.pref.css",
