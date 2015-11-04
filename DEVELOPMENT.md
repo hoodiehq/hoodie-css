@@ -385,7 +385,7 @@ The `prod` script is a catch all script to run all the scripts that start with "
 ##### `prod:sass`
 ###### `node-sass --output-style compressed src/sass/base.scss src/css/prod/hoodie.min.css`
 
-The `prod:sass` script compiles our Sass with a compressed output style, which is more difficult for humans to read, but saves some space so when we send the compiled version to the site, it doesn't have to transfer as much, which makes it quicker. 
+The `prod:sass` script compiles our Sass with a compressed output style, which is more difficult for humans to read, but saves some space so when we send the compiled version to the site, it doesn't have to transfer as much, which makes it quicker.
 
 ##### `prod:autoprefix`
 ###### `postcss --use autoprefixer --autoprefixer.browsers "> 5%" --output src/css/prod/hoodie.min.css src/css/prod/hoodie.min.css`
@@ -395,6 +395,13 @@ The `prod:autoprefix` script uses autoprefixer to add prefixes for CSS declarati
 The option `--autoprefixer.browsers "> 5%"` tells autoprefixer to add support for any browser with more than 5% market share, which means it won't worry about adding prefixes for browsers that the majority of people aren't using.
 
 The two file paths at the end are the output and input files, and they are the same because we don't want to create two versions of the css file, just apply autoprefixer to the same file.
+
+##### `prod:javascript`
+###### `uglifyjs src/js/jquery.min.js src/js/main.js --output src/js/prod/hoodie.min.js`
+
+The `prod:javascript` script takes the two javascript files we need in the page as an input, (here that's `src/js/jquery.min.js` and `src/js/main.js`), and combines them so that we can point pages to a single outputted file, (`src/js/prod/hoodie.min.js`).
+
+This allows us to only have one `<script>` tag on pages, that always points to the same script, instead of having each page import all the scripts it uses. We use [uglify-js](https://www.npmjs.com/package/uglify-js) (in the scripts it's called `uglify-js`) so that [jQuery](http://jquery.com/) is available across all our sites, as well as our own custom JavaScript.
 
 ---
 
