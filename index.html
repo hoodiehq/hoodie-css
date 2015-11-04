@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Hoodie CSS Framework</title>
+      <link rel="stylesheet" href="./src/css/prod/hoodie.min.pref.css">
+      <script>
+        (function(){
+            function addFont() {
+                var style = document.createElement('style');
+                style.rel = 'stylesheet';
+                document.head.appendChild(style);
+                style.textContent = localStorage.firaSansWeb;
+            }
+
+            try {
+                if (localStorage.firaSansWeb) {
+                    // The font is in localStorage, we can load it directly
+                    addFont();
+                } else {
+                    // We have to first load the font file asynchronously
+                    var request = new XMLHttpRequest();
+                    request.open('GET', './src/css/fonts.css', true);
+
+                    request.onload = function() {
+                        if (request.status >= 200 && request.status < 400) {
+                            // We save the file in localStorage
+                            localStorage.firaSansWeb = request.responseText;
+
+                            // ... and load the font
+                            addFont();
+                        }
+                    };
+
+                    request.send();
+                }
+            } catch(ex) {
+                // maybe load the font synchronously for woff-capable browsers
+                // to avoid blinking on every request when localStorage is not available
+            }
+        }());
+      </script>
+    </head>
+    <body class="orange">
+      <header>
+        <section class="nav"></section>
+      </header>
+      <div class="content">
+        <div class="box">
+          <section class="cb teaser">
+            <aside>
+              <br />
+              <br />
+              <br />
+              <br />
+              <nav>
+                <a href="index.html">0. Intro &amp; Contribute</a><br />
+                <a href="index.html">1. Preq &amp; Setup / basic template</a><br />
+                <a href="index.html">1. Files, what &amp; why?</a><br />
+                <a href="index.html">2. Customize your Website</a><br />
+                <a href="accessibility.html">3. Accessibility considerations</a><br />
+                <a href="colour-fonts.html">4. Colours and Fonts</a><br />
+                <a href="http://hood.ie/typographic-base.html" target="_blank">5. Typo &amp; Icons</a><br />
+                <a href="images.html">6. Images</a><br />
+                <a href="index.html">7. Run Deployment, how to contribute and test all websites</a>
+              </nav>
+            </aside>
+            <article>
+              <h1>The CSS Framework for the Hoodie Open Source Project</h1>
+
+              <p>
+                This is a small CSS Framework to maintain all the Hood.ie related websites.
+              </p>
+            </article>
+          </section>
+          <section class="cb">
+            <article>
+              <h2>Another framework? GNAH!</h2>
+              <p>
+                Yes. We felt the need to write a small OO-CSS framework for our websites, as far as we maintain several of them. It includes our CI and let's you build a hoodie website in a snap! Also? One bugfix / improvement needs to be made in just one repository, not 4.
+              </p>
+              <p>
+                Other advantages are
+                <ul>
+                  <li>
+                    Build a hoodie website in a finger snap, using the framework and the template. Focus on the content.
+                  </li>
+                  <li>
+                    Get all the features right away.
+                  </li>
+                  <li>
+                    Get all the bugfixes!
+                  </li>
+                  <li>
+                    Seperate content and design.
+                  </li>
+                  <li>
+                    No worries about getting anything in the CI wrong. It's all there.
+                  </li>
+                  <li>
+                    Use all the images on the website.
+                  </li>
+                </ul>
+              </p>
+            </article>
+          </section>
+          <section class="cb">
+            <article>
+              <h2>Getting started</h2>
+              <p>
+                Grab the <a href="#">basic template</a>. Fill it with your content. Done!
+                <br />
+                No need to install npm, grunt, bower or anything at all!
+              </p>
+              <p>
+                You'd love to customize your template? Sure! You can see all your options <a href="#">here</a>.
+              </p>
+              <p>
+                Want to dive deeper? <a href="#">Here</a> is a listing of all the files and everything that is implemented, also how it works.
+              </p>
+              <p>
+                You would love to help us to expand the framework? Found a bug, want to send a fix? Check out our explanation <a href="#">here</a>.
+              </p>
+          </article>
+        </section>
+      </div>
+     </div>
+    <footer>
+     <div class="footer">
+        <section class="cb footer-licensing">
+            <small>© 2012-2015 <a href="https://github.com/hoodiehq" target="_blank">the Hoodie Community</a> and other <a href="http://hood.ie/community#contributors">contributors</a>. Hoodie is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache License 2.0</a>.<br />All pictures, photos and illustrations are owned by the Hoodie Open Source Project and licensed under <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/deed.en" target="_blank">CC BY-NC-ND 4.0</a>.</small>
+        </section>
+      </div>
+    </footer>
+    </body>
+  </html>

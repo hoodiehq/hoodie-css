@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Hoodie CSS Framework</title>
+      <link rel="stylesheet" href="./src/css/prod/hoodie.min.pref.css">
+      <script>
+        (function(){
+            function addFont() {
+                var style = document.createElement('style');
+                style.rel = 'stylesheet';
+                document.head.appendChild(style);
+                style.textContent = localStorage.firaSansWeb;
+            }
+
+            try {
+                if (localStorage.firaSansWeb) {
+                    // The font is in localStorage, we can load it directly
+                    addFont();
+                } else {
+                    // We have to first load the font file asynchronously
+                    var request = new XMLHttpRequest();
+                    request.open('GET', './src/css/fonts.css', true);
+
+                    request.onload = function() {
+                        if (request.status >= 200 && request.status < 400) {
+                            // We save the file in localStorage
+                            localStorage.firaSansWeb = request.responseText;
+
+                            // ... and load the font
+                            addFont();
+                        }
+                    };
+
+                    request.send();
+                }
+            } catch(ex) {
+                // maybe load the font synchronously for woff-capable browsers
+                // to avoid blinking on every request when localStorage is not available
+            }
+        }());
+      </script>
+    </head>
+    <body class="gray">
+      <header role="banner">
+        <section class="nav"></section>
+      </header>
+      <div class="content" role="main">
+        <div class="box">
+          <section class="cb teaser">
+            <aside role="complementary">
+              <br />
+              <br />
+              <br />
+              <br />
+              <nav>
+                <a href="index.html">0. Intro &amp; Contribute</a><br />
+                <a href="index.html">1. Preq &amp; Setup / basic template</a><br />
+                <a href="index.html">1. Files, what &amp; why?</a><br />
+                <a href="index.html">2. Customize your Website</a><br />
+                <a href="accessibility.html">3. Accessibility considerations</a><br />
+                <a href="colour-fonts.html">4. Colours and Fonts</a><br />
+                <a href="http://hood.ie/typographic-base.html" target="_blank">5. Typo &amp; Icons</a><br />
+                <a href="images.html">6. Images</a><br />
+                <a href="index.html">7. Run Deployment, how to contribute and test all websites</a>
+              </nav>
+            </aside>
+            <article role="article">
+              <h1>Accessibility</h1>
+              <p>
+                Making sure that everything we do at Hoodie, is accessible to everyone.
+              </p>
+              <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#factors">Factors affecting experiences with the web</a></li>
+                <li><a href="#guidelines">Accessibility guidelines</a></li>
+                <li><a href="#example">An example of making Hoodie accessible</a></li>
+                <li><a href="#tools">Accessibility testing</a></li>
+              </ul>
+            </article>
+          </section>
+
+          <section class="cb">
+            <article id="introduction" role="article">
+              <h2>Introduction</h2>
+              <p>
+                In 1997, the W3 launched the "International Program Office for Web Accessibility Initiative".
+                In the <a href="http://www.w3.org/Press/IPO-announce">press release</a>, Tim Berners-Lee said the following:
+                "The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect".
+              </p>
+              <p>
+                One of the first things you see when you go to the Hoodie website is the heading "Hoodie is for you".
+                By "you", we mean everyone. By everyone, we mean <em>everyone</em>. That brings us to this guide, which outlines how we can make Hoodie accessible.
+              <p>
+            </article> 
+          </section>
+          
+          <section class="cb">
+            <article id="factors" role="article">
+              <h2>Factors affecting experiences with the web</h2>
+              <p>
+                A common misconception when we talk about accessibility is that we mean to cater for those who have long-term limited abilities or impairments <em>only</em>.
+                Often mentioned examples are blindness and motor and cognitive disabilities. It includes that, but it also includes so much more.
+              </p>
+              <p>
+                Here are some examples of things that can hinder and change your experience with the web:
+                <ul>
+                  <li>Blindness, either partial or total</li>
+                  <li>Colour blindness, of which there are many types</li>
+                  <li>Ataxia (loss of control of body movement). Each type affecting motor control in different ways</li>
+                  <li>Hearing loss, either partial or total</li>
+                  <li>Epilepsy</li>
+                  <li>Distraction</li>
+                  <li>Dyslexia</li>
+                  <li>Age</li>
+                  <li>Mental Health</li>
+                  <li>Fatigue</li>
+                  <li>English as a second language</li>
+                  <li>Surfing the web on a new device</li>
+                  <li>Having a bad data connection</li>
+                  <li>Having no internet connection at all</li>
+                </ul>
+              <p>
+            </article> 
+          </section>
+          
+          <section class="cb">
+            <article id="guidelines" role="article">
+              <h2>Accessibility guidelines</h2>
+              
+              <h3>Keyboard accessibility</h3>
+              <p>
+                A user should be able to navigate to all content using a keyboard.
+                They should be able to use the TAB key to get to all inputs, links and buttons.
+                They should be able to submit forms using the ENTER key.
+                They should be able to open and close panels using the ENTER and ESC keys.
+              </p>
+              <p>
+                Feedback should be provided to the user when they TAB to elements, with use of a focus states.
+              <p>
+                
+              <h3>All content must be easy to understand</h3>
+              <p>
+                All writing should use simple language. By default, text should be able to be read by individuals with a reading age of 12&ndash;14 years.
+                Technical terms should be simplified where possible.
+                Each part of the content should have an appropriate heading.
+              </p>
+              
+              <h3>Semantic HTML</h3>
+              <p>
+                HTML5 is wonderful. With its introduction we gained many elements that gave actual context to what they do (<em>&lt;header&gt;, &lt;article&gt;, &lt;footer&gt;</em>), 
+                reducing the need to use lots of <em>&lt;div&gt;</em> elements that give no semantic understanding.
+              </p>
+              
+              <h3>ARIA Roles</h3>
+              <p>
+                All HTML Elements must have <a href="http://a11yproject.com/posts/getting-started-aria">ARIA Roles</a> where needed.
+                ARIA Roles tell assistive devices like screenreaders (NVDA, VoiceOver) the role of the element (is it a header, is it a footer, is it the main content?) 
+                and its state (hidden, visible, open, closed, etc.).
+              </p>
+              <p>
+                With HTML5, many ARIA roles are implicit to the semantic element. So in theory, you do not need to add <em>role='header'</em> to a <em>&lt;header&gt;</em> element. 
+                But, as not all browsers and technologies support these HTML elements, it is a good idea right now to add ARIA roles to our elements whether the role is already implicitly implied or not.
+              </p>
+              
+              <h3>Design</h3>
+              <p>Design is important. We must make our websites as visually accessible as possible.</p>
+              <h4>Contrast Ratio</h4>
+              <p>
+                We must be able to make the out the text of an element from its background.
+                A dark grey element with slightly lighter grey text is difficult to decipher
+              </p>
+              <h4>Hover, focus, active states</h4>
+              <p>
+                We need to know when they are interacting with something. All links, buttons and other focusable elements must stand out: this can be achieved in many ways with colour changes, underlines, borders and more.
+                They should also have appropriate hover, focus and active states for when a user both mouses over the content and navigates to it via the use of a keyboard.
+              </p>
+              <h4>Simplicity is best</h4>
+              <p>
+                Simplicity is one of the best things you can do to make your website/application accessible. Properly sectioned and grouped content and  visually different elements can make it much easier to view your content.
+                Consistency in themes, colours and styles will help this effort too.
+              </p>
+              <p>
+                Attention is a finite resource. So, we do not want to scream things at our users from every possible direction.
+                There should be a nice simple happy path when interacting with our content.
+              </p>
+              
+              <h3>Audio and Visual information</h3>
+              <p>
+                If you include auditory and visual content, they <em>must</em> have transcripts, subtitles and audio descriptions where necessary.
+                What use is a big introductory video if visually impaired people do not know what is going on?
+                How useful is an .mp3 file without a transcript for those with hearing problems?
+              </p>
+            </article> 
+          </section>
+
+          <section class="cb">
+            <article id="example" role="article">
+              <h2>An example of making something accessible</h2>
+              <p>
+                On our <a href="http://hood.ie/chat">chat page</a> we list two forms of communicating with the community: IRC and Slack.
+                To help people find us on Slack we have a sign up form that looks (at the time of writing) like this: 
+              </p>
+              <p>
+                <pre>
+                  <code class="language-html">
+                    &lt;form id="slack-integration"&gt;
+                      &lt;input id="mail-for-slack" type="email" placeholder="me@mydomain.com" autofocus="true" required/&gt;
+                      &lt;input type="submit" id="submit-slack" value="Get your Invite"/&gt;
+                      &lt;div class="message"&gt;&lt;/div&gt;
+                    &lt;/form&gt;
+                  </code>
+                </pre>
+              </p>
+              <p>
+                The following PR suggests some improvements that can be made to the form to make it more accessible:
+                <a href="https://github.com/hoodiehq/hood.ie/pull/188">https://github.com/hoodiehq/hood.ie/pull/188</a>
+              </p>
+              <p>
+                <ul>
+                  <li>
+                    We can attach a label to the input box so the user knows what they should be entering in the box.
+                    Placeholder text may not be read out, is it supported by older browsers and dissapears when interacting with the element and it is therefore easy to forget what the input was for.
+                  </li>
+                  <li>
+                    We can make sure the inputs are not autofocused, because a screenreader will lose all contextual information
+                    if they are forced to jump to content in the middle of a page when they visit it.
+                  </li>
+                  <li>
+                    The button can be changed to be an actual semantic <em>&lt;button&gt;</em> rather than an <em>&lt;input&gt;</em> with its type set as button.
+                  </li>
+                  <li>
+                    Strongly coloured warning and success messages can be added to show the status of the form submission. Use ARIA live regions for AJAX-like submissions, to announce changes to the user.
+                  </li>
+                </ul>
+              </p>
+              <p>
+                <pre>
+                  <code class="language-html">
+                    &lt;form id="slack-integration"&gt;
+                      &lt;label for="mail-for-slack">Enter your email address&lt;/label&gt;
+                      &lt;input id="mail-for-slack" type="email" placeholder="me@mydomain.com" required>
+                      &lt;button type="submit" id="submit-slack">Get your invite&lt;/button&gt;
+                      &lt;div id="slack-form-message" class="message"&gt;&lt;/div&gt;
+                    &lt;/form&gt;
+                  </code>
+                </pre>
+              </p>
+              <img src="./src/img/accessibility-slack-after.png" alt="">
+              
+            </article> 
+          </section>
+          
+          <section class="cb">
+            <article id="tools" role="article">
+              <h2>Accessibility Testing</h2>
+              <p>
+                <ul>
+                  <li>
+                    Screenreaders like <a href="https://www.apple.com/uk/accessibility/osx/voiceover/">VoiceOver</a> (OSX) and <a href="https://www.nvaccess.org/download/">NVDA</a> (Windows)
+                    can help us to understand if our content makes sense and is structured well
+                  </li>
+                  <li>
+                    The NPM Package <a href="https://github.com/addyosmani/a11y">a11y</a> is great in pointing out accessibility issues, 
+                    as is the JavaScript library <a href="http://khan.github.io/tota11y/">tota11y</a>
+                  </li>
+                  <li>
+                    The <a href="http://a11yproject.com/checklist.html">accessibility checklist</a>
+                    by the a11y project is a perfect place to make sure your components are accessible
+                  </li>
+                  <li>
+                    Writing tools like <a href="http://www.hemingwayapp.com/">Hemingway App</a>
+                    can help you simplify the words you write so everyone has a better chance of understanding them
+                  </li>
+                  <li>
+                    Check the colour contrast of your content with the <a href="http://wave.webaim.org/">WAVE</a> toolbar
+                  </li>
+                </ul>
+              </p>
+            </article> 
+          </section>
+        </div>
+      </div>
+    </body>
+  </html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Hoodie CSS Framework</title>
+      <link rel="stylesheet" href="./src/css/prod/hoodie.min.pref.css">
+      <script>
+        (function(){
+            function addFont() {
+                var style = document.createElement('style');
+                style.rel = 'stylesheet';
+                document.head.appendChild(style);
+                style.textContent = localStorage.firaSansWeb;
+            }
+
+            try {
+                if (localStorage.firaSansWeb) {
+                    // The font is in localStorage, we can load it directly
+                    addFont();
+                } else {
+                    // We have to first load the font file asynchronously
+                    var request = new XMLHttpRequest();
+                    request.open('GET', './src/css/fonts.css', true);
+
+                    request.onload = function() {
+                        if (request.status >= 200 && request.status < 400) {
+                            // We save the file in localStorage
+                            localStorage.firaSansWeb = request.responseText;
+
+                            // ... and load the font
+                            addFont();
+                        }
+                    };
+
+                    request.send();
+                }
+            } catch(ex) {
+                // maybe load the font synchronously for woff-capable browsers
+                // to avoid blinking on every request when localStorage is not available
+            }
+        }());
+      </script>
+    </head>
+    <body class="gray">
+      <header>
+        <section class="nav"></section>
+      </header>
+      <div class="content">
+        <div class="box">
+          <section class="cb teaser">
+            <aside>
+              <br />
+              <br />
+              <br />
+              <br />
+              <nav>
+                <a href="index.html">0. Intro &amp; Contribute</a><br />
+                <a href="index.html">1. Preq &amp; Setup / basic template</a><br />
+                <a href="index.html">1. Files, what &amp; why?</a><br />
+                <a href="index.html">2. Customize your Website</a><br />
+                <a href="accessibility.html">3. Accessibility considerations</a><br />
+                <a href="colour-fonts.html">4. Colours and Fonts</a><br />
+                <a href="http://hood.ie/typographic-base.html" target="_blank">5. Typo &amp; Icons</a><br />
+                <a href="images.html">6. Images</a><br />
+                <a href="index.html">7. Run Deployment, how to contribute and test all websites</a>
+              </nav>
+            </aside>
+            <article>
+              <h1>It's all your colour &amp; typo here.</h1>
+              <p>
+                Here you'll find all the colours, you can use. Also how to apply the themes &amp; can take a look at the fonts plus how to use them.
+              </p>
+              <ul>
+                <li><a href="#colours">Colours</a></li>
+                <li><a href="#themes">Themes</a></li>
+                <li><a href="#fonts">Fonts</a></li>
+              </ul>
+            </article>
+          </section>
+          <section class="cb">
+            <article id="colours">
+              <h2>Colours</h2>
+              <p>
+                The variables we are using across the FW including the HEX.
+              </p>
+              <p>
+                <div style="background-color: #e94e1b; height: 40px;"></div>
+                $orange: #e94e1b;
+                <small>
+                  Primary Colour / Header / Footer / Links
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #f9c4b3; height: 40px;"></div>
+                $orange-l: #f9c4b3;
+                <small>
+                  Secondary Colour / SVG Logos
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #312783; height: 40px;"></div>
+                $blue: #312783;
+                <small>
+                  Primary Colour / Header / Footer / Links
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #bfbcd8; height: 40px;"></div>
+                $blue-l: #bfbcd8;
+                <small>
+                  Secondary Colour / SVG Logos
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #0b8e36; height: 40px;"></div>
+                $green: #0b8e36;
+                <small>
+                  Primary Colour / Header / Footer / Links
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #a9d6b8; height: 40px;"></div>
+                $green-l: #a9d6b8;
+                <small>
+                  Secondary Colour / SVG Logos
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #f9b233; height: 40px;"></div>
+                $yellow: #f9b233;
+                <small>
+                  Primary Colour / Header / Footer / Links
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #fce3b6; height: 40px;"></div>
+                $yellow-l: #fce3b6;
+                <small>
+                  Secondary Colour / SVG Logos
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #520644; height: 40px;"></div>
+                $lilac: #520644;
+                <small>
+                  Primary Colour / Header / Footer / Links
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #c1a7bc; height: 40px;"></div>
+                  $lilac-l: #c1a7bc;
+                <small>
+                  Secondary Colour / SVG Logos
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #282828; height: 40px;"></div>
+                $gray-1: #282828;
+                <small>
+                  Primary Colour / Header / Footer / Links
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #b3b3b3; height: 40px;"></div>
+                $gray-5: #b3b3b3;
+                <small>
+                  Secondary Colour / SVG Logos
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #404040; height: 40px;"></div>
+                $gray-2: #404040;
+                <small>
+                  Font colour
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #606060; height: 40px;"></div>
+                $gray-3: #606060;
+                <small>
+                  Font colour
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #999; height: 40px;"></div>
+                $gray-4: #999;
+                <small>
+                  Font colour
+                </small>
+              </p>
+
+              <p>
+                <div style="background-color: #fdfdfd; height: 40px;"></div>
+                $gray-6: #fdfdfd;
+                <small>
+                  Background
+                </small>
+              </p>
+            </article>
+          </section>
+
+          <section class="cb">
+            <article id="themes">
+              <h2>Themes</h2>
+              <p>
+                Using and changing the themes is pretty straight forward. Just add the right class to your &lt;body&gt; - tag.
+
+                <pre>
+                  <code class="language-markup">
+                    &lt;body class="orange"&gt;
+                  </code>
+                </pre>
+                <small>Landing pages and related to hoodie</small>
+              </p>
+
+              <p>
+                <pre>
+                  <code class="language-markup">
+                    &lt;body class="blue"&gt;
+                  </code>
+                </pre>
+                <small>Documentation + FAQ</small>
+              </p>
+
+              <p>
+                <pre>
+                  <code class="language-markup">
+                    &lt;body class="green"&gt;
+                  </code>
+                </pre>
+                <small>Blog + newsletter</small>
+              </p>
+
+              <p>
+                <pre>
+                  <code class="language-markup">
+                    &lt;body class="lilac"&gt;
+                  </code>
+                </pre>
+                <small>Community related + chat</small>
+              </p>
+
+              <p>
+                <pre>
+                  <code class="language-markup">
+                    &lt;body class="gray"&gt;
+                  </code>
+                </pre>
+                <small>Imprint + contact</small>
+              </p>
+
+              <p>
+                <pre>
+                  <code class="language-markup">
+                    &lt;body class="yellow"&gt;
+                  </code>
+                </pre>
+                <small>Not used anymore, because we've experienced issues with contrast for colour blind people.</small>
+              </p>
+
+            </article>
+          </section>
+
+          <section class="cb">
+            <article id="fonts">
+              <h2>Fonts</h2>
+              <p>
+                We are using:
+                <ul>
+                  <li>Fira Sans - Light (300) <small>// not used right now</small></li>
+                  <li>Fira Sans - Regular (500) <small>// text, navigation</small></li>
+                  <li>Fira Sans - Medium (700) <small>// headlines</small></li>
+                  <li>Fira Sans - Mono (500) <small>// code</small></li>
+              </p>
+
+              <h3>Please NOTE!</h3>
+              <p>
+                We&rsquo;re using a font loading method which relies on the following script. It has to be included in the &lt;head> file.
+
+                <pre>
+                  <code class="language-javascript">
+                    &lt;script&gt;
+                    (function(){
+                      function addFont() {
+                        var style = document.createElement('style');
+                        style.rel = 'stylesheet';
+                        document.head.appendChild(style);
+                        style.textContent = localStorage.firaSans;
+                      }
+
+                      try {
+                          if (localStorage.firaSans) {
+                              // The font is in localStorage, we can load it directly
+                              addFont();
+                          } else {
+                              // We have to first load the font file asynchronously
+                              var request = new XMLHttpRequest();
+                              request.open('GET', '/dist/css/fonts.css', true);
+
+                              request.onload = function() {
+                                  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
+                                      // We save the file in localStorage
+                                      localStorage.firaSans = request.responseText;
+
+                                      // ... and load the font
+                                      addFont();
+                                  }
+                              };
+                            request.send();
+                          }
+                        } catch(ex) {
+                          // maybe load the font synchronously for woff-capable browsers
+                          // to avoid blinking on every request when localStorage is not available
+                        }
+                    }());
+                    &lt;/script&gt;
+                  </code>
+                </pre>
+              </p>
+              <!--
+              <hgroup>
+                <h1>H1</h1>
+                <h2>H2</h2>
+                <h3>H3</h3>
+                <h4>H4</h4>
+                <h5>H5</h5>
+                <h6>H6</h6>
+              </hgroup>
+
+              <p>
+                Lorem ipsum dolor sit amet, an qui utinam invidunt consulatu, oblique albucius <a href="#">id his, id discere</a> fierent dolores qui. Id vix elitr soluta consequuntur. Ex quod harum per. Cu dicat dolor intellegat eum.
+              </p>
+
+              <p>
+                Agam dicit legimus an vel. <strong>Assum eripuit accusamus has ad,</strong> mei omnes equidem legimus ex. <br /><br />
+
+                <em> Partiendo expetendis</em> interesset eum te, has id nullam principes concludaturque, choro malorum denique ne eum. <br />
+
+                <small>Eu postulant instructior est, solum mollis consequuntur ei pro. Inani viris nec ne.</small><br /><br />
+                -->
+                For more reference check
+                <a href="http://hood.ie/typographic-base.html" target="_blank">Typo &amp; Icons</a>.
+              </p>
+            </article>
+          </section>
+        </div>
+      </div>
+      <footer>
+        <div class="footer">
+          <section class="cb footer-licensing">
+              <small>© 2012-2015 <a href="https://github.com/hoodiehq" target="_blank">the Hoodie Community</a> and other <a href="http://hood.ie/community#contributors">contributors</a>. Hoodie is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache License 2.0</a>.<br />All pictures, photos and illustrations are owned by the Hoodie Open Source Project and licensed under <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/deed.en" target="_blank">CC BY-NC-ND 4.0</a>.</small>
+            </section>
+          </div>
+        </footer>
+    </body>
+  </html>
