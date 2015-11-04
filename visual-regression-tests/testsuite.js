@@ -14,7 +14,7 @@ casper.test.begin('Hood.ie visual tests', function(test) {
     screenshotRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots'),
     failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots/failures'),
     addLabelToFailedImage: false,
-    mismatchTolerance: 0.05,
+    mismatchTolerance: 0.00,
     prefixCount: true,
     outputSettings: {
       errorColors: {
@@ -23,109 +23,130 @@ casper.test.begin('Hood.ie visual tests', function(test) {
         blue: 10
       },
       errorType: 'movement',
-      transparency: 0.2
+      transparency: 0.3
     }
   });
 
-  casper.start('localhost:3000');
+  // casper.then(function() {
+  //   casper.open('localhost:3000/blog/');
+  //   phantomcss.screenshot('html', 'hood.ie-blog');
+  // });
 
-  casper.viewport(1440, 900);
+  // casper.then(function(){
+  //   casper.open('localhost:3000/');
+  // });
+
+  // casper.then(function() {
+  //   casper.viewport(640, 640);
+  //   casper.click('.menu-button');
+  //   casper.waitForSelector('.menu-button.is-active', function success() {
+  //     phantomcss.screenshot('html', 'hood.ie-menu');
+  //   },
+  //   function timeout() {
+  //     casper.test.fail ('whooomp whooom whooohhoooomp...');
+  //   });
+  // });
+
+  // casper.then(function() {
+  //   phantomcss.compareAll();
+  // });
+
+  // casper.run(function() {
+  //   console.log('\n~~**TESTS FINISHED**~~');
+  //   casper.test.done();
+  // });
+
+var check, config, currentSuite, scenarios;
+
+  config = [
+    {
+      name: "Hood.ie Index",
+      path: "localhost:3000/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie Intro",
+      path: "localhost:3000/intro/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie Contribute",
+      path: "localhost:3000/contribute/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie Get Help",
+      path: "localhost:3000/get-help/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie About",
+      path: "localhost:3000/about/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie Community",
+      path: "localhost:3000/community/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie Animals",
+      path: "localhost:3000/animals/",
+      viewports: [1444, 1024, 640]
+    }, {
+      name: "Hood.ie Contact",
+      path: "localhost:3000/contact/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie Initiatives",
+      path: "localhost:3000/initiatives/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie Events",
+      path: "localhost:3000/events/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie Code of Conduct",
+      path: "localhost:3000/code-of-conduct/",
+      viewports: [1440, 1024, 640]
+    }, {
+      name: "Hood.ie Blog",
+      path: "localhost:3000/blog/",
+      viewports: [1440, 1024, 640]
+    }
+  ];
+
+  scenarios = config.reduce((function(acc, scenario) {
+    return acc.concat(scenario.viewports.map(function(viewportWidth) {
+      return function() {
+        this.echo(scenario.name);
+        this.start(scenario.path, function() {
+          return this.echo("CURRENTLY TESTING: " + (this.getTitle()));
+        });
+        this.viewport(viewportWidth, 600);
+        this.then(function() {
+          return phantomcss.screenshot("body", scenario.name + "-" + viewportWidth);
+        });
+        return this.then(function() {
+          return phantomcss.compareAll();
+        });
+      };
+    }));
+  }), []);
+
+  casper.start();
 
   casper.then(function() {
-    phantomcss.turnOffAnimations();
+    return this.echo("Starting");
   });
 
-  casper.then(function() {
-    phantomcss.screenshot('html', 'hood.ie-index');
-  });
+  currentSuite = 0;
 
-  casper.then(function() {
-    casper.open('localhost:3000/intro');
-    phantomcss.screenshot('html', 'hood.ie-intro');
-  });
+  check = function() {
+    if (scenarios[currentSuite]) {
+      scenarios[currentSuite].call(this);
+      currentSuite++;
+      return casper.run(check);
+    } else {
+      this.echo("All done.");
+      return this.exit();
+    }
+  };
 
-  casper.then(function() {
-    casper.open('localhost:3000/contribute');
-    phantomcss.screenshot('html', 'hood.ie-contribute');
-  });
+  casper.run(check);
 
-  casper.then(function() {
-    casper.open('localhost:3000/get-help');
-    phantomcss.screenshot('html', 'hood.ie-get-help');
-  });
-
-  casper.then(function() {
-    casper.open('localhost:3000/about');
-    phantomcss.screenshot('html', 'hood.ie-about');
-  });
-
-  casper.then(function() {
-    casper.open('localhost:3000/community');
-    phantomcss.screenshot('html', 'hood.ie-community');
-  });
-
-  casper.then(function() {
-    casper.open('localhost:3000/animals');
-    phantomcss.screenshot('html', 'hood.ie-animals');
-  });
-
-  casper.then(function() {
-    casper.open('localhost:3000/contact');
-    phantomcss.screenshot('html', 'hood.ie-contact');
-  });
-
-  casper.then(function() {
-    casper.open('localhost:3000/initiatives/');
-    phantomcss.screenshot('html', 'hood.ie-initiatives');
-  });
-
-  casper.then(function() {
-    casper.open('localhost:3000/events/');
-    phantomcss.screenshot('html', 'hood.ie-events');
-  });
-
-  casper.then(function() {
-    casper.open('localhost:3000/code-of-conduct/');
-    phantomcss.screenshot('html', 'hood.ie-code-of-conduct');
-  });
-
-  casper.then(function() {
-    casper.open('localhost:3000/blog/');
-    phantomcss.screenshot('html', 'hood.ie-blog');
-  });
-
-
-  casper.then(function() {
-    casper.open('http://faq.hood.ie/');
-    phantomcss.screenshot('html', 'hood.ie-faq');
-  });
-
-  casper.then(function() {
-    casper.open('http://docs.hood.ie/');
-    phantomcss.screenshot('html', 'hood.ie-docs');
-  });
-
-  casper.then(function(){
-    casper.open('localhost:3000/');
-  });
-
-  casper.then(function() {
-    casper.viewport(640, 640);
-    casper.click('.menu-button');
-    casper.waitForSelector('.menu-button.is-active', function success() {
-      phantomcss.screenshot('html', 'hood.ie-menu');
-    },
-    function timeout() {
-      casper.test.fail ('whooomp whooom whooohhoooomp...');
-    });
-  });
-
-  casper.then(function() {
-    phantomcss.compareAll();
-  });
-
-  casper.run(function() {
-    console.log('\n~~**TESTS FINISHED**~~');
-    casper.test.done();
-  });
 });
