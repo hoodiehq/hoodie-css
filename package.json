@@ -28,7 +28,7 @@
     "prod": "npm-run-all prod:*",
     "prod:sass": "node-sass --output-style compressed src/sass/base.scss src/css/prod/hoodie.min.css",
     "prod:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output src/css/prod/hoodie.min.css src/css/prod/hoodie.min.pref.css",
-    "prod:javascript": "uglifyjs src/js/jquery.min.js src/js/main.js -o src/js/prod/hoodie.min.js",
+    "prod:javascript": "uglifyjs src/js/jquery.min.js src/js/main.js --output src/js/prod/hoodie.min.js",
     "docs": "kss-node --source src/sass --homepage ../../styleguide.md",
     "test": "npm-run-all test:*",
     "test:lint": "sass-lint --verbose --config .sass-lint.yml src/sass/*",
