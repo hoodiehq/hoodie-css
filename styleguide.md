@@ -1,2 +1,0 @@
-# Hoodie Style Guide
-
