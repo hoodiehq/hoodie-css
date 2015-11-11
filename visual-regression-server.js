@@ -11,8 +11,8 @@ browserSync.init({
   middleware: require('serve-static')('src'),
   rewriteRules: [
     {
-      match: 'hoodie-css/src/css/prod/hoodie.min.pref.css',
-      replace: './css/hoodie.css'
+      match: 'hoodiehq.github.io/hoodie-css/src/css/prod/hoodie.min.pref.css',
+      replace: 'localhost:3000/css/hoodie.css'
     }
   ]
 });
