@@ -34,6 +34,8 @@
     "docs": "kss-node --source src/sass --homepage ../../styleguide.md",
     "test": "npm-run-all test:*",
     "test:lint": "sass-lint --verbose --config .sass-lint.yml src/sass/*",
-    "test:visual": "casperjs test visual-regression-tests/testsuite.js --engine=slimerjs"
+    "test:visuals": "npm-run-all --parallel test:visuals:**/*",
+    "test:visuals:hood.ie:server": "node hood_ie-server.js",
+    "test:visuals:hood.ie:testsuite": "casperjs test visual-regression-tests/hood_ie-testsuite.js --engine=slimerjs"
   }
 }
