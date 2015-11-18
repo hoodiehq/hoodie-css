@@ -23,7 +23,7 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
   });
 
 
-  casper.start('localhost:300', function() {
+  casper.start('localhost:3000', function() {
 
     this.viewport(320, 480);
 
@@ -33,9 +33,11 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
       });
 
       this.then(function() {
-        this.click('a.menu-button');
-        this.then(function(){
-          phantomcss.screenshot('html', 'hoodie-index-menu--320x480');
+        this.waitForSelector('a.menu-button', function(){
+          this.click('a.menu-button');
+          this.then(function(){
+            phantomcss.screenshot('html', 'hoodie-index-menu--320x480');
+          });
         });
       });
 
