@@ -15,17 +15,20 @@
     "phantomjs": "^1.9.18",
     "postcss": "^5.0.4",
     "postcss-cli": "^2.1.0",
-    "resemblejs": "^1.3.1",
+    "resemblejs": "^2.0.1",
     "sass-lint": "^1.2.0",
-    "uglify-js": "^2.5.0"
+    "serve-static": "^1.10.0",
+    "slimerjs": "^0.9.6",
+    "uglify-js": "^2.5.0",
+    "watch": "^0.16.0"
   },
   "scripts": {
     "help": "markdown-chalk --input DEVELOPMENT.md",
     "start": "npm-run-all --parallel dev serve",
     "serve": "live-server dist/ --port=9090",
-    "dev": "npm-run-all dev:*",
-    "predev:sass": "node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css",
-    "dev:sass": "node-sass --source-map src/css/hoodie.css.map --watch --output-style nested src/sass/base.scss src/css/hoodie.css",
+    "dev": "npm-run-all dev:css",
+    "dev:css": "watch 'npm-run-all dev:sass dev:autoprefix' src/sass --ignoreDotFiles --ignoreUnreadable",
+    "dev:sass": "node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css",
     "dev:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output src/css/hoodie.css src/css/hoodie.pref.css",
     "prod": "npm-run-all prod:*",
     "prod:sass": "node-sass --output-style compressed src/sass/base.scss src/css/prod/hoodie.min.css",
@@ -34,6 +37,11 @@
     "docs": "kss-node --source src/sass --homepage ../../styleguide.md",
     "test": "npm-run-all test:*",
     "test:lint": "sass-lint --verbose --config .sass-lint.yml src/sass/*",
-    "test:visual": "casperjs test visual-regression-tests/testsuite.js --engine=slimerjs"
+    "test:visuals": "npm-run-all --parallel test:visuals:hood.ie:server test:visuals:hood.ie:tests",
+    "test:visuals:hood.ie:server": "node hood_ie-server.js",
+    "test:visuals:hood.ie:tests": "npm-run-all test:visuals:hood.ie:small test:visuals:hood.ie:medium test:visuals:hood.ie:large",
+    "test:visuals:hood.ie:small": "casperjs test visual-regression-tests/small-viewports.js --engine=slimerjs",
+    "test:visuals:hood.ie:medium": "casperjs test visual-regression-tests/medium-viewports.js --engine=slimerjs",
+    "test:visuals:hood.ie:large": "casperjs test visual-regression-tests/large-viewports.js --engine=slimerjs"
   }
 }
