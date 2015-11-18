@@ -13,7 +13,7 @@
     "phantomjs": "^1.9.18",
     "postcss": "^5.0.4",
     "postcss-cli": "^2.1.0",
-    "resemblejs": "^1.3.1",
+    "resemblejs": "^2.0.1",
     "sass-lint": "^1.2.0",
     "uglify-js": "^2.5.0"
   },
@@ -32,6 +32,9 @@
     "docs": "kss-node --source src/sass --homepage ../../styleguide.md",
     "test": "npm-run-all test:*",
     "test:lint": "sass-lint --verbose --config .sass-lint.yml src/sass/*",
-    "test:visual": "casperjs test visual-regression-tests/testsuite.js --engine=slimerjs"
+    "test-visuals": "npm-run-all test-visuals:*",
+    "test-v:small": "casperjs test small-viewports.js --engine=slimerjs",
+    "test-v:medium": "casperjs test medium-viewports.js --engine=slimerjs",
+    "test-v:large": "casperjs test large-viewports.js --engine=slimerjs"
   }
 }
