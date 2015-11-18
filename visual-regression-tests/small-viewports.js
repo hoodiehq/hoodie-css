@@ -15,11 +15,11 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
     // Points to the PhantomCSS library
     libraryRoot: fs.absolute(fs.workingDirectory + '/node_modules/phantomcss/'),
     // Folder for all screenshots
-    screenshotRoot: fs.absolute(fs.workingDirectory + '/screenshots/small/'),
+    screenshotRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots/small/'),
     // Removes results directory tree after run.  Use in conjunction with failedComparisonsRoot to see failed comparisons.
     cleanupComparisonImages: true,
     // Folder for failed comparisons
-    failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/screenshots/small/failures/'),
+    failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots/small/failures/'),
   });
 
 
