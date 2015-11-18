@@ -36,7 +36,7 @@
     "docs": "kss-node --source src/sass --homepage ../../styleguide.md",
     "test": "npm-run-all test:*",
     "test:lint": "sass-lint --verbose --config .sass-lint.yml src/sass/*",
-    "test:visuals": "npm-run-all --parallel test:visuals:hood.ie:server test:visuals:hood.ie:tests",
+    "test:visuals": "bash visual-regression-testing.sh",
     "test:visuals:hood.ie:server": "node hood_ie-server.js",
     "test:visuals:hood.ie:tests": "npm-run-all test:visuals:hood.ie:small test:visuals:hood.ie:medium test:visuals:hood.ie:large",
     "test:visuals:hood.ie:small": "casperjs test visual-regression-tests/small-viewports.js --engine=slimerjs",
