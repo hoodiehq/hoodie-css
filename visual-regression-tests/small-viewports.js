@@ -10,7 +10,7 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
 
   phantomcss.init({
     // Reference to a particular Casper instance. Required for SlimerJS.
-    // Refers to itself because we're running CasperJS directly 
+    // Refers to itself because we're running CasperJS directly
     casper: casper,
     // Points to the PhantomCSS library
     libraryRoot: fs.absolute(fs.workingDirectory + '/node_modules/phantomcss/'),
@@ -23,7 +23,7 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
   });
 
 
-  casper.start('http://hood.ie', function() {
+  casper.start('localhost:300', function() {
 
     this.viewport(320, 480);
 
@@ -40,7 +40,7 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
       });
 
       this.then(function() {
-        this.open('http://hood.ie/intro/')
+        this.open('localhost:3000/intro/');
         this.then(function() {
           phantomcss.screenshot('html', 'hoodie-intro--320x480');
         });
