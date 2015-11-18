@@ -3,7 +3,7 @@
 var fs = require('fs');
 var path = fs.absolute(fs.workingDirectory + '/node_modules/phantomcss/phantomcss.js');
 var phantomcss = require(path);
-
+var screenshotDelay = 5000;
 
 // Begin testing
 casper.test.begin('Run tests against pages with a viewport of 320 x 480', function(test) {
@@ -30,14 +30,14 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
 
     this.wait(1000, function() {
       this.then(function() {
-        phantomcss.screenshot('html', 'hoodie-index--320x480');
+        phantomcss.screenshot('html', screenshotDelay, '' , 'hoodie-index--320x480');
       });
 
       this.then(function() {
         this.waitForSelector('a.menu-button', function(){
           this.click('a.menu-button');
           this.then(function(){
-            phantomcss.screenshot('html', 'hoodie-index-menu--320x480');
+            phantomcss.screenshot('html', screenshotDelay, '' , 'hoodie-index-menu--320x480');
           });
         });
       });
@@ -45,49 +45,49 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
       this.then(function() {
         this.open('localhost:3000/intro/');
         this.then(function() {
-          phantomcss.screenshot('html', 'hoodie-intro--320x480');
+          phantomcss.screenshot('html', screenshotDelay, '' , 'hoodie-intro--320x480');
         });
       });
 
       this.then(function() {
         this.open('localhost:3000/contribute/');
         this.then(function() {
-          phantomcss.screenshot('html', 'hoodie-contribute--320x480');
+          phantomcss.screenshot('html', screenshotDelay, '' , 'hoodie-contribute--320x480');
         });
       });
 
       this.then(function() {
         this.open('localhost:3000/get-help/');
         this.then(function() {
-          phantomcss.screenshot('html', 'hoodie-get-help--320x480');
+          phantomcss.screenshot('html', screenshotDelay, '' , 'hoodie-get-help--320x480');
         });
       });
 
       this.then(function() {
         this.open('localhost:3000/about/');
         this.then(function() {
-          phantomcss.screenshot('html', 'hoodie-about--320x480');
+          phantomcss.screenshot('html', screenshotDelay, '' , 'hoodie-about--320x480');
         });
       });
 
       this.then(function() {
         this.open('localhost:3000/community/');
         this.then(function() {
-          phantomcss.screenshot('html', 'hoodie-community--320x480');
+          phantomcss.screenshot('html', screenshotDelay, '' , 'hoodie-community--320x480');
         });
       });
 
       this.then(function() {
         this.open('localhost:3000/animals/');
         this.then(function() {
-          phantomcss.screenshot('html', 'hoodie-animals--320x480');
+          phantomcss.screenshot('html', screenshotDelay, '' , 'hoodie-animals--320x480');
         });
       });
 
       this.then(function() {
         this.open('localhost:3000/contact/');
         this.then(function() {
-          phantomcss.screenshot('html', 'hoodie-contact--320x480');
+          phantomcss.screenshot('html', screenshotDelay, '' , 'hoodie-contact--320x480');
         });
       });
     });
