@@ -4,7 +4,7 @@
 var browserSync = require('browser-sync').create();
 
 browserSync.init({
-  open: 'local',
+  open: false,
   proxy: {
     target: 'http://hood.ie'
   },

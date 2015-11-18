@@ -1,10 +1,12 @@
-
-
+var casper = require('casper').create({
+  viewportSize: {
+    width: 1440,
+    height: 800
+  }
+});
 var fs = require('fs');
 var path = fs.absolute(fs.workingDirectory + '/node_modules/phantomcss/phantomcss.js');
 var phantomcss = require(path);
-
-casper.test.begin('Hood.ie visual tests', function(test) {
 
   phantomcss.init({
     //create new baseline images without manually deleting the files casperjs demo/test.js --rebase
@@ -13,6 +15,7 @@ casper.test.begin('Hood.ie visual tests', function(test) {
     libraryRoot: fs.absolute(fs.workingDirectory + '/node_modules/PhantomCSS'),
     screenshotRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots'),
     failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots/failures'),
+    cleanupComparisonImages: true,
     addLabelToFailedImage: false,
     mismatchTolerance: 0.00,
     prefixCount: true,
@@ -27,126 +30,156 @@ casper.test.begin('Hood.ie visual tests', function(test) {
     }
   });
 
-  // casper.then(function() {
-  //   casper.open('localhost:3000/blog/');
-  //   phantomcss.screenshot('html', 'hood.ie-blog');
-  // });
+  phantomcss.turnOffAnimations()
 
-  // casper.then(function(){
-  //   casper.open('localhost:3000/');
-  // });
-
-  // casper.then(function() {
-  //   casper.viewport(640, 640);
-  //   casper.click('.menu-button');
-  //   casper.waitForSelector('.menu-button.is-active', function success() {
-  //     phantomcss.screenshot('html', 'hood.ie-menu');
-  //   },
-  //   function timeout() {
-  //     casper.test.fail ('whooomp whooom whooohhoooomp...');
-  //   });
-  // });
-
-  // casper.then(function() {
-  //   phantomcss.compareAll();
-  // });
-
-  // casper.run(function() {
-  //   console.log('\n~~**TESTS FINISHED**~~');
-  //   casper.test.done();
-  // });
-
-var check, config, currentSuite, scenarios;
-
-  config = [
-    {
-      name: "Hood.ie Index",
-      path: "localhost:3000/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie Intro",
-      path: "localhost:3000/intro/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie Contribute",
-      path: "localhost:3000/contribute/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie Get Help",
-      path: "localhost:3000/get-help/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie About",
-      path: "localhost:3000/about/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie Community",
-      path: "localhost:3000/community/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie Animals",
-      path: "localhost:3000/animals/",
-      viewports: [1444, 1024, 640]
-    }, {
-      name: "Hood.ie Contact",
-      path: "localhost:3000/contact/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie Initiatives",
-      path: "localhost:3000/initiatives/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie Events",
-      path: "localhost:3000/events/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie Code of Conduct",
-      path: "localhost:3000/code-of-conduct/",
-      viewports: [1440, 1024, 640]
-    }, {
-      name: "Hood.ie Blog",
-      path: "localhost:3000/blog/",
-      viewports: [1440, 1024, 640]
-    }
-  ];
-
-  scenarios = config.reduce((function(acc, scenario) {
-    return acc.concat(scenario.viewports.map(function(viewportWidth) {
-      return function() {
-        this.echo(scenario.name);
-        this.start(scenario.path, function() {
-          return this.echo("CURRENTLY TESTING: " + (this.getTitle()));
-        });
-        this.viewport(viewportWidth, 600);
-        this.then(function() {
-          return phantomcss.screenshot("body", scenario.name + "-" + viewportWidth);
-        });
-        return this.then(function() {
-          return phantomcss.compareAll();
-        });
-      };
-    }));
-  }), []);
-
-  casper.start();
-
-  casper.then(function() {
-    return this.echo("Starting");
+casper.test.begin('testing navigation and title on homepage', 4, function suite(test) {
+  casper.start('http://hood.ie/', function() {
+      test.assertTitle('hood.ie', 'hood.ie homepage title is the one expected');
+      test.assertExists('a.logo', 'hood.ie logo is present and an anchor tag');
+      test.assertExists('nav.main-nav', 'main-nav is present');
+      test.assertEval(function() {
+        var navLinks = __utils__.findAll("nav.main-nav > a");
+        return navLinks.length === 7;
+      }, "main navigation has 7 links");
+      this.captureSelector('visual-regression-tests/screenshots/hoodie.png', 'body');
   });
 
-  currentSuite = 0;
+  casper.run(function() {
+    test.done();
+  });
+});
 
-  check = function() {
-    if (scenarios[currentSuite]) {
-      scenarios[currentSuite].call(this);
-      currentSuite++;
-      return casper.run(check);
-    } else {
-      this.echo("All done.");
-      return this.exit();
+casper.test.begin('testing titles and headers across hood.ie/*', 26, function suite(test) {
+
+  casper.start('http://hood.ie/intro', function () {
+    test.assertTitle('hood.ie intro', 'the intro title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'Welcome to Hoodie!');
+  });
+
+  casper.thenOpen('http://hood.ie/contribute/', function () {
+    test.assertTitle('hood.ie contribute', 'the contribute title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'Contribute');
+  });
+
+  casper.thenOpen('http://hood.ie/get-help/', function () {
+    test.assertTitle('hood.ie get help', 'the get help title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'Get help');
+  });
+
+  casper.thenOpen('http://hood.ie/about/', function () {
+    test.assertTitle('hood.ie about', 'the about title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'About');
+  });
+
+  casper.thenOpen('http://hood.ie/community/', function () {
+    test.assertTitle('hood.ie community', 'the community title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'We are the Hoodies');
+  });
+
+  casper.thenOpen('http://hood.ie/animals/', function () {
+    test.assertTitle('hood.ie animals', 'the animals title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'The Hoodie Animals');
+  });
+
+  casper.thenOpen('http://hood.ie/contact/', function () {
+    test.assertTitle('hood.ie contact', 'the contact title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'Contact');
+  });
+
+  casper.thenOpen('http://hood.ie/events/', function () {
+    test.assertTitle('hood.ie', 'the events title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'Events');
+  });
+
+  casper.thenOpen('http://hood.ie/initiatives/', function () {
+    test.assertTitle('hood.ie initiatives', 'the initiatives title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'Initiatives');
+  });
+
+  casper.thenOpen('http://hood.ie/bug/', function () {
+    test.assertTitle('hood.ie Report a Bug', 'the bug title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'Bug');
+  });
+
+  casper.thenOpen('http://hood.ie/friends/', function () {
+    test.assertTitle('hood.ie friends', 'the friends title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'Friends');
+  });
+
+  casper.thenOpen('http://hood.ie/merchandise/', function () {
+    test.assertTitle('hood.ie merchandise', 'the merchandise title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'Merchandise');
+  });
+
+  casper.thenOpen('http://hood.ie/code-of-conduct/', function () {
+    test.assertTitle('hood.ie code of conduct', 'the code-of-conduct title is correct');
+    test.assertSelectorHasText('div.teaser > article > h1', 'The Hoodie Community Code of Conduct');
+  });
+
+  casper.run(function() {
+    test.done();
+  });
+});
+
+casper.test.begin('testing titles and headers across docs.hood.ie/*', 16, function suite(test) {
+  casper.start('http://docs.hood.ie', function() {
+    test.assertTitle('Hood.ie Docs', 'docs title is the one expected');
+    test.assertSelectorHasText('div.cb > article > h1', 'Welcome to the Hoodie Documentation');
+  });
+
+  casper.thenOpen('http://docs.hood.ie/en', function() {
+    test.assertTitle('Hood.ie Docs', 'docs/en title is the one expected');
+    test.assertSelectorHasText('div.cb > article > h1', 'Welcome to Hoodie');
+  });
+
+  casper.thenOpen('http://docs.hood.ie/en/start', function() {
+    test.assertTitle('Hood.ie Docs', 'docs/en/start title is the one expected');
+    test.assertSelectorHasText('div.cb > article > h1', 'Installing Hoodie on your System');
+  });
+
+  casper.thenOpen('http://docs.hood.ie/en/tutorials', function() {
+    test.assertTitle('Hood.ie Docs', 'docs/en/tutorials title is the one expected');
+    test.assertSelectorHasText('div.cb > article > h1', 'Getting started with Hoodie - Part 2');
+  });
+
+  casper.thenOpen('http://docs.hood.ie/en/techdocs', function() {
+    test.assertTitle('Hood.ie Docs', 'docs/en/techdocs title is the one expected');
+    test.assertSelectorHasText('div.cb > article > h1', 'Hoodie API Guide');
+  });
+
+  casper.thenOpen('http://docs.hood.ie/en/plugins', function() {
+    test.assertTitle('Hood.ie Docs', 'docs/en/plugins title is the one expected');
+    test.assertSelectorHasText('div.cb > article > h1', 'Plugins');
+  });
+
+  casper.thenOpen('http://docs.hood.ie/en/deployment', function() {
+    test.assertTitle('Hood.ie Docs', 'docs/en/deployment title is the one expected');
+    test.assertSelectorHasText('div.cb > article > h1', 'Deployment');
+  });
+
+  casper.thenOpen('http://docs.hood.ie/en/community', function() {
+    test.assertTitle('Hood.ie Docs', 'docs/en/community title is the one expected');
+    test.assertSelectorHasText('div.cb > article > h1', 'You\'d love to help us?');
+  });
+
+  casper.run(function() {
+    test.done();
+  });
+});
+
+casper.test.begin('testing titles and headers on faq.hood.ie', 2, function suite(test) {
+  casper.thenOpen('http://faq.hood.ie', function() {
+    if (this.exists('#logo-animation')) {
+      test.assertSelectorHasText('#logo-animation', 'Frequently Asked Questions');
     }
-  };
+    test.assertTitle('Hoodie - Frequently Asked Questions', 'faq title is the one expected');
+  });
 
-  casper.run(check);
+  casper.run(function() {
+    test.done();
+  });
 
+  casper.then(function () {
+    this.exit();
+  });
 });
