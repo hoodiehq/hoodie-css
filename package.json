@@ -14,7 +14,7 @@
     "phantomjs": "^1.9.18",
     "postcss": "^5.0.4",
     "postcss-cli": "^2.1.0",
-    "resemblejs": "^1.3.1",
+    "resemblejs": "^2.0.1",
     "sass-lint": "^1.2.0",
     "serve-static": "^1.10.0",
     "slimerjs": "^0.9.6",
@@ -35,8 +35,11 @@
     "docs": "kss-node --source src/sass --homepage ../../styleguide.md",
     "test": "npm-run-all test:*",
     "test:lint": "sass-lint --verbose --config .sass-lint.yml src/sass/*",
+
     "test:visuals": "npm-run-all --parallel test:visuals:**:*",
     "test:visuals:hood.ie:server": "node hood_ie-server.js",
-    "test:visuals:hood.ie:testsuite": "casperjs test visual-regression-tests/hood_ie-testsuite.js --engine=slimerjs"
+    "test:visuals:hood.ie:small": "casperjs test visual-regression-tests/small-viewports.js --engine=slimerjs",
+    "test:visuals:hood.ie:medium": "casperjs test visual-regression-tests/medium-viewports.js --engine=slimerjs",
+    "test:visuals:hood.ie:large": "casperjs test visual-regression-tests/large-viewports.js --engine=slimerjs"
   }
 }
