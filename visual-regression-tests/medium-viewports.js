@@ -20,6 +20,7 @@ casper.test.begin('Run tests against pages with a viewport of 1024 x 768', funct
     cleanupComparisonImages: true,
     // Folder for failed comparisons
     failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots/medium/failures/'),
+    mismatchTolerance: 0
   });
 
 
@@ -38,6 +39,49 @@ casper.test.begin('Run tests against pages with a viewport of 1024 x 768', funct
           phantomcss.screenshot('html', 'hoodie-intro--1024x786');
         });
       });
+
+      this.then(function() {
+        this.open('localhost:3000/contribute/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-contribute--1024x786');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/get-help/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-get-help--1024x786');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/about/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-about--1024x786');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/community/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-community--1024x786');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/animals/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-animals--1024x786');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/contact/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-contact--1024x786');
+        });
+      });
+
 
     });
 

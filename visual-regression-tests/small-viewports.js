@@ -20,6 +20,7 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
     cleanupComparisonImages: true,
     // Folder for failed comparisons
     failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots/small/failures/'),
+    mismatchTolerance: 0
   });
 
 
@@ -48,6 +49,47 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
         });
       });
 
+      this.then(function() {
+        this.open('localhost:3000/contribute/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-contribute--320x480');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/get-help/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-get-help--320x480');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/about/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-about--320x480');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/community/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-community--320x480');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/animals/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-animals--320x480');
+        });
+      });
+
+      this.then(function() {
+        this.open('localhost:3000/contact/');
+        this.then(function() {
+          phantomcss.screenshot('html', 'hoodie-contact--320x480');
+        });
+      });
     });
 
     this.then(function() {
