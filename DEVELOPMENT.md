@@ -135,20 +135,18 @@ Lifecycle scripts included in hoodie-website:
     npm-run-all test:*
 
 available via `npm run-script`:
-  test:lint
-    sass-lint --verbose --config .sass-lint.yml src/sass/*
   help
     markdown-chalk --input DEVELOPMENT.md
   serve
     live-server dist/ --port=9090
   dev
-    npm-run-all dev:*
-  predev:sass
-    node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css
-  dev:autoprefix
-    postcss --use autoprefixer --autoprefixer.browsers "> 5%" --output src/css/hoodie.css src/css/hoodie.css
+    npm-run-all dev:css
+  dev:css
+    watch 'npm-run-all dev:sass dev:autoprefix' src/sass --ignoreDotFiles --ignoreUnreadable
   dev:sass
     node-sass --source-map src/css/hoodie.css.map --watch --output-style nested src/sass/base.scss src/css/hoodie.css
+  dev:autoprefix
+    postcss --use autoprefixer --autoprefixer.browsers "> 5%" --output src/css/hoodie.css src/css/hoodie.css
   prod
     npm-run-all prod:*
   prod:sass
@@ -157,6 +155,20 @@ available via `npm run-script`:
     postcss --use autoprefixer --autoprefixer.browsers "> 5%" --output src/css/prod/hoodie.min.css src/css/prod/hoodie.min.css
   docs
     kss-node --source src/sass --homepage ../../styleguide.md
+  test:lint
+    sass-lint --verbose --config .sass-lint.yml src/sass/*
+  test:visuals
+    bash visual-regression-testing.sh
+  test:visuals:hood.ie:server
+    node hood_ie-server.js
+  test:visuals:hood.ie:tests
+    npm-run-all test:visuals:hood.ie:small test:visuals:hood.ie:medium test:visuals:hood.ie:large
+  test:visuals:hood.ie:small
+    casperjs test visual-regression-tests/small-viewports.js --engine=slimerjs
+  test:visuals:hood.ie:medium
+    casperjs test visual-regression-tests/medium-viewports.js --engine=slimerjs
+  test:visuals:hood.ie:large
+    casperjs test visual-regression-tests/large-viewports.js --engine=slimerjs
 ```
 
 ## Lifecycle scripts
@@ -269,7 +281,7 @@ However combining these makes sense, and means we can keep the number of devDepe
 ##### `test`
 ###### `npm-run-all test:*`
 
-With the test script we take advantage of [npm-run-all](https://www.npmjs.com/package/npm-run-all)'s glob matching to run all the scripts that begin with `test:`. We run these scripts one after the other, also known as in "sequence", or in "series". This makes running a full `npm test` or `npm run test` take a bit more time, but also means that we can pause test execution on a test fail, which can be helpful to stop an automated build from continuing running if it has a breaking change.
+With the test script we take advantage of [npm-run-all](https://www.npmjs.com/package/npm-run-all)'s [glob-matching](#glob-matching) to run all the scripts that begin with `test:`. We run these scripts one after the other, also known as in "sequence", or in "series". This makes running a full `npm test` or `npm run test` take a bit more time, but also means that we can pause test execution on a test fail, which can be helpful to stop an automated build from continuing running if it has a breaking change.
 
 We call the script `test` because a lot of automated build/test tools, also known as Continuous Integration, like [Travis CI](https://travis-ci.org/), [Circle CI](https://circleci.com/), or [Codeship](https://codeship.com/) will see that our project has a package.json, and is therefore using npm for (at the very least), tracking versions or dependencies, and it will try out `npm test` as a default test script.
 
@@ -297,6 +309,36 @@ These scripts will be run when we run `npm test`, and should always run our whol
 ##### `sass-lint --verbose --config .sass-lint.yml src/sass/*`
 
 The `test:lint` script looks for all the sass files in the `src/sass` and runs [sass-lint](https://www.npmjs.com/package/sass-lint) against them. The rules for this are all defined in `.sass-lint.yml`, and contain things like the number of spaces you should use for indenting, what selectors you should and shouldn't use, and so on. This script helps us to spot style errors in our code, and when we do break them, this script is the one that will tell us that we have.
+
+#### `test:visuals`
+##### `bash visual-regression-testing.sh`
+
+Content goes here
+
+#### `test:visuals:hood.ie:server`
+##### `node hood_ie-server.js`
+
+Content goes here
+
+#### `test:visuals:hood.ie:tests`
+##### `npm-run-all test:visuals:hood.ie:small test:visuals:hood.ie:medium test:visuals:hood.ie:large`
+
+Content goes here
+
+#### `test:visuals:hood.ie:small`
+##### `casperjs test visual-regression-tests/small-viewports.js --engine=slimerjs`
+
+Content goes here
+
+#### `test:visuals:hood.ie:medium`
+##### `casperjs test visual-regression-tests/medium-viewports.js --engine=slimerjs`
+
+Content goes here
+
+#### `test:visuals:hood.ie:large`
+##### `casperjs test visual-regression-tests/large-viewports.js --engine=slimerjs`
+
+Content goes here
 
 ---
 
@@ -338,29 +380,21 @@ It serves up everything inside the `dist` directory, and will reload the page au
 ### The "dev" script
 
 ##### `dev`
-###### `npm-run-all dev:*`
+###### `npm-run-all dev:css`
 
-The `dev` script is a catch all script to run all the scripts that start with "dev:" using the [glob-matching](#glob-matching) capability of [npm-run-all](#npm-run-all): [npm package link](http://npmjs.com/package/npm-run-all).
-
-`dev` is another integral part of our main development environment, and is the other script run when we run `npm start`, along with the [serve](#the-serve-script) script. Let's look at the scripts that `npm-run-all dev:*` will run.
+The `dev` script is a script that runs our `dev:css` task, although in the future it will be a better entry point for every test we might need to run to get our dev environment set up.
 
 #### Scripts that match `dev:*`
 
-##### `predev:sass`
-###### `node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css`
+##### `dev:css`
+###### `watch 'npm-run-all dev:sass dev:autoprefix' src/sass --ignoreDotFiles --ignoreUnreadable`
 
-The `predev:sass` script compiles our Sass into CSS, adds a source map so that we can debug our Sass from within our CSS, and uses an output style that's human readable, to help debugging efforts.
-
-We currently have this workaround `predev:sass` script because when we first run `dev:sass`, which has the `--watch` option, the Sass is not compiled to CSS until a file has changed. This will break our first page load when we're doing development, when we try to load CSS that doesn't exist yet.
-
-Whenever we run `dev:sass`, this script is executed before it, automatically. This means that when we first run `npm start` that our CSS gets built, and then proceeds to watch for changes. Without this `predev:sass` script, we would have to change a Sass file before our CSS would work on the main page.
+Content goes here
 
 ##### `dev:sass`
-###### `node-sass --source-map src/css/hoodie.css.map --watch --output-style nested src/sass/base.scss src/css/hoodie.css`
+###### `node-sass --source-map src/css/hoodie.css.map --output-style nested src/sass/base.scss src/css/hoodie.css`
 
 The `dev:sass` script compiles our Sass with a nested output style, which is easier for humans to read than our production version. We also add source maps so that we can more easily debug our Sass from within the browser.
-
-The `--watch` option adds file "watching", which will recompile the Sass into CSS whenever any of the Sass files it knows about change. This makes development super speedy.
 
 ##### `dev:autoprefix`
 ###### `postcss --use autoprefixer --autoprefixer.browsers "> 5%" --output src/css/hoodie.css src/css/hoodie.css`
