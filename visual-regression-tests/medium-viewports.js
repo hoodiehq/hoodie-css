@@ -20,6 +20,7 @@ casper.test.begin('Run tests against pages with a viewport of 1024 x 768', funct
     cleanupComparisonImages: true,
     // Folder for failed comparisons
     failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots/medium/failures/'),
+    mismatchTolerance: 0
   });
 
 
