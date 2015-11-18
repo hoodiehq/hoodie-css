@@ -3,7 +3,7 @@
 var fs = require('fs');
 var path = fs.absolute(fs.workingDirectory + '/node_modules/phantomcss/phantomcss.js');
 var phantomcss = require(path);
-var screenshotDelay = 5000;
+var screenshotDelay = 3000;
 
 // Begin testing
 casper.test.begin('Run tests against pages with a viewport of 320 x 480', function(test) {
@@ -19,13 +19,13 @@ casper.test.begin('Run tests against pages with a viewport of 320 x 480', functi
     // Removes results directory tree after run.  Use in conjunction with failedComparisonsRoot to see failed comparisons.
     cleanupComparisonImages: true,
     // Folder for failed comparisons
-    failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots/small/failures/'),
-    mismatchTolerance: 0
+    failedComparisonsRoot: fs.absolute(fs.workingDirectory + '/visual-regression-tests/screenshots/small/failures/')
   });
 
 
   casper.start('localhost:3000', function() {
 
+    phantomcss.turnOffAnimations();
     this.viewport(320, 480);
 
     this.wait(1000, function() {
