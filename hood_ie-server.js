@@ -12,7 +12,7 @@ browserSync.init({
   rewriteRules: [
     {
       match: 'hoodiehq.github.io/hoodie-css/src/css/prod/hoodie.min.pref.css',
-      replace: 'localhost:3000/css/hoodie.css'
+      replace: 'localhost:3000/css/hoodie.pref.css'
     }
   ]
 });
