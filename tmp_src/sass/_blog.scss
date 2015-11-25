@@ -3,46 +3,43 @@
   #BLOG
 \*------------------------------------*/
 
-.blog {
+.blog h1 { text-transform: uppercase; }
 
-  h1 { text-transform: uppercase; }
+.blog h2 { margin-top: rem-calc(40); }
 
-  h2 { margin-top: rem-calc(40); }
+.blog p { margin-bottom: rem-calc(16); }
 
-  p { margin-bottom: rem-calc(16); }
+.blog .entry { margin-bottom: rem-calc(20); }
 
-  .entry { margin-bottom: rem-calc(20); }
+.blog blockquote {
+  border-left: 3px solid #b3b3b3;
+  margin-bottom: rem-calc(20);
+  padding: rem-calc(16 16 11);
+  position: relative;
 
-  blockquote {
-    border-left: 3px solid #b3b3b3;
-    margin-bottom: rem-calc(20);
-    padding: rem-calc(16 16 11);
-    position: relative;
-
-    &::before {
-      color: $gray-5;
-      content: '\201C';
-      font-size: 4.5em;
-      position: absolute;
-      top: rem-calc(-16);
-    }
-
-    p {
-      margin-bottom: 0;
-      text-indent: 2em;
-    }
-
-    cite {
-      display: block;
-      font-style: normal;
-      margin-top: rem-calc(10);
-      text-align: right;
-      text-indent: 6em;
-    }
+  &::before {
+    color: $gray-5;
+    content: '\201C';
+    font-size: 4.5em;
+    position: absolute;
+    top: rem-calc(-16);
   }
-
-  .blog-post-end { margin-top: rem-calc(80); }
 }
+
+.blog blockquote p {
+  margin-bottom: 0;
+  text-indent: 2em;
+}
+
+.blog blockquote cite {
+  display: block;
+  font-style: normal;
+  margin-top: rem-calc(10);
+  text-align: right;
+  text-indent: 6em;
+}
+
+.blog .blog-post-end { margin-top: rem-calc(80); }
 
 .blog__hr {
   background-color: $gray-1;
@@ -57,24 +54,23 @@
   margin-bottom: rem-calc(20);
 }
 
-.blog-post {
-
-  article {
-    margin-bottom: rem-calc(60);
-    @extend %n;
-
-    > p:first-of-type {
-      font-size: 1.7em;
-      font-style: italic;
-      font-weight: 500;
-      padding-bottom: 3.5625rem;
-
-      a { background-position: 0 rem-calc(35); }
-    }
-  }
-
-  a { display: inline; }
+.blog-post article {
+  margin-bottom: rem-calc(60);
+  @extend %n;
 }
+
+.blog-post article > p:first-of-type {
+  font-size: 1.7em;
+  font-style: italic;
+  font-weight: 500;
+  padding-bottom: 3.5625rem;
+}
+
+.blog-post article > p:first-of-type a {
+  background-position: 0 rem-calc(35);
+}
+
+.blog-post a { display: inline; }
 
 .blog-post-link { background-image: none !important; }
 
@@ -97,9 +93,10 @@
   margin-top: rem-calc(30);
 }
 
-.blog-post-excerpt {
+.blog-post-excerpt img:not(.emoji) {
+  width: 100%;
+}
 
-  img:not(.emoji) { width: 100%; }
-
-  .emoji { vertical-align: sub; }
+.blog-post-excerpt .emoji {
+  vertical-align: sub;
 }
