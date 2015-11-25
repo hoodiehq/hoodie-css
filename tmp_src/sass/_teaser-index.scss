@@ -85,9 +85,7 @@
 svg path,
 svg rect { fill: currentColor; }
 
-.index .content {
-  @include breakpoint(index) { padding: rem-calc(270 16 0); }
-}
+.index .content { @include breakpoint(index) { padding: rem-calc(270 16 0); }}
 
 .index .content .row {
   display: flex;
@@ -114,7 +112,6 @@ svg rect { fill: currentColor; }
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, .8) 75%);
   color: $gray-6;
 }
-
 
 // WHITE BG
 .index .content .row.white div { background-color: $gray-6; }

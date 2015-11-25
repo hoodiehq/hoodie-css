@@ -189,7 +189,9 @@ aside img { border: 0; }
   padding: rem-calc(8) rem-calc(3);
   font-weight: bold;
   cursor: pointer;
-  &:focus, &:hover{
+
+  &:focus,
+  &:hover {
     outline: none;
     background-color: $lilac-l;
     border-color: $lilac-l;
