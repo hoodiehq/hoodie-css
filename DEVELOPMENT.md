@@ -27,6 +27,8 @@ In order to see what scripts we have available, you can either go through the **
 - [Scripts that match `dev:*`](#scripts-that-match-dev)
 - [The "prod" Script](#the-prod-script)
 - [Scripts that match `prod:*`](#scripts-that-match-prod)
+- [Visual Regression Tests](#visual-regression-tests)
+- [Refactoring Workflow](#the-refactoring-workflow)
 
 ---
 
@@ -437,7 +439,7 @@ The `prod:javascript` script takes the two javascript files we need in the page 
 
 This allows us to only have one `<script>` tag on pages, that always points to the same script, instead of having each page import all the scripts it uses. We use [uglify-js](https://www.npmjs.com/package/uglify-js) (in the scripts it's called `uglify-js`) so that [jQuery](http://jquery.com/) is available across all our sites, as well as our own custom JavaScript.
 
-## The tests
+## Visual Regression Tests
 To ensure that `http://hood.ie` won't be negatively affected by any of our changes during the refactoring process we're using visual regression tests. The following are the available scripts:
 
 * `test:visuals`
@@ -464,7 +466,7 @@ To ensure that `http://hood.ie` won't be negatively affected by any of our chang
 
   triggers the test suite for the small viewport(1440 x 900).
 
-## The Refactor Workflow
+## The Refactoring Workflow
 For the refactoring process we've established a certain workflow, including the following scripts.
 
 1. Make sure you've made no local changes so far.
