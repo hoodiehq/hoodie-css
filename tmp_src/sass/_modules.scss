@@ -35,7 +35,7 @@ $dh : rem-calc(40);
   left: 0;
   opacity: 1;
   position: absolute;
-  transition: opacity 0.25s;
+  transition: opacity .25s;
 
   &:hover { opacity: 0; }
 }

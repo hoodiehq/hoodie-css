@@ -11,7 +11,7 @@ footer a { text-shadow: none !important; }
 .nav {
   display: flex;
   padding: rem-calc(17 20);
-  transition: height 0.2s;
+  transition: height .2s;
 }
 
 .nav.is-active {
@@ -63,7 +63,7 @@ footer a { text-shadow: none !important; }
 .logo {
   display: block;
   margin-right: 0 !important;
-  transition: all 0.2s;
+  transition: all .2s;
 }
 
 .is-active .logo {
@@ -117,7 +117,7 @@ footer a { text-shadow: none !important; }
   position: relative;
   text-align: center;
   top: rem-calc(-4);
-  transition: all 0.2s;
+  transition: all .2s;
   width: rem-calc(35);
   z-index: 102;
 
@@ -194,7 +194,7 @@ body.gray .animation.colorise .letter { stroke: $gray-1; }
 
 .animated-logo .animation {
   margin: 1.25em 0 1em;
-  transition: margin-top 0.5s, stroke 0.5s;
+  transition: margin-top .5s, stroke .5s;
 }
 
 .animated-logo .animation svg { width: 90%; }
@@ -252,7 +252,7 @@ body.gray .animation.colorise .letter { stroke: $gray-1; }
 
 .mobile header .main-nav {
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity .5s;
 }
 
 .mobile header .is-active .main-nav { opacity: 1; }
