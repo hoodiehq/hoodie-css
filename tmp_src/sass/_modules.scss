@@ -1,103 +1,96 @@
-
-
 /*------------------------------------*\
   #MODULES
 \*------------------------------------*/
 
-
 // HEIGHT DEFAULT VAR
 $dh : rem-calc(40);
 
-
 // BIO FOR A PERSON WITH 3:6 GRID
-.person-bio {
-  .h3,
-  .h6,
-  article p,
-  .bio-link {
+
+.person-bio .h3,
+.person-bio .h6,
+.person-bio article p,
+.person-bio .bio-link {
+  padding-left: 0;
+
+  @include breakpoint(mv) { padding-left: rem-calc(175); }
+}
+
+.person-bio .h6 { display: block; }
+
+.person-bio p {
+  margin-bottom: rem-calc(12);
+
+  @include breakpoint(mv) { margin-bottom: rem-calc(26); }
+
+}
+
+.person-bio .grid-3 {
+  margin-top: rem-calc(5);
+  max-width: rem-calc(150);
+  position: relative;
+}
+
+.person-bio .grid-3 .sw {
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  transition: opacity 0.25s;
+
+  &:hover { opacity: 0; }
+}
+
+.person-bio .bio-link {
+  margin: 0 auto;
+  max-width: 37.5rem;
+  padding-top: 0;
+  width: 100%;
+
+  @include breakpoint(lv) {
+    max-width: 11.25rem;
     padding-left: 0;
-
-    @include breakpoint(mv) { padding-left: rem-calc(175); }
-  }
-
-  .h6 { display: block; }
-
-  p {
-    margin-bottom: rem-calc(12);
-
-    @include breakpoint(mv) { margin-bottom: rem-calc(26); }
-
-  }
-
-  .grid-3 {
-    margin-top: rem-calc(5);
-    max-width: rem-calc(150);
-    position: relative;
-
-    .sw {
-      left: 0;
-      opacity: 1;
-      position: absolute;
-      transition: opacity 0.25s;
-
-      &:hover { opacity: 0; }
-    }
-  }
-
-  .bio-link {
-    margin: 0 auto;
-    max-width: 37.5rem;
-    padding-top: 0;
-    width: 100%;
-
-    @include breakpoint(lv) {
-      max-width: 11.25rem;
-      padding-left: 0;
-      padding-top: rem-calc(129);
-    }
-  }
-
-  figure.grid-3.l {
-    float: none;
-
-    @include breakpoint(mv) { float: left; }
+    padding-top: rem-calc(129);
   }
 }
 
+.person-bio figure.grid-3.l {
+  float: none;
+
+  @include breakpoint(mv) { float: left; }
+}
 
 // FRIENDS + CONTRIBUTE
 
 .friends {
   @extend %cf;
-
-  .grid-3 {
-    margin-bottom: rem-calc(20);
-    text-align: center;
-
-    @include breakpoint(mv) { margin-bottom: rem-calc(40); }
-
-    @include breakpoint(lv) { margin-bottom: rem-calc(60); }
-
-    figure {
-      margin-bottom: rem-calc(16);
-      min-height: rem-calc(150);
-
-      &.contribute-topic-image-wrap { min-height: rem-calc(90); }
-
-      .contribute-topic-image {
-        opacity: .4;
-        width:rem-calc(80);
-      }
-    }
-  }
-
-  .grid-svg {
-    color: rgba(0, 0, 0, .3);
-    margin-bottom: rem-calc(20);
-  }
-
 }
 
+.friends .grid-3 {
+  margin-bottom: rem-calc(20);
+  text-align: center;
+
+  @include breakpoint(mv) { margin-bottom: rem-calc(40); }
+
+  @include breakpoint(lv) { margin-bottom: rem-calc(60); }
+}
+
+.friends .grid-3 figure {
+  margin-bottom: rem-calc(16);
+  min-height: rem-calc(150);
+}
+
+.friends .grid-3 figure.contribute-topic-image-wrap { min-height: rem-calc(90); }
+
+
+.friends .grid-3 figure .contribute-topic-image {
+  opacity: .4;
+  width:rem-calc(80);
+}
+
+.friends .grid-svg {
+  color: rgba(0, 0, 0, .3);
+  margin-bottom: rem-calc(20);
+}
 
 // ASIDE NAVIGATION FOR DOCS
 
@@ -110,11 +103,9 @@ $dh : rem-calc(40);
   text-align: right;
   top: rem-calc(347);
   width: rem-calc(200);
-
-  ul { margin-bottom: rem-calc(35); }
-
 }
 
+.api-nav ul { margin-bottom: rem-calc(35); }
 
 // HOT FIX FOR PRISM
 code {
@@ -123,7 +114,6 @@ code {
   margin-top: rem-calc(25) !important;
   white-space: normal !important;
 }
-
 
 // ARTICLE
 ul,
@@ -155,70 +145,65 @@ aside img { border: 0; }
   &:hover { background-image: none; }
 }
 
+.friends use,
+.contribute-aside-icon use { transform: scale(2.5); }
 
-.friends,
-.contribute-aside-icon {
-
-  svg {
-    display: block;
-    height: rem-calc(80);
-    margin: 0 auto;
-    width: rem-calc(80);
-  }
-
-  use { transform: scale(2.5); }
-
+.friends svg,
+.contribute-aside-icon svg {
+  display: block;
+  height: rem-calc(80);
+  margin: 0 auto;
+  width: rem-calc(80);
 }
 
 .contribute-aside-icon {
-
   @include breakpoint(lv) { text-align: right; }
+}
 
-  svg {
-    display: inline-block;
-    margin: 0;
-  }
+.contribute-aside-icon svg {
+  display: inline-block;
+  margin: 0;
 }
 
 #slack-integration {
   width: 100%;
   text-align: center;
   padding-bottom: rem-calc(25);
+}
 
-  input {
-    border: 1px solid;
-    font-size: 1em;
-    height: 2.2rem;
-    width: 60%;
-  }
+#slack-integration input {
+  border: 1px solid;
+  font-size: 1em;
+  height: 2.2rem;
+  width: 60%;
+}
 
-  #mail-for-slack {
-    border-color: #C1A7BC;
-    color: #404040;
-    padding: rem-calc(12) rem-calc(8);
-    &:focus, &:hover{
-      outline: none;
-      border-color: #520644;
-    }
-  }
-
-  #submit-slack {
+#slack-integration #mail-for-slack {
+  border-color: #C1A7BC;
+  color: #404040;
+  padding: rem-calc(12) rem-calc(8);
+  &:focus, &:hover{
+    outline: none;
     border-color: #520644;
-    background-color: #520644;
-    color: #fff;
-    margin-top: rem-calc(7);
-    padding: rem-calc(8) rem-calc(3);
-    font-weight: bold;
-    cursor: pointer;
-    &:focus, &:hover{
-      outline: none;
-      background-color: #C1A7BC;
-      border-color: #C1A7BC;
-    }
   }
+}
 
-  .message {
-    font-weight: 400;
-    line-height: 2;
+#slack-integration #submit-slack {
+  border-color: #520644;
+  background-color: #520644;
+  color: #fff;
+  margin-top: rem-calc(7);
+  padding: rem-calc(8) rem-calc(3);
+  font-weight: bold;
+  cursor: pointer;
+  &:focus, &:hover{
+    outline: none;
+    background-color: #C1A7BC;
+    border-color: #C1A7BC;
   }
+}
+
+#slack-integration .message {
+  font-weight: 400;
+  line-height: 2;
 }
