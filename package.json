@@ -32,7 +32,7 @@
     "dev:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output tmp_src/css/hoodie.pref.css tmp_src/css/hoodie.css",
     "prod": "npm-run-all prod:*",
     "prod:sass": "node-sass --output-style compressed tmp_src/sass/base.scss tmp_src/css/prod/hoodie.min.css",
-    "prod:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output tmp_src/css/prod/hoodie.min.css tmp_src/css/prod/hoodie.min.pref.css",
+    "prod:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output tmp_src/css/prod/hoodie.min.pref.css tmp_src/css/prod/hoodie.min.css",
     "prod:javascript": "uglifyjs tmp_src/js/jquery.min.js tmp_src/js/main.js --output tmp_src/js/prod/hoodie.min.js",
     "docs": "kss-node --source tmp_src/sass --homepage ../../styleguide.md",
     "test": "npm-run-all test:*",
