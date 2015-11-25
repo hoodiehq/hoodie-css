@@ -51,12 +51,12 @@ footer {
 .cb,
 .main-nav,
 .blog-list,
-.blog-post .comments { 
+.blog-post .comments {
   margin: 0 auto;
 }
 
 .nav,
-.sub-nav { 
+.sub-nav {
   position: absolute;
 }
 
@@ -65,54 +65,49 @@ footer {
   max-width: rem-calc(830);
   padding-bottom: rem-calc(42);
   width: 100%;
+}
 
-  &.teaser { padding-bottom: rem-calc(57); }
+.cb.teaser { padding-bottom: rem-calc(57); }
 
-  article {
-    margin: 0 auto;
-    max-width: rem-calc(600);
-    width: 100%;
+.cb article {
+  margin: 0 auto;
+  max-width: rem-calc(600);
+  width: 100%;
 
-    @include breakpoint(lv) { float: right; }
-  }
+  @include breakpoint(lv) { float: right; }
+}
 
-  aside {
-    max-width: rem-calc(600);
-    margin: 0 auto;
-    width: 100%;
+.cb aside {
+  max-width: rem-calc(600);
+  margin: 0 auto;
+  width: 100%;
 
-    br {
-      display: none;
-
-      @include breakpoint(lv) { display: inline; }
-
-    }
-
-    @include breakpoint(lv) {
-      float: left;
-      margin: rem-calc(0 50 0 0);
-      max-width: rem-calc(180);
-    }
-  }
-
-  table { width: 100%; }
-
-  tr:nth-child(even) { background-color: #e1e1e1; }
-
-  td {
-    padding: 5px 8px;
-
-    &:nth-child(1) { width: 60%; }
+  @include breakpoint(lv) {
+    float: left;
+    margin: rem-calc(0 50 0 0);
+    max-width: rem-calc(180);
   }
 }
 
+.cb aside br {
+  display: none;
+  @include breakpoint(lv) { display: inline; }
+}
+
+.cb table { width: 100%; }
+
+.cb tr:nth-child(even) { background-color: #e1e1e1; }
+
+.cb td {
+  padding: 5px 8px;
+}
+
+.cb td:nth-child(1) { width: 60%; }
+
 .content {
   padding: rem-calc(160 16 0);
-
   @include breakpoint(mv) { padding: rem-calc(200 16 0); }
-
   @include breakpoint(lv) { padding: rem-calc(270 16 0); }
-
 }
 
 code {
@@ -125,10 +120,9 @@ code {
 .grid-9 {
   max-width: rem-calc(600);
   width: 100%;
-
-  figcaption { padding-bottom: rem-calc(30); }
-
 }
+
+.grid-9 figcaption { padding-bottom: rem-calc(30); }
 
 .grid-6 {
   max-width: rem-calc(450);
@@ -161,17 +155,16 @@ code {
   display: block;
 }
 
-
 .switch-on-break {
   display: flex;
   flex-direction: column;
 
-  .contribute-aside-icon { order: 1; }
-
-  article { order: 2; }
-
   @include breakpoint(lv) { display: block; }
 }
+
+.switch-on-break .contribute-aside-icon { order: 1; }
+
+.switch-on-break article { order: 2; }
 
 .vat {
   display: block;
