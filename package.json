@@ -29,7 +29,7 @@
     "dev": "npm-run-all dev:css",
     "dev:css": "watch 'npm-run-all dev:sass dev:autoprefix' tmp_src/sass --ignoreDotFiles --ignoreUnreadable",
     "dev:sass": "node-sass --source-map tmp_src/css/hoodie.css.map --output-style nested tmp_src/sass/base.scss src/css/hoodie.css",
-    "dev:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output tmp_src/css/hoodie.css tmp_src/css/hoodie.pref.css",
+    "dev:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output tmp_src/css/hoodie.pref.css tmp_src/css/hoodie.css",
     "prod": "npm-run-all prod:*",
     "prod:sass": "node-sass --output-style compressed tmp_src/sass/base.scss tmp_src/css/prod/hoodie.min.css",
     "prod:autoprefix": "postcss --use autoprefixer --autoprefixer.browsers \"> 5%\" --output tmp_src/css/prod/hoodie.min.css tmp_src/css/prod/hoodie.min.pref.css",
