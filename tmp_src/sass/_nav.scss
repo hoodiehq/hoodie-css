@@ -164,9 +164,9 @@ footer a { text-shadow: none !important; }
   transform: rotate(45deg);
 }
 
-.is-active .menu-button-span:after { opacity: 0; }
+.is-active .menu-button-span::after { opacity: 0; }
 
-.is-active .menu-button-span:before {
+.is-active .menu-button-span::before {
   top: 0;
   transform: rotate(90deg);
 }
