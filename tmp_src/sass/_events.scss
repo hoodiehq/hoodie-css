@@ -122,7 +122,6 @@
   #FUTURE-EVENTS
 \*------------------------------------*/
 
-
 .futureEvents { // CLASS USED IN EVENTS.JS
   @include breakpoint(index) { padding-right: 1rem; }
 }
@@ -157,9 +156,8 @@
   #PAST-EVENTS
 \*------------------------------------*/
 
-
-.pastEvents { // CLASS USED IN EVENTS.JS
-  margin-top: rem-calc(48);
+// CLASS USED IN EVENTS.JS
+.pastEvents { margin-top: rem-calc(48);
 
   @include breakpoint(index) {
     margin-top: 0;

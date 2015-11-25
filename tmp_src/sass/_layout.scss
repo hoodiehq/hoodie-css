@@ -29,13 +29,12 @@ section,
   width: 100%;
 }
 
-header { z-index:1; }
+header { z-index: 1; }
 
 header section li,
 header section a { display: inline-block; }
 
-footer {
-  padding-top: rem-calc(90);
+footer { padding-top: rem-calc(90);
 
   @include breakpoint(mv) { margin-top: rem-calc(85); }
 }
@@ -51,14 +50,10 @@ footer {
 .cb,
 .main-nav,
 .blog-list,
-.blog-post .comments {
-  margin: 0 auto;
-}
+.blog-post .comments { margin: 0 auto; }
 
 .nav,
-.sub-nav {
-  position: absolute;
-}
+.sub-nav { position: absolute; }
 
 .cb {
   @extend %cf;
@@ -98,9 +93,7 @@ footer {
 
 .cb tr:nth-child(even) { background-color: #e1e1e1; }
 
-.cb td {
-  padding: 5px 8px;
-}
+.cb td { padding: 5px 8px; }
 
 .cb td:nth-child(1) { width: 60%; }
 
@@ -114,7 +107,6 @@ code {
   display: block;
   padding-top: rem-calc(25);
 }
-
 
 // GRIDS
 .grid-9 {
