@@ -437,6 +437,52 @@ The `prod:javascript` script takes the two javascript files we need in the page 
 
 This allows us to only have one `<script>` tag on pages, that always points to the same script, instead of having each page import all the scripts it uses. We use [uglify-js](https://www.npmjs.com/package/uglify-js) (in the scripts it's called `uglify-js`) so that [jQuery](http://jquery.com/) is available across all our sites, as well as our own custom JavaScript.
 
+## The tests
+To ensure that `http://hood.ie` won't be negatively affected by any of our changes during the refactoring process we're using visual regression tests. The following are the available scripts:
+
+* `test:visuals`
+
+  The `test:visuals` script runs the `visual-regression-testing.sh` file which starts a local server including a proxy for `http://hood.ie` and runs the `test:visuals:hood.ie:tests` script. This gives us the ability to test our local CSS with the remote Markup from `http://hood.ie`.
+
+* `test:visuals:hood.ie:server`
+
+  spins up a local server including a proxy for `http://hood.ie`.
+
+* `test:visuals:hood.ie:tests`
+
+  triggers all available test suites.
+
+* `test:visuals:hood.ie:small`
+
+  triggers the test suite for the small viewport(320 x 480).
+
+* `test:visuals:hood.ie:medium`
+
+  triggers the test suite for the medium viewport(1024 x 786).
+
+* `test:visuals:hood.ie:large`
+
+  triggers the test suite for the small viewport(1440 x 900).
+
+## The Refactor Workflow
+For the refactoring process we've established a certain workflow, including the following scripts.
+
+1. Make sure you've made no local changes so far.
+2. Run `test:visuals`. This creates baseline images in `./visual-regression-tests/screenshots/`. Each test suite gets its own folder.
+3. Run `dev`.
+4. Start refactoring.
+5. Run `prod`.
+6. Run `test-visuals` again. This will now create new screenshots and test them against your previously made baseline images. This task may take a while depending on the power of your machine.
+7. If every test passes you're good to commit and push your changes.
+
+### Failures
+1. If all/one of your tests have/has failed, go into the respective folder (`./visual-regression-tests/screenshots/small / medium / large`) and check the image/s in the `failures/` folder.
+2. Go back to your Sass files and find the mistakenly made changes.
+3. Revert those changes.
+4. Run `test:visuals` again.
+
+
+
 ---
 
 ## Please help us!
