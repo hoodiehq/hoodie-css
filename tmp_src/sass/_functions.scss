@@ -52,7 +52,7 @@ $rem-base: 16px;
   .nav,
   .footer { background-color: $color; }
 
-  .footer .sitemap-link { color: #fff; }
+  .footer .sitemap-link { color: $gray-6; }
 
   .sub-nav { background-color: $color-l; }
 }

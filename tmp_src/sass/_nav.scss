@@ -132,7 +132,7 @@ footer a { text-shadow: none !important; }
 .menu-button-span,
 .menu-button-span::before,
 .menu-button-span::after {
-  background-color: #fff;
+  background-color: $gray-6;
   border-radius: 3px;
   display: inline-block;
   height: rem-calc(5);
@@ -184,7 +184,7 @@ body.lilac .animation.colorise .letter { stroke: $lilac; }
 body.gray .animation.colorise .letter { stroke: $gray-1; }
 
 .animated-logo {
-  background: #fff;
+  background: $gray-6;
   margin-top: rem-calc(102);
   overflow: hidden;
   position: absolute;

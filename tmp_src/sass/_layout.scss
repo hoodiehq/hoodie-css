@@ -91,7 +91,7 @@ footer { padding-top: rem-calc(90);
 
 .cb table { width: 100%; }
 
-.cb tr:nth-child(even) { background-color: #e1e1e1; }
+.cb tr:nth-child(even) { background-color: $gray-5-5; }
 
 .cb td { padding: 5px 8px; }
 
@@ -168,7 +168,7 @@ pre,
 pre[class*="language-"] {
   margin-bottom: 1.6em;
   padding: 0 1.4em 1em;
-  background-color: #fdfdfd;
+  background-color: $gray-6;
   overflow: scroll;
 }
 

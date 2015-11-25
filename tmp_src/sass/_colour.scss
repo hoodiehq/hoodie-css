@@ -26,6 +26,7 @@ $gray-2: #404040;
 $gray-3: #606060;
 $gray-4: #999;
 $gray-5: #b3b3b3;
+$gray-5-5: #e1e1e1;
 $gray-6: #fefefe;
 
 $gray: $gray-1;
@@ -34,7 +35,7 @@ $gray-l: $gray-5;
 
 body {
   color: $gray-2;
-  background-color: #fff;
+  background-color: $gray-6;
 }
 
 /*------------------------------------*\
@@ -61,7 +62,7 @@ aside { color: $gray-4; }
 .sub-nav a { color: $gray-2 !important; }
 
 .main-nav a,
-.meta-nav a { color: #fff !important; }
+.meta-nav a { color: $gray-6 !important; }
 
 .cb:odd { background-color: $gray-5; }
 
