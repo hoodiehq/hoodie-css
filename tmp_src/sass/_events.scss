@@ -75,8 +75,8 @@
   }
 }
 
-.futureEvents h2,
-.pastEvents h2 { text-align: center; }
+.futureEvents .text-center,
+.pastEvents .text-center { text-align: center; }
 
 .futureEvents .description,
 .pastEvents .description {
@@ -140,7 +140,7 @@
   }
 }
 
-.futureEvents .events-list-item:first-child h3 { color: $gray-6; }
+.futureEvents .events-list-item:first-child .dark, { color: $gray-6; }
 
 .futureEvents .events-list-item:first-child .links-list-link {
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, .8) 75%);
