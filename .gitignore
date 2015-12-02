@@ -3,3 +3,7 @@ node_modules/
 src/css/.tmp/
 visual-regression-tests/screenshots/**
 npm-debug.log
+src/css/prod/hoodie.min.css
+tmp_src/css/hoodie.css
+tmp_src/css/hoodie.css.map
+tmp_src/css/hoodie.pref.css
