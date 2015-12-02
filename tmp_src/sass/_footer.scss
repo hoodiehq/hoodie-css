@@ -1,9 +1,6 @@
 
-/*------------------------------------*\
-  #FOOTER
-\*------------------------------------*/
 
-
+// FOOTER
 .footer { padding: rem-calc(0 16); }
 
 .footer .grid-3 {
@@ -43,12 +40,12 @@
 .sitemap-list .sitemap-link { text-decoration: none !important; }
 
 .footer-licensing {
-  color: #fff;
+  color: $gray-6;
   font-size: .875em;
 }
 
 .footer-licensing a {
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 45%, rgba(255, 255, 255, .4) 60%);
   background-position: 0 rem-calc(13);
-  color: #fff;
+  color: $gray-6;
 }

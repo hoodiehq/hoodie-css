@@ -1,3 +1,5 @@
+
+
 /*------------------------------------*\
   #EVENTS
 \*------------------------------------*/
@@ -12,7 +14,7 @@
 #eventsList .loader {
   background: $lilac;
   border-radius: 50%;
-  color: #fff;
+  color: $gray-6;
   font-size: 1.25em;
   font-weight: 500;
   height: 7em;
@@ -104,33 +106,28 @@
 .twitterCTA { // CLASS USED IN EVENTS:JS
   background-color: $lilac;
   border-radius: 4px;
-  color: #fff;
+  color: $gray-6;
   padding: rem-calc(25 12);
   text-align: center;
   font-weight: 400;
 }
 
 .twitterCTA-link.twitterCTA-link { // CLASS USED IN EVENTS:JS | DOUBLED CLASS FOR HIGHER SPECIFICITY
-  color: #fff;
+  color: $gray-6;
   display: block;
   font-size: 1.375em;
   font-weight: 500;
   text-shadow: none;
 }
 
-/*------------------------------------*\
-  #FUTURE-EVENTS
-\*------------------------------------*/
-
-
-.futureEvents { // CLASS USED IN EVENTS.JS
-  @include breakpoint(index) { padding-right: 1rem; }
-}
+// FUTURE-EVENTS
+// CLASS USED IN EVENTS.JS
+.futureEvents { @include breakpoint(index) { padding-right: 1rem; }}
 
 .futureEvents .events-list-item:first-child {
   background-color: $lilac;
   border-radius: 4px;
-  color: #fff;
+  color: $gray-6;
   font-weight: 400;
   padding: rem-calc(10 14);
 
@@ -143,23 +140,19 @@
   }
 }
 
-.futureEvents .events-list-item:first-child h3 { color: #fff; }
+.futureEvents .events-list-item:first-child h3 { color: $gray-6; }
 
 .futureEvents .events-list-item:first-child .links-list-link {
-  background-image: linear-gradient(to bottom, #fff 75%, rgba(255, 255, 255, .8) 75%);
-  color: #fff;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, .8) 75%);
+  color: $gray-6;
   text-shadow: none;
 }
 
 .futureEvents .events-list-item:first-child .links { margin-bottom: rem-calc(5); }
 
-/*------------------------------------*\
-  #PAST-EVENTS
-\*------------------------------------*/
-
-
-.pastEvents { // CLASS USED IN EVENTS.JS
-  margin-top: rem-calc(48);
+// PAST-EVENTS
+// CLASS USED IN EVENTS.JS
+.pastEvents { margin-top: rem-calc(48);
 
   @include breakpoint(index) {
     margin-top: 0;

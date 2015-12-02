@@ -1,17 +1,13 @@
 
 
-/*------------------------------------*\
-  #NAVIGATION
-\*------------------------------------*/
-
-
+// NAVIGATION
 header a,
 footer a { text-shadow: none !important; }
 
 .nav {
   display: flex;
   padding: rem-calc(17 20);
-  transition: height 0.2s;
+  transition: height .2s;
 }
 
 .nav.is-active {
@@ -63,7 +59,7 @@ footer a { text-shadow: none !important; }
 .logo {
   display: block;
   margin-right: 0 !important;
-  transition: all 0.2s;
+  transition: all .2s;
 }
 
 .is-active .logo {
@@ -117,7 +113,7 @@ footer a { text-shadow: none !important; }
   position: relative;
   text-align: center;
   top: rem-calc(-4);
-  transition: all 0.2s;
+  transition: all .2s;
   width: rem-calc(35);
   z-index: 102;
 
@@ -132,7 +128,7 @@ footer a { text-shadow: none !important; }
 .menu-button-span,
 .menu-button-span::before,
 .menu-button-span::after {
-  background-color: #fff;
+  background-color: $gray-6;
   border-radius: 3px;
   display: inline-block;
   height: rem-calc(5);
@@ -141,7 +137,7 @@ footer a { text-shadow: none !important; }
 
 .menu-button-span::before,
 .menu-button-span::after {
-  content: "";
+  content: '';
   left: 0;
   position: absolute;
   transition: all .2s;
@@ -164,9 +160,9 @@ footer a { text-shadow: none !important; }
   transform: rotate(45deg);
 }
 
-.is-active .menu-button-span:after { opacity: 0; }
+.is-active .menu-button-span::after { opacity: 0; }
 
-.is-active .menu-button-span:before {
+.is-active .menu-button-span::before {
   top: 0;
   transform: rotate(90deg);
 }
@@ -184,7 +180,7 @@ body.lilac .animation.colorise .letter { stroke: $lilac; }
 body.gray .animation.colorise .letter { stroke: $gray-1; }
 
 .animated-logo {
-  background: #fff;
+  background: $gray-6;
   margin-top: rem-calc(102);
   overflow: hidden;
   position: absolute;
@@ -194,7 +190,7 @@ body.gray .animation.colorise .letter { stroke: $gray-1; }
 
 .animated-logo .animation {
   margin: 1.25em 0 1em;
-  transition: margin-top 0.5s, stroke 0.5s;
+  transition: margin-top .5s, stroke .5s;
 }
 
 .animated-logo .animation svg { width: 90%; }
@@ -252,19 +248,14 @@ body.gray .animation.colorise .letter { stroke: $gray-1; }
 
 .mobile header .main-nav {
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity .5s;
 }
 
 .mobile header .is-active .main-nav { opacity: 1; }
 
 .mobile header .animated-logo { margin-top: 4.375rem; }
 
-
-/*------------------------------------*\
-  #HEADER
-\*------------------------------------*/
-
-
+// HEADER
 // WHEN NAVIGATION IS VISIBLE DON'T ALLOW TO SCROLL CONTENT
 .no_scroll {
   height: 100%;
