@@ -1,28 +1,23 @@
-/*------------------------------------*\
-  #MODULES
-\*------------------------------------*/
 
+
+// MODULES
 // HEIGHT DEFAULT VAR
 $dh : rem-calc(40);
 
 // BIO FOR A PERSON WITH 3:6 GRID
-
 .person-bio .h3,
 .person-bio .h6,
 .person-bio article p,
-.person-bio .bio-link {
-  padding-left: 0;
+.person-bio .bio-link { padding-left: 0;
 
   @include breakpoint(mv) { padding-left: rem-calc(175); }
 }
 
 .person-bio .h6 { display: block; }
 
-.person-bio p {
-  margin-bottom: rem-calc(12);
+.person-bio p { margin-bottom: rem-calc(12);
 
   @include breakpoint(mv) { margin-bottom: rem-calc(26); }
-
 }
 
 .person-bio .grid-3 {
@@ -35,7 +30,7 @@ $dh : rem-calc(40);
   left: 0;
   opacity: 1;
   position: absolute;
-  transition: opacity 0.25s;
+  transition: opacity .25s;
 
   &:hover { opacity: 0; }
 }
@@ -53,17 +48,13 @@ $dh : rem-calc(40);
   }
 }
 
-.person-bio figure.grid-3.l {
-  float: none;
+.person-bio figure.grid-3.l { float: none;
 
   @include breakpoint(mv) { float: left; }
 }
 
 // FRIENDS + CONTRIBUTE
-
-.friends {
-  @extend %cf;
-}
+.friends { @extend %cf; }
 
 .friends .grid-3 {
   margin-bottom: rem-calc(20);
@@ -93,7 +84,6 @@ $dh : rem-calc(40);
 }
 
 // ASIDE NAVIGATION FOR DOCS
-
 .api-nav {
   background-color: $gray-6;
   border-radius: rem-calc(12);
@@ -129,7 +119,7 @@ ul {
 ol { padding-left: rem-calc(30); }
 
 img {
-  border: 1px solid #f1f1f1;
+  border: 1px solid $gray-5-5;
   border-radius: 3px;
 }
 
@@ -156,9 +146,7 @@ aside img { border: 0; }
   width: rem-calc(80);
 }
 
-.contribute-aside-icon {
-  @include breakpoint(lv) { text-align: right; }
-}
+.contribute-aside-icon { @include breakpoint(lv) { text-align: right; }}
 
 .contribute-aside-icon svg {
   display: inline-block;
@@ -179,27 +167,31 @@ aside img { border: 0; }
 }
 
 #slack-integration #mail-for-slack {
-  border-color: #C1A7BC;
-  color: #404040;
+  border-color: $lilac-l;
+  color: $gray-2;
   padding: rem-calc(12) rem-calc(8);
-  &:focus, &:hover{
+
+  &:focus,
+  &:hover {
     outline: none;
-    border-color: #520644;
+    border-color: $lilac;
   }
 }
 
 #slack-integration #submit-slack {
-  border-color: #520644;
-  background-color: #520644;
-  color: #fff;
+  border-color: $lilac;
+  background-color: $lilac;
+  color: $gray-6;
   margin-top: rem-calc(7);
   padding: rem-calc(8) rem-calc(3);
   font-weight: bold;
   cursor: pointer;
-  &:focus, &:hover{
+
+  &:focus,
+  &:hover {
     outline: none;
-    background-color: #C1A7BC;
-    border-color: #C1A7BC;
+    background-color: $lilac-l;
+    border-color: $lilac-l;
   }
 }
 

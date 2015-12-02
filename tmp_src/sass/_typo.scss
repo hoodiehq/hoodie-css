@@ -1,8 +1,6 @@
 
-/*------------------------------------*\
-  #TYPO
-\*------------------------------------*/
 
+//TYPO
 //http://modularscale.com/scale/?px1=19&px2=16&ra1=1.618&ra2=0
 
 body {
@@ -93,9 +91,7 @@ p {
   line-height: 1.618;
 }
 
-aside {
-  @include breakpoint(lv) { text-align: right; }
-}
+aside { @include breakpoint(lv) { text-align: right; }}
 
 aside a {
   background-image: linear-gradient(to bottom, rgba(153, 153, 153, 1) 75%, rgba(153, 153, 153, .8) 75%) !important;
@@ -119,7 +115,7 @@ a {
   background-repeat: repeat-x;
   background-size: 1px 1px;
   text-decoration: none;
-  text-shadow: 1px 0 0 #fff, -1px 0 0 #fff;
+  text-shadow: 1px 0 0 $gray-6, -1px 0 0 $gray-6;
 }
 
 .main .teaser-index-section a,
@@ -162,7 +158,7 @@ ul ol,
 ol ol,
 ol ul {
   font-size: 1em;
-  margin-top: 0.75rem;
+  margin-top: .75rem;
 }
 
 .cb aside {
@@ -200,7 +196,6 @@ textarea { font-family: "FiraSansLight", sans-serif; }
   font-size: 1.1em;
   line-height: 1.8;
 }
-
 
 .no-border {
   background-image: none !important;
