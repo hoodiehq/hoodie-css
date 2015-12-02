@@ -1,12 +1,10 @@
-/*------------------------------------*\
-  #MODULES
-\*------------------------------------*/
 
+
+// MODULES
 // HEIGHT DEFAULT VAR
 $dh : rem-calc(40);
 
 // BIO FOR A PERSON WITH 3:6 GRID
-
 .person-bio .h3,
 .person-bio .h6,
 .person-bio article p,
@@ -56,7 +54,6 @@ $dh : rem-calc(40);
 }
 
 // FRIENDS + CONTRIBUTE
-
 .friends { @extend %cf; }
 
 .friends .grid-3 {

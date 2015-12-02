@@ -1,10 +1,6 @@
 
 
-/*------------------------------------*\
-  #NAVIGATION
-\*------------------------------------*/
-
-
+// NAVIGATION
 header a,
 footer a { text-shadow: none !important; }
 
@@ -141,7 +137,7 @@ footer a { text-shadow: none !important; }
 
 .menu-button-span::before,
 .menu-button-span::after {
-  content: "";
+  content: '';
   left: 0;
   position: absolute;
   transition: all .2s;
@@ -259,12 +255,7 @@ body.gray .animation.colorise .letter { stroke: $gray-1; }
 
 .mobile header .animated-logo { margin-top: 4.375rem; }
 
-
-/*------------------------------------*\
-  #HEADER
-\*------------------------------------*/
-
-
+// HEADER
 // WHEN NAVIGATION IS VISIBLE DON'T ALLOW TO SCROLL CONTENT
 .no_scroll {
   height: 100%;

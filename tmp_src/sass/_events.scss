@@ -1,3 +1,5 @@
+
+
 /*------------------------------------*\
   #EVENTS
 \*------------------------------------*/
@@ -118,13 +120,9 @@
   text-shadow: none;
 }
 
-/*------------------------------------*\
-  #FUTURE-EVENTS
-\*------------------------------------*/
-
-.futureEvents { // CLASS USED IN EVENTS.JS
-  @include breakpoint(index) { padding-right: 1rem; }
-}
+// FUTURE-EVENTS
+// CLASS USED IN EVENTS.JS
+.futureEvents { @include breakpoint(index) { padding-right: 1rem; }}
 
 .futureEvents .events-list-item:first-child {
   background-color: $lilac;
@@ -152,10 +150,7 @@
 
 .futureEvents .events-list-item:first-child .links { margin-bottom: rem-calc(5); }
 
-/*------------------------------------*\
-  #PAST-EVENTS
-\*------------------------------------*/
-
+// PAST-EVENTS
 // CLASS USED IN EVENTS.JS
 .pastEvents { margin-top: rem-calc(48);
 
