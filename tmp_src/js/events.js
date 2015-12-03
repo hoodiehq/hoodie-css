@@ -20,7 +20,7 @@ $(function() {
                 el += '<ul class="pastEvents">';
             }
             el += '<li data-type="'+type+'">';
-            el += '<h2>'+name+'</h1>';
+            el += '<h2 class="text-center">'+name+'</h2>';
             el += '<time>'+date.getDate()+'.'+(date.getMonth()+1)+'.'+date.getFullYear()+'</time>';
             el += '<span class="location">'+location+'</span>';
             el += '<p class="description">'+description+'</p>';
@@ -68,7 +68,7 @@ $(function() {
     var output = '';
     if(item.date){
         output += '<li class="events-list-item" data-type="'+item.type+'">';
-        output += '<h3>'+item.name+'</h3>';
+        output += '<h3 class="dark">'+item.name+'</h3>';
         output += '<span class="subline">'+item.type+'</span>';
         output += '<time>'+item.date.getDate()+'.'+(item.date.getMonth()+1)+'.'+item.date.getFullYear()+'</time>';
         output += ' — <span class="location">'+item.location+'</span>';
