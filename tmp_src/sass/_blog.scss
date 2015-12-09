@@ -3,7 +3,8 @@
   #BLOG
 \*------------------------------------*/
 
-.blog h1 { text-transform: uppercase; }
+.blog h1,
+.blog .uppercase { text-transform: uppercase; }
 
 .blog h2 { margin-top: rem-calc(40); }
 
