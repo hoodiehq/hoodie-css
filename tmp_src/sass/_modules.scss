@@ -159,13 +159,6 @@ aside img { border: 0; }
   padding-bottom: rem-calc(25);
 }
 
-#slack-integration input {
-  border: 1px solid;
-  font-size: 1em;
-  height: 2.2rem;
-  width: 60%;
-}
-
 #slack-integration #mail-for-slack {
   border-color: $lilac-l;
   color: $gray-2;
@@ -195,7 +188,37 @@ aside img { border: 0; }
   }
 }
 
-#slack-integration .message {
-  font-weight: 400;
-  line-height: 2;
+#slack-integration {
+  label {
+    display: block;
+  }
+
+  input, button {
+    border: 1px solid;
+    font-size: 1em;
+    height: 2.2rem;
+    width: 60%;
+  }
+
+  .message {
+    visibility: hidden;
+  }
+
+  .message-done, .message-fail {
+    visibility: visible;
+    width: 60%;
+    margin: rem-calc(7) auto 0;
+    font-weight: 400;
+    line-height: 2;
+  }
+
+  .message-fail {
+    border: 1px solid #E8260C;
+    background-color: #ffefef;
+  }
+
+  .message-done {
+    border: 1px solid $green;
+    background-color: 1px solid $green-l;
+  }
 }
